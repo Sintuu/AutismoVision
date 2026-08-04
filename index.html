@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AutismoVision - El Concurso Definitivo</title>
+  <title>AutismoVision</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400;500;700&display=swap"
     rel="stylesheet">
@@ -80,8 +80,13 @@
     }
 
     @keyframes bgPulse {
-      from { opacity: .7; }
-      to { opacity: 1; }
+      from {
+        opacity: .7;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
     .stars {
@@ -101,8 +106,17 @@
     }
 
     @keyframes twinkle {
-      0%, 100% { opacity: var(--op, .6); transform: scale(1); }
-      50% { opacity: .1; transform: scale(.5); }
+
+      0%,
+      100% {
+        opacity: var(--op, .6);
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: .1;
+        transform: scale(.5);
+      }
     }
 
     .hero-edition-badge {
@@ -233,18 +247,39 @@
     }
 
     @keyframes scrollLine {
-      0%, 100% { transform: scaleY(1); opacity: 1; }
-      50% { transform: scaleY(.5); opacity: .3; }
+
+      0%,
+      100% {
+        transform: scaleY(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scaleY(.5);
+        opacity: .3;
+      }
     }
 
     @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
     /* ─── SECTIONS ─── */
@@ -653,8 +688,15 @@
     }
 
     @keyframes modalPop {
-      from { opacity: 0; transform: scale(.96); }
-      to { opacity: 1; transform: scale(1); }
+      from {
+        opacity: 0;
+        transform: scale(.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     .video-modal-header {
@@ -705,7 +747,7 @@
       border: none;
     }
 
-    /* ─── CONTESTANTS ─── */
+    /* ─── CONCURSANTES ─── */
     .contestants-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -875,10 +917,11 @@
     }
 
     .stat-subvalue {
-      font-size: .72rem;
+      font-size: .75rem;
       color: var(--accent3);
       margin-top: .25rem;
       font-weight: 500;
+      line-height: 1.3;
     }
 
     .csp-songs-grid {
@@ -911,18 +954,20 @@
 
     .csp-song-info {
       flex: 1;
+      min-width: 0;
     }
 
     .csp-song-title {
       font-size: .9rem;
       font-weight: 500;
       color: var(--text);
+      line-height: 1.35;
     }
 
     .csp-song-edition {
       font-size: .75rem;
       color: var(--muted);
-      margin-top: .1rem;
+      margin-top: .25rem;
       font-family: 'Barlow Condensed', sans-serif;
       letter-spacing: .05em;
     }
@@ -999,7 +1044,10 @@
     .award-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; width: 3px; height: 100%;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
       background: var(--accent-color, var(--accent1));
     }
 
@@ -1043,7 +1091,7 @@
       color: var(--accent1);
     }
 
-    /* ─── RANKINGS ─── */
+    /* ─── RANKINGS & CLASIFICACIONES ─── */
     .ranking-table {
       background: var(--card);
       border: 1px solid var(--border);
@@ -1093,10 +1141,21 @@
       font-size: 1.1rem;
     }
 
-    .pos-1 { color: var(--gold); }
-    .pos-2 { color: var(--silver); }
-    .pos-3 { color: var(--bronze); }
-    .pos-other { color: var(--muted); }
+    .pos-1 {
+      color: var(--gold);
+    }
+
+    .pos-2 {
+      color: var(--silver);
+    }
+
+    .pos-3 {
+      color: var(--bronze);
+    }
+
+    .pos-other {
+      color: var(--muted);
+    }
 
     .rt-song {
       font-size: .88rem;
@@ -1158,6 +1217,271 @@
       padding: .1rem .4rem;
       border-radius: 2px;
       margin-top: .15rem;
+    }
+
+    /* ─── SUB-TABS (3ª Edición AV4801) ─── */
+    .sub-tabs-container {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      justify-content: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 0.75rem;
+    }
+
+    .sub-tab-btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.55rem 1.4rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .sub-tab-btn.active {
+      color: #fff;
+      background: rgba(255, 45, 120, 0.15);
+      border-color: var(--accent1);
+      box-shadow: 0 0 12px rgba(255, 45, 120, 0.2);
+    }
+
+    .sub-tab-btn:hover:not(.active) {
+      color: var(--text);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* ─── FASE DE GRUPOS AV4801 ─── */
+    .groups-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .group-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.25rem;
+      overflow: hidden;
+    }
+
+    .group-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      color: var(--accent2);
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: .3rem;
+    }
+
+    .group-song-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .5rem;
+      padding: .6rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .03);
+      cursor: pointer;
+      transition: background .15s;
+    }
+
+    .group-song-item:last-child {
+      border-bottom: none;
+    }
+
+    .group-song-item:hover {
+      background: rgba(255, 255, 255, .02);
+    }
+
+    .gsi-seed {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .75rem;
+      color: var(--muted);
+      min-width: 22px;
+    }
+
+    .gsi-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .gsi-name {
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .gsi-artist {
+      font-size: .72rem;
+      color: var(--muted);
+    }
+
+    .gsi-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .65rem;
+      letter-spacing: .05em;
+      padding: .15rem .45rem;
+      border-radius: 2px;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .tag-bombo1 {
+      background: rgba(0, 229, 255, .15);
+      color: var(--accent2);
+      border: 1px solid rgba(0, 229, 255, .3);
+    }
+
+    .tag-bombo2 {
+      background: rgba(124, 58, 237, .2);
+      color: #a78bfa;
+      border: 1px solid rgba(124, 58, 237, .4);
+    }
+
+    .tag-bombo3 {
+      background: rgba(255, 230, 0, .15);
+      color: var(--accent3);
+      border: 1px solid rgba(255, 230, 0, .3);
+    }
+
+    .tag-eliminated {
+      background: rgba(255, 45, 120, .15);
+      color: var(--accent1);
+      border: 1px solid rgba(255, 45, 120, .3);
+    }
+
+    /* ─── BRACKET LAYOUT AV4801 ─── */
+    .bracket-wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.5rem;
+      align-items: start;
+      overflow-x: auto;
+      padding-bottom: 1rem;
+    }
+
+    .bracket-col {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .bracket-col-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .9rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: .4rem;
+      margin-bottom: .5rem;
+    }
+
+    .matchup-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .matchup-team {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .6rem .8rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .03);
+      cursor: pointer;
+      transition: background .15s;
+    }
+
+    .matchup-team:last-child {
+      border-bottom: none;
+    }
+
+    .matchup-team:hover {
+      background: rgba(255, 255, 255, .03);
+    }
+
+    .matchup-team.winner {
+      background: rgba(0, 229, 255, .06);
+    }
+
+    .mt-title {
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mt-sub {
+      font-size: .7rem;
+      color: var(--muted);
+    }
+
+    .mt-star {
+      color: var(--gold);
+      font-size: .85rem;
+      margin-left: .25rem;
+    }
+
+    .champion-box {
+      background: linear-gradient(145deg, rgba(255, 215, 0, .12), rgba(255, 215, 0, .02));
+      border: 2px solid var(--gold);
+      border-radius: 6px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(255, 215, 0, .15);
+    }
+
+    .champion-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      color: var(--gold);
+      letter-spacing: .05em;
+      line-height: 1;
+      margin-top: .4rem;
+    }
+
+    .champion-song {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-top: .4rem;
+    }
+
+    .champion-artist {
+      font-size: .8rem;
+      color: var(--muted);
+    }
+
+    .fifth-place-box {
+      background: rgba(0, 229, 255, .05);
+      border: 1px solid rgba(0, 229, 255, .3);
+      border-radius: 6px;
+      padding: 1.2rem;
+      text-align: center;
+    }
+
+    .fifth-place-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      color: var(--accent2);
     }
 
     /* ─── GALA FINAL (GOLD) ─── */
@@ -1325,42 +1649,6 @@
       background: linear-gradient(to right, transparent, var(--border), transparent);
       margin: 0 2rem;
     }
-
-    /* ─── SUB-TABS (AV4801) ─── */
-    .sub-tabs-container {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 2rem;
-      justify-content: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      padding-bottom: 0.75rem;
-    }
-
-    .sub-tab-btn {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 600;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.5rem 1.25rem;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      color: var(--muted);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .sub-tab-btn.active {
-      color: #fff;
-      background: rgba(255, 45, 120, 0.1);
-      border-color: var(--accent1);
-    }
-
-    .sub-tab-btn:hover:not(.active) {
-      color: var(--text);
-      border-color: rgba(255, 255, 255, 0.2);
-    }
   </style>
 </head>
 
@@ -1387,6 +1675,21 @@
     <div class="scroll-hint">Scroll</div>
   </div>
 
+  <!-- ─── ESTADISTICAS GENERALES ─── -->
+  <section id="estadisticas-generales" class="reveal" style="padding-bottom: 2rem;">
+    <div class="section-label">📊 Visión Global</div>
+    <h2 class="section-title">Estadísticas Generales</h2>
+    <div class="stats-grid" style="display:flex; gap:1rem; margin-top:1rem; max-width:280px;">
+      <div class="stat-card"
+        style="flex:1; text-align:center; padding: 2rem; background: var(--card); border: 1px solid var(--border); border-radius: 6px;">
+        <div class="stat-label" style="font-size: 1rem; margin-bottom: 0.5rem;">Canciones Totales</div>
+        <div class="stat-value" id="global-total-songs" style="font-size:3rem; color:var(--accent1);">0</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
   <!-- ─── MÚSICA ─── -->
   <section id="musica" class="reveal">
     <div class="header-action-row">
@@ -1410,7 +1713,8 @@
     <div class="edition-tabs-content active" id="edition-0">
       <div class="player-layout">
         <div class="playlist-panel">
-          <div class="playlist-header"><span>Lista de reproducción</span><span class="playlist-count" id="count-0"></span></div>
+          <div class="playlist-header"><span>Lista de reproducción</span><span class="playlist-count"
+              id="count-0"></span></div>
           <div class="playlist-list" id="playlist-0"></div>
         </div>
         <div class="video-panel">
@@ -1435,7 +1739,8 @@
     <div class="edition-tabs-content" id="edition-1">
       <div class="player-layout">
         <div class="playlist-panel">
-          <div class="playlist-header"><span>Lista de reproducción</span><span class="playlist-count" id="count-1"></span></div>
+          <div class="playlist-header"><span>Lista de reproducción</span><span class="playlist-count"
+              id="count-1"></span></div>
           <div class="playlist-list" id="playlist-1"></div>
         </div>
         <div class="video-panel">
@@ -1460,7 +1765,8 @@
     <div class="edition-tabs-content" id="edition-2">
       <div class="player-layout">
         <div class="playlist-panel">
-          <div class="playlist-header"><span>Lista de reproducción</span><span class="playlist-count" id="count-2"></span></div>
+          <div class="playlist-header"><span>Lista de reproducción</span><span class="playlist-count"
+              id="count-2"></span></div>
           <div class="playlist-list" id="playlist-2"></div>
         </div>
         <div class="video-panel">
@@ -1485,7 +1791,8 @@
     <div class="edition-tabs-content" id="edition-3">
       <div class="player-layout">
         <div class="playlist-panel">
-          <div class="playlist-header"><span>Lista de reproducción</span><span class="playlist-count" id="count-3"></span></div>
+          <div class="playlist-header"><span>Lista de reproducción</span><span class="playlist-count"
+              id="count-3"></span></div>
           <div class="playlist-list" id="playlist-3"></div>
         </div>
         <div class="video-panel">
@@ -1514,7 +1821,8 @@
   <section id="concursantes" class="reveal">
     <div class="section-label">👤 Artistas & Estadísticas</div>
     <h2 class="section-title">Concursantes</h2>
-    <p class="section-subtitle">Los artistas que compiten en AutismoVision. Haz clic en cualquiera para desplegar sus estadísticas detalladas y discografía completa.</p>
+    <p class="section-subtitle">Los artistas que compiten en AutismoVision. Haz clic en cualquiera para desplegar sus
+      estadísticas detalladas y discografía completa.</p>
 
     <div class="contestants-grid" id="contestants-grid"></div>
 
@@ -1540,7 +1848,8 @@
   <section id="premios-secundarios" class="reveal">
     <div class="section-label">🎖️ Galardones Especiales</div>
     <h2 class="section-title">Premios Secundarios</h2>
-    <p class="section-subtitle">Reconocimientos especiales otorgados en cada edición a la excelencia autista, lírica y musical.</p>
+    <p class="section-subtitle">Reconocimientos especiales otorgados en cada edición a la excelencia autista, lírica y
+      musical.</p>
 
     <div id="awards-container"></div>
   </section>
@@ -1555,28 +1864,51 @@
 
     <div class="edition-tabs" id="ranking-tabs">
       <button class="tab-btn active" onclick="switchRanking(0, this)">3ª Edición - AV4801</button>
-      <button class="tab-btn" onclick="switchRanking(2, this)">2ª Edición — AV3</button>
-      <button class="tab-btn" onclick="switchRanking(1, this)">1ª Edición — AV</button>
+      <button class="tab-btn" onclick="switchRanking(1, this)">2ª Edición — AV3</button>
+      <button class="tab-btn" onclick="switchRanking(2, this)">1ª Edición — AV</button>
     </div>
 
+    <!-- 3ª Edición: AV4801 (Pestaña principal 0) -->
     <div class="ranking-content active" id="ranking-tab-0">
-      <div class="ranking-table">
-        <div class="rt-header"><span>#</span><span>Canción</span><span>Pts</span><span></span></div>
-        <div id="ranking-av"></div>
+      <!-- Sub-navegación exclusiva para la 3ª Edición -->
+      <div class="sub-tabs-container">
+        <button class="sub-tab-btn active" onclick="switchAvSubTab('ranking', this)">RANKING</button>
+        <button class="sub-tab-btn" onclick="switchAvSubTab('grupos', this)">FASE DE GRUPOS</button>
+        <button class="sub-tab-btn" onclick="switchAvSubTab('bracket', this)">BRACKET</button>
+      </div>
+
+      <!-- Sub-Vista: Ranking -->
+      <div id="av-sub-ranking" class="av-sub-view">
+        <div class="ranking-table">
+          <div class="rt-header"><span>#</span><span>Canción</span><span>Pts</span><span></span></div>
+          <div id="ranking-av"></div>
+        </div>
+      </div>
+
+      <!-- Sub-Vista: Fase de Grupos -->
+      <div id="av-sub-grupos" class="av-sub-view" style="display:none;">
+        <div class="groups-grid" id="groups-grid"></div>
+      </div>
+
+      <!-- Sub-Vista: Bracket -->
+      <div id="av-sub-bracket" class="av-sub-view" style="display:none;">
+        <div class="bracket-wrapper" id="bracket-wrapper"></div>
       </div>
     </div>
 
+    <!-- 2ª Edición: AV3 (Pestaña principal 1) -->
     <div class="ranking-content" id="ranking-tab-1" style="display:none;">
       <div class="ranking-table">
         <div class="rt-header"><span>#</span><span>Canción</span><span>Pts</span><span></span></div>
-        <div id="ranking-ed1"></div>
+        <div id="ranking-ed2"></div>
       </div>
     </div>
 
+    <!-- 1ª Edición: AV (Pestaña principal 2) -->
     <div class="ranking-content" id="ranking-tab-2" style="display:none;">
       <div class="ranking-table">
         <div class="rt-header"><span>#</span><span>Canción</span><span>Pts</span><span></span></div>
-        <div id="ranking-ed2"></div>
+        <div id="ranking-ed1"></div>
       </div>
     </div>
   </section>
@@ -1586,7 +1918,8 @@
     <div class="gala-container reveal">
       <div class="section-label gold-label">🏅 La Última Gala</div>
       <h2 class="section-title gold-title">AutismoVision: La Última Gala</h2>
-      <p class="section-subtitle">El último gran evento que reúne a las mejores canciones de la historia de AutismoVision.</p>
+      <p class="section-subtitle">El último gran evento que reúne a las mejores canciones de la historia de
+        AutismoVision.</p>
 
       <div class="gala-subhead">🏆 Clasificación por Campeonato</div>
       <p class="section-subtitle"><strong style="color:var(--gold)"> CLASIFICACIÓN DIRECTA AL BRACKET </strong><br>
@@ -1595,7 +1928,8 @@
 
       <div class="gala-subhead">📊 Clasificación por Posición</div>
       <p class="section-subtitle"><strong style="color:var(--gold)"> CLASIFICACIÓN A LOS PLAYOFFS </strong><br>
-        Las casillas con<strong style="color:var(--gold)"> ??? </strong>son canciones por definir en próximas ediciones.<br>
+        Las casillas con<strong style="color:var(--gold)"> ??? </strong>son canciones por definir en próximas
+        ediciones.<br>
         Clasificados por quedar entre 2º y 5º puesto en su edición.</p>
       <div class="gala-grid" id="gala-posicion"></div>
 
@@ -1603,19 +1937,22 @@
       <p class="section-subtitle"><strong style="color:var(--gold)"> CLASIFICACIÓN A LOS PLAYOFFS </strong><br></p>
       <div class="gala-grid" id="gala-votacion"></div>
 
-      <br><strong style="color:var(--gold)"> VOTACIÓN DE MEJOR SEXTO PUESTO </strong><br>Clasifica la mejor canción que haya quedado en 6ª posición.<br>
+      <br><strong style="color:var(--gold)"> VOTACIÓN DE MEJOR SEXTO PUESTO </strong><br>Clasifica la mejor canción que
+      haya quedado en 6ª posición.<br>
       <ul style="margin-top:.5rem; margin-left:1.5rem; color:var(--muted); font-size:.9rem; line-height:1.6;">
         <li>*** - Sintu_</li>
         <li>La tetera jiró con un pulso vibrante - Superpajas33</li>
         <li>Minecraft en lo mas alto - Gokenrik</li>
       </ul>
-      <br><strong style="color:var(--gold)"> VOTACIÓN DE CANCIÓN FAVORITA </strong><br>Clasifica la canción favorita entre todas las que no han logrado clasificar.
+      <br><strong style="color:var(--gold)"> VOTACIÓN DE CANCIÓN FAVORITA </strong><br>Clasifica la canción favorita
+      entre todas las que no han logrado clasificar.
     </div>
   </div>
 
   <!-- ─── FOOTER ─── -->
   <footer>
-    <strong>AutismoVision</strong> &nbsp;·&nbsp; El concurso de canciones más autista &nbsp;·&nbsp; Todos los derechos reservados @sintu_ &nbsp;·&nbsp; Eurovisión vamos a por ti
+    <strong>AutismoVision</strong> &nbsp;·&nbsp; El concurso de canciones más autista &nbsp;·&nbsp; Todos los derechos
+    reservados @sintu_ &nbsp;·&nbsp; Eurovisión vamos a por ti
   </footer>
 
   <!-- ─── VIDEO MODAL ─── -->
@@ -1841,34 +2178,34 @@
 
     const SONGS_AV = [
       { title: 'Teampanas', artist: 'Superpajas33', score: 37.2, stage: 'campeon', badge: '🏆 Campeón' },
-      { title: 'El Mister', artist: 'DJ Sigma Boy', score: 34.8, stage: 'final', badge: '🥈 Subcampeón' },
-      { title: 'Un Arabe Jamonero', artist: 'Sintu_ & Borja', score: 32.25, stage: 'tercero', badge: '🥉 3er Puesto' },
+      { title: 'No Punchs ;)', artist: 'Sintu_', score: 36.8, stage: 'octavos', badge: 'Octavos de Final' },
       { title: 'Lionella Pepsi', artist: 'Borja', score: 35.4, stage: 'cuarto', badge: '4º Puesto' },
-      { title: 'Bnet Fan', artist: 'DJ Sigma Boy', score: 32, stage: 'quinto', badge: '5º Puesto' },
-      { title: 'Minecraft en lo mas alto', artist: 'Gokenrik', score: 29.67, stage: 'sexto', badge: '6º Puesto' },
+      { title: 'El Mister', artist: 'DJ Sigma Boy', score: 34.8, stage: 'final', badge: '🥈 Subcampeón' },
       { title: 'La Noche de Mario', artist: 'Sintu_', score: 34.6, stage: 'cuartos', badge: 'Cuartos de Final' },
       { title: 'Fried', artist: 'DJ Sigma Boy & Superpajas33', score: 33.5, stage: 'cuartos', badge: 'Cuartos de Final' },
-      { title: 'No Punchs ;)', artist: 'Sintu_', score: 36.8, stage: 'octavos', badge: 'Octavos de Final' },
+      { title: "Genghis Kahn't", artist: 'DJ Sigma Boy', score: 33, stage: 'grupos', badge: 'Fase de Grupos' },
+      { title: 'Un Arabe Jamonero', artist: 'Sintu_ & Borja', score: 32.25, stage: 'tercero', badge: '🥉 3er Puesto' },
       { title: 'YMNS', artist: 'DJ Sigma Boy', score: 32.2, stage: 'octavos', badge: 'Octavos de Final' },
+      { title: 'Me he fumado un porro lo se, Parte -1', artist: 'Sintu_', score: 32.2, stage: 'grupos', badge: 'Fase de Grupos' },
+      { title: 'Bnet Fan', artist: 'DJ Sigma Boy', score: 32, stage: 'quinto', badge: '5º Puesto' },
+      { title: 'Lo que pasa cuando a Diego se le sube', artist: 'Sintu_', score: 31.2, stage: 'grupos', badge: 'Fase de Grupos' },
+      { title: 'La Cena', artist: 'Sintu_', score: 30.6, stage: 'grupos', badge: 'Fase de Grupos' },
       { title: 'Chillax Zone', artist: 'Sintu_', score: 30.6, stage: 'octavos', badge: 'Octavos de Final' },
+      { title: 'Pingüino Patineta', artist: 'Superpajas33', score: 30.4, stage: 'grupos', badge: 'Fase de Grupos' },
       { title: 'Susurro de traicion dihh poema', artist: 'DJ Sigma Boy', score: 30.4, stage: 'octavos', badge: 'Octavos de Final' },
+      { title: 'La fatimona pechugona', artist: 'Borja', score: 30.2, stage: 'grupos', badge: 'Fase de Grupos' },
       { title: 'Round 2', artist: 'Sintu_', score: 30.2, stage: 'octavos', badge: 'Octavos de Final' },
       { title: 'grito de ayuda ahh cancion', artist: 'DJ Sigma Boy', score: 30.2, stage: 'octavos', badge: 'Octavos de Final' },
       { title: 'El Glazer de Carlota', artist: 'Borja', score: 30.2, stage: 'octavos', badge: 'Octavos de Final' },
-      { title: 'Epstein Type Beat', artist: 'Sintu_', score: 29.6, stage: 'octavos', badge: 'Octavos de Final' },
-      { title: "Genghis Kahn't", artist: 'DJ Sigma Boy', score: 33, stage: 'grupos', badge: 'Fase de Grupos' },
-      { title: 'Me he fumado un porro lo se, Parte -1', artist: 'Sintu_', score: 32.2, stage: 'grupos', badge: 'Fase de Grupos' },
-      { title: 'Lo que pasa cuando a Diego se le sube', artist: 'Sintu_', score: 31.2, stage: 'grupos', badge: 'Fase de Grupos' },
-      { title: 'La Cena', artist: 'Sintu_', score: 30.6, stage: 'grupos', badge: 'Fase de Grupos' },
-      { title: 'Pingüino Patineta', artist: 'Superpajas33', score: 30.4, stage: 'grupos', badge: 'Fase de Grupos' },
-      { title: 'La fatimona pechugona', artist: 'Borja', score: 30.2, stage: 'grupos', badge: 'Fase de Grupos' },
       { title: 'Backstage', artist: 'Sintu_', score: 30, stage: 'grupos', badge: 'Fase de Grupos' },
       { title: 'La Masoneria', artist: 'Sintu_', score: 29.8, stage: 'grupos', badge: 'Fase de Grupos' },
+      { title: 'Minecraft en lo mas alto', artist: 'Gokenrik', score: 29.67, stage: 'sexto', badge: '6º Puesto' },
+      { title: 'Epstein Type Beat', artist: 'Sintu_', score: 29.6, stage: 'octavos', badge: 'Octavos de Final' },
       { title: 'Round 1', artist: 'Sintu_', score: 29.2, stage: 'none' },
       { title: 'Round 3', artist: 'Sintu_', score: 29.2, stage: 'none' },
       { title: 'MVP Berenjena', artist: 'Borja', score: 29, stage: 'none' },
       { title: 'Sexo, polla verga', artist: 'Sintu_', score: 29, stage: 'none' },
-      { title: 'El Mierdon', artist: 'Gokenrik', score: 29, stage: 'none' },
+      { title: 'El Mierdon', artist: 'Gokenrik', score: 29, stage: 'penalizada', badge: 'Penalizada' },
       { title: 'Panza Galactica', artist: 'Borja', score: 28.8, stage: 'none' },
       { title: 'No entiendo puta mierda', artist: 'Sintu_', score: 28.2, stage: 'none' },
       { title: '🐺🐾', artist: 'Minwerfu', score: 28.2, stage: 'none' },
@@ -1891,6 +2228,74 @@
       { title: 'Hotel', artist: 'DJ Sigma Boy & Superpajas33', score: 16.5, stage: 'none' },
     ];
 
+    // FASE DE GRUPOS AV4801
+    const GROUPS_AV = [
+      {
+        name: "GRUPO A",
+        songs: [
+          { seed: "#4", title: "El Mister", artist: "DJ Sigma Boy", tag: "BOMBO 1", type: "bombo1" },
+          { seed: "#11", title: "Bnet Fan", artist: "DJ Sigma Boy", tag: "BOMBO 2", type: "bombo2" },
+          { seed: "#21", title: "Backstage", artist: "Sintu_", tag: "ELIMINADA", type: "eliminated" }
+        ]
+      },
+      {
+        name: "GRUPO B",
+        songs: [
+          { seed: "#7", title: "Genghis Kahn't", artist: "DJ Sigma Boy", tag: "ELIMINADA", type: "eliminated" },
+          { seed: "#16", title: "Susurro de traicion dihh poema", artist: "DJ Sigma Boy", tag: "BOMBO 2", type: "bombo2" },
+          { seed: "#18", title: "Round 2", artist: "Sintu_", tag: "BOMBO 3", type: "bombo3" }
+        ]
+      },
+      {
+        name: "GRUPO C",
+        songs: [
+          { seed: "#1", title: "Teampanas", artist: "Superpajas33", tag: "BOMBO 1", type: "bombo1" },
+          { seed: "#13", title: "La Cena", artist: "Sintu_", tag: "ELIMINADA", type: "eliminated" },
+          { seed: "#24", title: "Epstein Type Beat", artist: "Sintu_", tag: "BOMBO 3", type: "bombo3" }
+        ]
+      },
+      {
+        name: "GRUPO D",
+        songs: [
+          { seed: "#8", title: "Un Arabe Jamonero", artist: "Sintu_ & Borja", tag: "BOMBO 1", type: "bombo1" },
+          { seed: "#9", title: "YMNS", artist: "DJ Sigma Boy", tag: "BOMBO 2", type: "bombo2" },
+          { seed: "#17", title: "La fatimona pechugona", artist: "Borja", tag: "ELIMINADA", type: "eliminated" }
+        ]
+      },
+      {
+        name: "GRUPO E",
+        songs: [
+          { seed: "#3", title: "Lionella Pepsi", artist: "Borja", tag: "BOMBO 1", type: "bombo1" },
+          { seed: "#14", title: "Chillax Zone", artist: "Sintu_", tag: "BOMBO 2", type: "bombo2" },
+          { seed: "#22", title: "La Masoneria", artist: "Sintu_", tag: "ELIMINADA", type: "eliminated" }
+        ]
+      },
+      {
+        name: "GRUPO F",
+        songs: [
+          { seed: "#2", title: "No Punchs ;)", artist: "Sintu_", tag: "BOMBO 1", type: "bombo1" },
+          { seed: "#12", title: "Lo que pasa cuando a Diego se...", artist: "Sintu_", tag: "ELIMINADA", type: "eliminated" },
+          { seed: "#23", title: "Minecraft en lo mas alto", artist: "Gokenrik", tag: "BOMBO 3", type: "bombo3" }
+        ]
+      },
+      {
+        name: "GRUPO G",
+        songs: [
+          { seed: "#6", title: "Fried", artist: "DJ Sigma Boy & Superpajas33", tag: "BOMBO 1", type: "bombo1" },
+          { seed: "#10", title: "Me he fumado un porro lo se, P...", artist: "Sintu_", tag: "ELIMINADA", type: "eliminated" },
+          { seed: "#19", title: "grito de ayuda ahh cancion", artist: "DJ Sigma Boy", tag: "BOMBO 3", type: "bombo3" }
+        ]
+      },
+      {
+        name: "GRUPO H",
+        songs: [
+          { seed: "#5", title: "La Noche de Mario", artist: "Sintu_", tag: "BOMBO 1", type: "bombo1" },
+          { seed: "#15", title: "Pingüino Patineta", artist: "Superpajas33", tag: "ELIMINADA", type: "eliminated" },
+          { seed: "#20", title: "El Glazer de Carlota", artist: "Borja", tag: "BOMBO 3", type: "bombo3" }
+        ]
+      }
+    ];
+
     const STAGE_COLORS = {
       campeon: '#ffd700',
       final: '#c0c0c0',
@@ -1901,18 +2306,19 @@
       cuartos: '#a78bfa',
       octavos: '#7c3aed',
       grupos: '#ff2d78',
+      penalizada: '#FF0000',
       none: null
     };
 
-    // Concursantes
+    // Concursantes y curiosidades
     const CONTESTANTS = [
-      { name: 'Superpajas33', aka: 'Antes: Luner', color: '#ff2d78', colorBg: 'rgba(255,45,120,.15)', colorBorder: 'rgba(255,45,120,.3)' },
-      { name: 'Sintu_', aka: null, color: '#00e5ff', colorBg: 'rgba(0,229,255,.12)', colorBorder: 'rgba(0,229,255,.3)' },
-      { name: 'Borja', aka: null, color: '#ffe600', colorBg: 'rgba(255,230,0,.12)', colorBorder: 'rgba(255,230,0,.3)' },
-      { name: 'Minwerfu', aka: null, color: '#7c3aed', colorBg: 'rgba(124,58,237,.15)', colorBorder: 'rgba(124,58,237,.3)' },
-      { name: 'DJ Sigma Boy', aka: 'Antes: Madi', color: '#ff6b35', colorBg: 'rgba(255,107,53,.13)', colorBorder: 'rgba(255,107,53,.3)' },
-      { name: 'Gokenrik', aka: null, color: '#39d353', colorBg: 'rgba(57,211,83,.12)', colorBorder: 'rgba(57,211,83,.3)' },
-      { name: 'Gheorge777', aka: null, color: '#f472b6', colorBg: 'rgba(244,114,182,.12)', colorBorder: 'rgba(244,114,182,.3)' },
+      { name: 'Superpajas33', aka: 'Antes: Luner', color: '#ff2d78', colorBg: 'rgba(255,45,120,.15)', colorBorder: 'rgba(255,45,120,.3)', curiosity: 'Es el unico en tener un bicampeonato' },
+      { name: 'Sintu_', aka: null, color: '#00e5ff', colorBg: 'rgba(0,229,255,.12)', colorBorder: 'rgba(0,229,255,.3)', curiosity: 'En todas las ediciones ha ganado el tercer puesto' },
+      { name: 'Borja', aka: null, color: '#ffe600', colorBg: 'rgba(255,230,0,.12)', colorBorder: 'rgba(255,230,0,.3)', curiosity: 'El 52% de sus canciones tienen a una mujer como protagonista' },
+      { name: 'Minwerfu', aka: null, color: '#7c3aed', colorBg: 'rgba(124,58,237,.15)', colorBorder: 'rgba(124,58,237,.3)', curiosity: 'Es el unico que no ha clasificado a la gala final en 2 ediciones consecutivas' },
+      { name: 'DJ Sigma Boy', aka: 'Antes: Madi', color: '#ff6b35', colorBg: 'rgba(255,107,53,.13)', colorBorder: 'rgba(255,107,53,.3)', curiosity: 'Es el unico que una canción suya ha sido baneada por Youtube' },
+      { name: 'Gokenrik', aka: null, color: '#39d353', colorBg: 'rgba(57,211,83,.12)', colorBorder: 'rgba(57,211,83,.3)', curiosity: 'Aunque sea el que tenga la menor cantidad de canciones, es de los que mejor rendimiento tienen' },
+      { name: 'Gheorge777', aka: null, color: '#f472b6', colorBg: 'rgba(244,114,182,.12)', colorBorder: 'rgba(244,114,182,.3)', curiosity: 'Nunca ha entrado a Gala' },
     ];
 
     // Premios Secundarios Data
@@ -1921,9 +2327,9 @@
         edition: "AutismoVisión (1ª Edición)",
         awards: [
           { category: "🔥 Mejor Flow", song: "Cuantas veces me cumee", artist: "Superpajas33 & DJ Sigma Boy" },
-          { category: "🧠 Mejor Autismo", song: "¿Quién dejó el microondas encendido en mi columna vertebral?", artist: "Superpajas33" },
           { category: "✍️ Mejor Letra", song: "F*cking Mier-da", artist: "DJ Sigma Boy & Superpajas33" },
-          { category: "🎹 Mejor Instrumental", song: "¡BLARF! ¡ÑEEE! ¡TOSTADORA EMOCIONAL!", artist: "Superpajas33" }
+          { category: "🎹 Mejor Instrumental", song: "¡BLARF! ¡ÑEEE! ¡TOSTADORA EMOCIONAL!", artist: "Superpajas33" },
+          { category: "🧠 Mejor Autismo", song: "¿Quién dejó el microondas encendido en mi columna vertebral?", artist: "Superpajas33" }
         ]
       },
       {
@@ -1944,6 +2350,25 @@
           { category: "🧠 Mejor Autismo", song: "La Noche de Mario", artist: "Sintu_" }
         ]
       }
+    ];
+
+    // Mapeo completo de premios para estadísticas
+    const ALL_AWARDS = [
+      { title: "Sara y la Berenjena", type: "🏆 Campeón", edition: 1 },
+      { title: "Eggs", type: "🏆 Campeón", edition: 2 },
+      { title: "Teampanas", type: "🏆 Campeón", edition: 3 },
+      { title: "Cuantas veces me cumee", type: "🔥 Mejor Flow", edition: 1 },
+      { title: "F*cking Mier-da", type: "✍️ Mejor Letra", edition: 1 },
+      { title: "¡BLARF! ¡ÑEEE! ¡TOSTADORA EMOCIONAL!", type: "🎹 Mejor Instrumental", edition: 1 },
+      { title: "¿Quién dejó el microondas encendido en mi columna vertebral?", type: "🧠 Mejor Autismo", edition: 1 },
+      { title: "Me he fumado un porro lo se", type: "🔥 Mejor Flow", edition: 2 },
+      { title: "OLL, ARF, CHICHICHU", type: "✍️ Mejor Letra", edition: 2 },
+      { title: "Eggs", type: "🎹 Mejor Instrumental", edition: 2 },
+      { title: "Un relámpago miope buscaba mis calcetas", type: "🧠 Mejor Autismo", edition: 2 },
+      { title: "No Punchs ;)", type: "🔥 Mejor Flow", edition: 3 },
+      { title: "Teampanas", type: "✍️ Mejor Letra", edition: 3 },
+      { title: "Teampanas", type: "🎹 Mejor Instrumental", edition: 3 },
+      { title: "La Noche de Mario", type: "🧠 Mejor Autismo", edition: 3 }
     ];
 
     // Gala Final Data
@@ -1970,7 +2395,7 @@
       null, null, null, null, null, null, null, null,
     ];
 
-    const GALA_VOTACION = [ null, null ];
+    const GALA_VOTACION = [null, null];
 
     function clean(str) {
       return String(str).toLowerCase()
@@ -1996,6 +2421,12 @@
       SONGS_ED2.forEach(s => { if (matches(s.artist)) list.push({ ...s, edition: '2ª Edición', edNum: 2, maxScore: 43, origIndex: SONGS_ED2.indexOf(s) }); });
       SONGS_AV.forEach(s => { if (matches(s.artist)) list.push({ ...s, edition: '3ª Edición - AV4801', edNum: 3, maxScore: 43, origIndex: SONGS_AV.indexOf(s) }); });
       SONGS_EXTRAS.forEach(s => { if (s.artist && matches(s.artist)) list.push({ ...s, edition: 'Extras', edNum: 4, score: 0, maxScore: 0, origIndex: 99 }); });
+
+      // Añadir etiquetas de los premios ganados
+      list.forEach(s => {
+        s.awards = ALL_AWARDS.filter(a => a.title === s.title && a.edition === s.edNum).map(a => a.type);
+      });
+
       return list;
     }
 
@@ -2010,47 +2441,55 @@
       const ed2Songs = songs.filter(s => s.edNum === 2);
       const ed3Songs = songs.filter(s => s.edNum === 3);
 
-      const avgEd1 = ed1Songs.length ? (ed1Songs.reduce((acc, s) => acc + s.score, 0) / ed1Songs.length).toFixed(2) : 'N/A';
-      const avgEd2 = ed2Songs.length ? (ed2Songs.reduce((acc, s) => acc + s.score, 0) / ed2Songs.length).toFixed(2) : 'N/A';
-      const avgEd3 = ed3Songs.length ? (ed3Songs.reduce((acc, s) => acc + s.score, 0) / ed3Songs.length).toFixed(2) : 'N/A';
+      const avgRankEd1 = ed1Songs.length ? '#' + (ed1Songs.reduce((acc, s) => acc + s.origIndex + 1, 0) / ed1Songs.length).toFixed(1) : null;
+      const avgRankEd2 = ed2Songs.length ? '#' + (ed2Songs.reduce((acc, s) => acc + s.origIndex + 1, 0) / ed2Songs.length).toFixed(1) : null;
+      const avgRankEd3 = ed3Songs.length ? '#' + (ed3Songs.reduce((acc, s) => acc + s.origIndex + 1, 0) / ed3Songs.length).toFixed(1) : null;
 
-      // Normalized average score %
+      const avgScoreEd1 = ed1Songs.length ? (ed1Songs.reduce((acc, s) => acc + s.score, 0) / ed1Songs.length).toFixed(2) + ' / 10' : null;
+      const avgScoreEd2 = ed2Songs.length ? (ed2Songs.reduce((acc, s) => acc + s.score, 0) / ed2Songs.length).toFixed(2) + ' / 43' : null;
+      const avgScoreEd3 = ed3Songs.length ? (ed3Songs.reduce((acc, s) => acc + s.score, 0) / ed3Songs.length).toFixed(2) + ' / 43' : null;
+
       let pctSum = 0;
       let ratedSongsCount = 0;
       let ranksSum = 0;
+      let totalAwards = 0;
+
+      let bestSongData = null;
+      let maxPct = -1;
 
       songs.forEach(s => {
+        if (s.awards) totalAwards += s.awards.length;
+
         if (s.maxScore > 0) {
-          pctSum += (s.score / s.maxScore) * 100;
+          const pct = (s.score / s.maxScore) * 100;
+          pctSum += pct;
           ratedSongsCount++;
           ranksSum += (s.origIndex + 1);
-        }
-      });
 
-      const avgPct = ratedSongsCount ? (pctSum / ratedSongsCount).toFixed(1) + '%' : 'N/A';
-      const avgRank = ratedSongsCount ? '#' + (ranksSum / ratedSongsCount).toFixed(1) : 'N/A';
-
-      // Best song logic (highest percentage)
-      let bestSong = null;
-      let maxPct = -1;
-      songs.forEach(s => {
-        if (s.maxScore > 0) {
-          const pct = s.score / s.maxScore;
           if (pct > maxPct) {
             maxPct = pct;
-            bestSong = s;
+            bestSongData = s;
           }
         }
       });
 
+      const avgPct = ratedSongsCount ? (pctSum / ratedSongsCount).toFixed(1) + '%' : 'N/A';
+      const avgScoreTotalNorm = ratedSongsCount ? ((pctSum / ratedSongsCount) / 10).toFixed(2) + ' / 10' : 'N/A';
+      const avgRank = ratedSongsCount ? '#' + (ranksSum / ratedSongsCount).toFixed(1) : 'N/A';
+
       return {
         totalSongs,
-        avgEd1,
-        avgEd2,
-        avgEd3,
+        avgRankEd1,
+        avgRankEd2,
+        avgRankEd3,
+        avgScoreEd1,
+        avgScoreEd2,
+        avgScoreEd3,
+        avgScoreTotalNorm,
         avgPct,
         avgRank,
-        bestSong: bestSong ? `${bestSong.title} (${bestSong.score} pts)` : 'Ninguna'
+        totalAwards,
+        bestSongData
       };
     }
 
@@ -2208,7 +2647,23 @@
       document.getElementById('csp-name').textContent = c.name;
       document.getElementById('csp-name').style.color = c.color;
 
-      // Render Statistics Mini-Section
+      let avgEdHTML = '';
+      if (stats.avgRankEd1) avgEdHTML += `<div class="stat-subvalue">1ª Edición: <strong>${stats.avgRankEd1}</strong></div>`;
+      if (stats.avgRankEd2) avgEdHTML += `<div class="stat-subvalue">2ª Edición: <strong>${stats.avgRankEd2}</strong></div>`;
+      if (stats.avgRankEd3) avgEdHTML += `<div class="stat-subvalue">3ª Edición: <strong>${stats.avgRankEd3}</strong></div>`;
+      if (avgEdHTML === '') avgEdHTML = `<div class="stat-subvalue">Sin participaciones</div>`;
+
+      let avgScoreEdHTML = '';
+      if (stats.avgScoreEd1) avgScoreEdHTML += `<div class="stat-subvalue">1ª Edición: <strong>${stats.avgScoreEd1}</strong></div>`;
+      if (stats.avgScoreEd2) avgScoreEdHTML += `<div class="stat-subvalue">2ª Edición: <strong>${stats.avgScoreEd2}</strong></div>`;
+      if (stats.avgScoreEd3) avgScoreEdHTML += `<div class="stat-subvalue">3ª Edición: <strong>${stats.avgScoreEd3}</strong></div>`;
+      if (avgScoreEdHTML === '') avgScoreEdHTML = `<div class="stat-subvalue">Sin puntuaciones</div>`;
+
+      let bestSongStr = 'Ninguna';
+      if (stats.bestSongData) {
+        bestSongStr = `${stats.bestSongData.title} (#${stats.bestSongData.origIndex + 1} - ${stats.bestSongData.score} pts)`;
+      }
+
       const statsGrid = document.getElementById('stats-grid');
       statsGrid.innerHTML = `
         <div class="stat-card">
@@ -2216,41 +2671,65 @@
           <div class="stat-value" style="color:${c.color}">${stats.totalSongs}</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">Puesto Promedio</div>
+          <div class="stat-label">Nota Promedio Total</div>
+          <div class="stat-value" style="color:var(--accent2);">${stats.avgScoreTotalNorm}</div>
+          <div class="stat-subvalue">Rendimiento: <strong>${stats.avgPct}</strong></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Puesto Prom. Total</div>
           <div class="stat-value">${stats.avgRank}</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">Rendimiento Total</div>
-          <div class="stat-value">${stats.avgPct}</div>
+          <div class="stat-label">Premios Ganados</div>
+          <div class="stat-value" style="color:var(--gold)">${stats.totalAwards}</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">Promedio por Edición</div>
-          <div class="stat-subvalue">1ª Ed: <strong>${stats.avgEd1}/10</strong></div>
-          <div class="stat-subvalue">2ª Ed: <strong>${stats.avgEd2}/43</strong></div>
-          <div class="stat-subvalue">3ª Ed: <strong>${stats.avgEd3}/43</strong></div>
+          <div class="stat-label">Nota Promedio x Edición</div>
+          ${avgScoreEdHTML}
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Puesto Promedio x Edición</div>
+          ${avgEdHTML}
         </div>
         <div class="stat-card" style="grid-column: span 2;">
           <div class="stat-label">Mejor Canción</div>
           <div class="stat-value" style="font-size:1.1rem; color:var(--accent3); border-left: 2px solid var(--gold); padding-left:.5rem; margin-top:.2rem;">
-            ${stats.bestSong}
+            ${bestSongStr}
+          </div>
+        </div>
+        <div class="stat-card" style="grid-column: span 2;">
+          <div class="stat-label">Curiosidad</div>
+          <div class="stat-value" style="font-size:1rem; color:var(--text); font-weight:400; font-family:'Barlow', sans-serif; margin-top:.2rem; line-height: 1.4;">
+            ${c.curiosity}
           </div>
         </div>
       `;
 
-      // Render Songs Grid
       const grid = document.getElementById('csp-songs-grid');
       grid.innerHTML = songs.length === 0
         ? `<div style="padding:2rem; color:var(--muted); font-size:.9rem;">No se encontraron canciones.</div>`
-        : songs.map((s, i) => `
-          <div class="csp-song-item" onclick="openVideoModal('${esc(s.title)}', '${esc(s.artist)}')">
-            <div class="csp-song-num">${i + 1}</div>
-            <div class="csp-song-info">
-              <div class="csp-song-title">${s.title}</div>
-              <div class="csp-song-edition">${s.edition} ${s.score ? '&nbsp;·&nbsp; ' + s.score + ' pts' : ''}</div>
-            </div>
-            <div class="csp-play-btn"><svg viewBox="0 0 10 10"><polygon points="2,1 9,5 2,9"/></svg></div>
-          </div>
-        `).join('');
+        : songs.map((s, i) => {
+          const badges = (s.awards || []).map(aw => `
+            <span style="background:rgba(255,215,0,0.15); color:var(--gold); border:1px solid rgba(255,215,0,0.4); padding:2px 6px; border-radius:3px; font-size:0.68rem; font-family:'Barlow Condensed', sans-serif; display:inline-block;">${aw}</span>
+          `).join('');
+
+          const badgeBlock = (s.awards && s.awards.length > 0)
+            ? `<br><div style="display:inline-flex; flex-wrap:wrap; gap:4px; margin-top:4px;">${badges}</div>`
+            : '';
+
+          const placement = s.maxScore > 0 ? ` &nbsp;·&nbsp; Puesto #${s.origIndex + 1}` : '';
+
+          return `
+              <div class="csp-song-item" onclick="openVideoModal('${esc(s.title)}', '${esc(s.artist)}')">
+                <div class="csp-song-num">${i + 1}</div>
+                <div class="csp-song-info">
+                  <div class="csp-song-title">${s.title}${badgeBlock}</div>
+                  <div class="csp-song-edition">${s.edition} ${s.score ? '&nbsp;·&nbsp; ' + s.score + ' pts' : ''}${placement}</div>
+                </div>
+                <div class="csp-play-btn"><svg viewBox="0 0 10 10"><polygon points="2,1 9,5 2,9"/></svg></div>
+              </div>
+            `;
+        }).join('');
 
       panel.classList.add('visible');
       setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
@@ -2315,6 +2794,277 @@
       btn.classList.add('active');
     }
 
+    // Cambiar Sub-pestañas en AV4801 (Ranking / Fase de Grupos / Bracket)
+    function switchAvSubTab(sub, btn) {
+      document.querySelectorAll('.av-sub-view').forEach(el => el.style.display = 'none');
+      document.getElementById(`av-sub-${sub}`).style.display = 'block';
+
+      btn.parentElement.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function renderGroups() {
+      const container = document.getElementById('groups-grid');
+      if (!container) return;
+
+      container.innerHTML = GROUPS_AV.map(g => `
+        <div class="group-card">
+          <div class="group-title">${g.name}</div>
+          ${g.songs.map(s => `
+            <div class="group-song-item" onclick="openVideoModal('${esc(s.title)}', '${esc(s.artist)}')">
+              <div class="gsi-seed">${s.seed}</div>
+              <div class="gsi-info">
+                <div class="gsi-name">${s.title}</div>
+                <div class="gsi-artist">${s.artist}</div>
+              </div>
+              <div class="gsi-tag tag-${s.type}">${s.tag}</div>
+            </div>
+          `).join('')}
+        </div>
+      `).join('');
+    }
+
+    function renderBracket() {
+      const container = document.getElementById('bracket-wrapper');
+      if (!container) return;
+
+      container.innerHTML = `
+        <!-- Octavos de Final -->
+        <div class="bracket-col">
+          <div class="bracket-col-title">Octavos de Final</div>
+
+          <div class="matchup-box">
+            <div class="matchup-team winner" onclick="openVideoModal('El Mister', 'DJ Sigma Boy')">
+              <div><div class="mt-title">El Mister</div><div class="mt-sub">DJ Sigma Boy</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('grito de ayuda ahh cancion', 'DJ Sigma Boy')">
+              <div><div class="mt-title">grito de ayuda ahh cancion</div><div class="mt-sub">DJ Sigma Boy</div></div>
+            </div>
+          </div>
+
+          <div class="matchup-box">
+            <div class="matchup-team winner" onclick="openVideoModal('La Noche de Mario', 'Sintu_')">
+              <div><div class="mt-title">La Noche de Mario</div><div class="mt-sub">Sintu_</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('Round 2', 'Sintu_')">
+              <div><div class="mt-title">Round 2</div><div class="mt-sub">Sintu_</div></div>
+            </div>
+          </div>
+
+          <div class="matchup-box">
+            <div class="matchup-team" onclick="openVideoModal('No Punchs ;)', 'Sintu_')">
+              <div><div class="mt-title">No Punchs ;)</div><div class="mt-sub">Sintu_</div></div>
+            </div>
+            <div class="matchup-team winner" onclick="openVideoModal('Minecraft en lo mas alto', 'Gokenrik')">
+              <div><div class="mt-title">Minecraft en lo mas alto</div><div class="mt-sub">Gokenrik</div></div>
+              <span class="mt-star">★</span>
+            </div>
+          </div>
+
+          <div class="matchup-box">
+            <div class="matchup-team winner" onclick="openVideoModal('Un Arabe Jamonero', 'Sintu_ & Borja')">
+              <div><div class="mt-title">Un Arabe Jamonero</div><div class="mt-sub">Sintu_ & Borja</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('Chillax Zone', 'Sintu_')">
+              <div><div class="mt-title">Chillax Zone</div><div class="mt-sub">Sintu_</div></div>
+            </div>
+          </div>
+
+          <div class="matchup-box">
+            <div class="matchup-team winner" onclick="openVideoModal('Teampanas', 'Superpajas33')">
+              <div><div class="mt-title">Teampanas</div><div class="mt-sub">Superpajas33</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('Epstein Type Beat', 'Sintu_')">
+              <div><div class="mt-title">Epstein Type Beat</div><div class="mt-sub">Sintu_</div></div>
+            </div>
+          </div>
+
+          <div class="matchup-box">
+            <div class="matchup-team" onclick="openVideoModal('YMNS', 'DJ Sigma Boy')">
+              <div><div class="mt-title">YMNS</div><div class="mt-sub">DJ Sigma Boy</div></div>
+            </div>
+            <div class="matchup-team winner" onclick="openVideoModal('Bnet Fan', 'DJ Sigma Boy')">
+              <div><div class="mt-title">Bnet Fan</div><div class="mt-sub">DJ Sigma Boy</div></div>
+              <span class="mt-star">★</span>
+            </div>
+          </div>
+
+          <div class="matchup-box">
+            <div class="matchup-team winner" onclick="openVideoModal('Lionella Pepsi', 'Borja')">
+              <div><div class="mt-title">Lionella Pepsi</div><div class="mt-sub">Borja</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('El Glazer de Carlota', 'Borja')">
+              <div><div class="mt-title">El Glazer de Carlota</div><div class="mt-sub">Borja</div></div>
+            </div>
+          </div>
+
+          <div class="matchup-box">
+            <div class="matchup-team winner" onclick="openVideoModal('Fried', 'DJ Sigma Boy & Superpajas33')">
+              <div><div class="mt-title">Fried</div><div class="mt-sub">DJ Sigma Boy & Superpajas33</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('Susurro de traicion dihh poema', 'DJ Sigma Boy')">
+              <div><div class="mt-title">Susurro de traicion dihh poema</div><div class="mt-sub">DJ Sigma Boy</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cuartos de Final -->
+        <div class="bracket-col" style="margin-top:2rem;">
+          <div class="bracket-col-title">Cuartos de Final</div>
+
+          <div class="matchup-box" style="margin-bottom:3rem;">
+            <div class="matchup-team winner" onclick="openVideoModal('El Mister', 'DJ Sigma Boy')">
+              <div><div class="mt-title">El Mister</div><div class="mt-sub">DJ Sigma Boy</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('La Noche de Mario', 'Sintu_')">
+              <div><div class="mt-title">La Noche de Mario</div><div class="mt-sub">Sintu_</div></div>
+            </div>
+          </div>
+
+          <div class="matchup-box" style="margin-bottom:3rem;">
+            <div class="matchup-team" onclick="openVideoModal('Minecraft en lo mas alto', 'Gokenrik')">
+              <div><div class="mt-title">Minecraft en lo mas alto</div><div class="mt-sub">Gokenrik</div></div>
+            </div>
+            <div class="matchup-team winner" onclick="openVideoModal('Un Arabe Jamonero', 'Sintu_ & Borja')">
+              <div><div class="mt-title">Un Arabe Jamonero</div><div class="mt-sub">Sintu_ & Borja</div></div>
+              <span class="mt-star">★</span>
+            </div>
+          </div>
+
+          <div class="matchup-box" style="margin-bottom:3rem;">
+            <div class="matchup-team winner" onclick="openVideoModal('Teampanas', 'Superpajas33')">
+              <div><div class="mt-title">Teampanas</div><div class="mt-sub">Superpajas33</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('Bnet Fan', 'DJ Sigma Boy')">
+              <div><div class="mt-title">Bnet Fan</div><div class="mt-sub">DJ Sigma Boy</div></div>
+            </div>
+          </div>
+
+          <div class="matchup-box">
+            <div class="matchup-team winner" onclick="openVideoModal('Lionella Pepsi', 'Borja')">
+              <div><div class="mt-title">Lionella Pepsi</div><div class="mt-sub">Borja</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('Fried', 'DJ Sigma Boy & Superpajas33')">
+              <div><div class="mt-title">Fried</div><div class="mt-sub">DJ Sigma Boy & Superpajas33</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Semifinales -->
+        <div class="bracket-col" style="margin-top:6rem;">
+          <div class="bracket-col-title">Semifinales</div>
+
+          <div class="matchup-box" style="margin-bottom:8rem;">
+            <div class="matchup-team winner" onclick="openVideoModal('El Mister', 'DJ Sigma Boy')">
+              <div><div class="mt-title">El Mister</div><div class="mt-sub">DJ Sigma Boy</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('Un Arabe Jamonero', 'Sintu_ & Borja')">
+              <div><div class="mt-title">Un Arabe Jamonero</div><div class="mt-sub">Sintu_ & Borja</div></div>
+            </div>
+          </div>
+
+          <div class="matchup-box">
+            <div class="matchup-team winner" onclick="openVideoModal('Teampanas', 'Superpajas33')">
+              <div><div class="mt-title">Teampanas</div><div class="mt-sub">Superpajas33</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('Lionella Pepsi', 'Borja')">
+              <div><div class="mt-title">Lionella Pepsi</div><div class="mt-sub">Borja</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tercer Puesto & Gran Final -->
+        <div class="bracket-col" style="margin-top:3rem;">
+          <div class="bracket-col-title">Tercer Puesto</div>
+          <div class="matchup-box" style="margin-bottom:3rem;">
+            <div class="matchup-team winner" onclick="openVideoModal('Un Arabe Jamonero', 'Sintu_ & Borja')">
+              <div><div class="mt-title">Un Arabe Jamonero</div><div class="mt-sub">Sintu_ & Borja</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('Lionella Pepsi', 'Borja')">
+              <div><div class="mt-title">Lionella Pepsi</div><div class="mt-sub">Borja</div></div>
+            </div>
+          </div>
+
+          <div class="bracket-col-title">Gran Final</div>
+          <div class="matchup-box" style="margin-bottom:2.5rem;">
+            <div class="matchup-team" onclick="openVideoModal('El Mister', 'DJ Sigma Boy')">
+              <div><div class="mt-title">El Mister</div><div class="mt-sub">DJ Sigma Boy</div></div>
+            </div>
+            <div class="matchup-team winner" onclick="openVideoModal('Teampanas', 'Superpajas33')">
+              <div><div class="mt-title">Teampanas</div><div class="mt-sub">Superpajas33</div></div>
+              <span class="mt-star">★</span>
+            </div>
+          </div>
+
+          <div class="champion-box" onclick="openVideoModal('Teampanas', 'Superpajas33')">
+            <div style="font-size:1.5rem">🏆</div>
+            <div class="champion-title">CAMPEÓN</div>
+            <div class="champion-song">Teampanas</div>
+            <div class="champion-artist">Superpajas33</div>
+          </div>
+        </div>
+
+        <!-- Quinto Puesto - Fase 1 -->
+        <div class="bracket-col">
+          <div class="bracket-col-title">Última Oportunidad - Semifinales</div>
+          <div class="matchup-box" style="margin-bottom:1.5rem;">
+            <div class="matchup-team" onclick="openVideoModal('La Noche de Mario', 'Sintu_')">
+              <div><div class="mt-title">La Noche de Mario</div><div class="mt-sub">Sintu_</div></div>
+            </div>
+            <div class="matchup-team winner" onclick="openVideoModal('Minecraft en lo mas alto', 'Gokenrik')">
+              <div><div class="mt-title">Minecraft en lo mas alto</div><div class="mt-sub">Gokenrik</div></div>
+              <span class="mt-star">★</span>
+            </div>
+          </div>
+
+          <div class="matchup-box">
+            <div class="matchup-team winner" onclick="openVideoModal('Bnet Fan', 'DJ Sigma Boy')">
+              <div><div class="mt-title">Bnet Fan</div><div class="mt-sub">DJ Sigma Boy</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('Fried', 'DJ Sigma Boy & Superpajas33')">
+              <div><div class="mt-title">Fried</div><div class="mt-sub">DJ Sigma Boy & Superpajas33</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quinto Puesto - Fase 2 -->
+        <div class="bracket-col" style="margin-top:2.5rem;">
+          <div class="bracket-col-title">Última Oportunidad - Final</div>
+          <div class="matchup-box">
+            <div class="matchup-team winner" onclick="openVideoModal('Bnet Fan', 'DJ Sigma Boy')">
+              <div><div class="mt-title">Bnet Fan</div><div class="mt-sub">DJ Sigma Boy</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('Minecraft en lo mas alto', 'Gokenrik')">
+              <div><div class="mt-title">Minecraft en lo mas alto</div><div class="mt-sub">Gokenrik</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ganador 5º Puesto -->
+        <div class="bracket-col" style="margin-top:3.5rem;">
+          <div class="fifth-place-box" onclick="openVideoModal('Bnet Fan', 'DJ Sigma Boy')">
+            <div class="fifth-place-title">5º PUESTO</div>
+            <div style="font-weight:700; color:#fff; font-size:1rem; margin-top:.2rem;">Bnet Fan</div>
+            <div style="font-size:.75rem; color:var(--muted)">DJ Sigma Boy</div>
+          </div>
+        </div>
+      `;
+    }
+
     function renderGala() {
       const renderGrid = (items, targetId) => {
         const el = document.getElementById(targetId);
@@ -2347,7 +3097,7 @@
     }
 
     window.onload = function () {
-      // Stars Background
+      // Background Stars
       const starsContainer = document.getElementById('stars');
       for (let i = 0; i < 100; i++) {
         const s = document.createElement('div');
@@ -2356,11 +3106,18 @@
         starsContainer.appendChild(s);
       }
 
+      // Populate Total Global Songs
+      const globalTotalSongs = SONGS_ED1.length + SONGS_ED2.length + SONGS_AV.length + SONGS_EXTRAS.length;
+      const totalSongsEl = document.getElementById('global-total-songs');
+      if (totalSongsEl) totalSongsEl.textContent = globalTotalSongs;
+
       // Initializations
       for (let i = 0; i < 4; i++) buildPlaylistUI(i);
       buildContestants();
       buildSecondaryAwards();
       renderRankings();
+      renderGroups();
+      renderBracket();
       renderGala();
 
       // Intersection Observer for Animations

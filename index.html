@@ -44,6 +44,27 @@
       font-weight: 400;
       overflow-x: hidden;
       cursor: default;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent1);
     }
 
     body::before {
@@ -1635,13 +1656,16 @@
 
     .reveal {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity .6s cubic-bezier(.16, .8, .3, 1), transform .6s cubic-bezier(.16, .8, .3, 1);
+      transform: translateY(36px) scale(.97);
+      filter: blur(6px);
+      transition: opacity .8s cubic-bezier(.16, .8, .3, 1), transform .8s cubic-bezier(.16, .8, .3, 1), filter .8s cubic-bezier(.16, .8, .3, 1);
+      will-change: opacity, transform, filter;
     }
 
     .reveal.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
+      filter: blur(0);
     }
 
     .section-divider {
@@ -3120,14 +3144,12 @@
       renderBracket();
       renderGala();
 
-      // Intersection Observer for Animations
+      // Intersection Observer for Animations (aparición Y desaparición en ambos sentidos)
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
+          entry.target.classList.toggle('visible', entry.isIntersecting);
         });
-      }, { threshold: 0.1 });
+      }, { threshold: 0.12, rootMargin: '-60px 0px -60px 0px' });
 
       document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     };

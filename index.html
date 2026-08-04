@@ -1566,6 +1566,7 @@
       <button class="tab-btn active" onclick="switchEdition(0, this)">3ª Edición - AV4801</button>
       <button class="tab-btn" onclick="switchEdition(1, this)">2ª Edición — AV3</button>
       <button class="tab-btn" onclick="switchEdition(2, this)">1ª Edición — AV</button>
+      <button class="tab-btn" onclick="switchEdition(3, this)">Extras</button>
     </div>
 
     <div class="edition-tabs-content active" id="edition-0">
@@ -1640,6 +1641,32 @@
             <span class="npb-label">▶ Reproduciendo</span>
             <div class="npb-title" id="npb-title-2">Ninguna canción seleccionada</div>
             <div class="npb-artist" id="npb-artist-2">—</div>
+            <div class="npb-hint">Haz clic en una canción de la lista para escucharla aquí mismo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="edition-tabs-content" id="edition-3">
+      <div class="player-layout">
+        <div class="playlist-panel">
+          <div class="playlist-header"><span>Lista de reproducción</span><span class="playlist-count"
+              id="count-3"></span></div>
+          <div class="playlist-list" id="playlist-3"></div>
+        </div>
+        <div class="video-panel">
+          <div class="video-wrapper">
+            <iframe id="player-3" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+            <div class="video-placeholder" id="video-placeholder-3">
+              <div class="vp-icon">▶</div>
+              <div class="vp-text">Selecciona una canción</div>
+              <div class="vp-subtext">Haz clic en cualquier canción de la lista para reproducirla aquí</div>
+            </div>
+          </div>
+          <div class="now-playing-bar">
+            <span class="npb-label">▶ Reproduciendo</span>
+            <div class="npb-title" id="npb-title-3">Ninguna canción seleccionada</div>
+            <div class="npb-artist" id="npb-artist-3">—</div>
             <div class="npb-hint">Haz clic en una canción de la lista para escucharla aquí mismo</div>
           </div>
         </div>
@@ -1875,12 +1902,17 @@
       "Me he fumado un porro lo se, Parte 2": "gf29Ty7Aa1o",
       "Naviperu": "vzvKIHq_vRg",
       "Auminertista": "17ks_1PNdmA",
+      "Rape negga ball sex": " ",
 
       // 2ª Edición — AV3 (AV_1 playlist)
       "El Manjar": "Ttvy5wBmgTo",
       "El Pepino de Carlos": "-tEYU14JK2k",
       "El Pepino gigantesco de la madre de Diego Mier Gil": "WI_YGENmSJw",
       "Sara y la Berenjena": "rGnGQUOs2ys",
+      "F*cking Mier-da": "E-AaLWWtp8U",
+      "Las aventuras de minwertista": "4ZiCPhVwHEM",
+      "BSGA": "yvChZoJj2QE",
+      "Cuantas veces me cumee": "bpj6gaodr8E",
       "Zapato vuela en la sopa lunar": "PmlIGy_AgRA",
       "Perro come galletas": "zLpf7jSgXR0",
       "Colacao My Amore": "fG9_lFLJ-GY",
@@ -1900,8 +1932,25 @@
       "La sexy Sara Arkelian": "JcS59SJOAJI",
       "El Gran Encanto de Carlos": "I8I4suToKKY",
       "Te voy a humillar": "9x6V3eUoueA",
-      "¿Mohaquien?": "VUqDvYm6_7Y"
+      "¿Mohaquien?": "VUqDvYm6_7Y",
+
+      // Extras (sin edición)
+      "Eject": "Uc6pBKqzGI4",
+      "Future Nostalgia": "TgXVdPTRjg8",
+      "Los Pollos Familys REMIX": "VrH-9RvO0uc",
+      "Other Adventure": "ZQUsCHZp9-Y",
+      "The Victory is here": "Yp5xxQnP2nU",
+      "El Rap de Minecraft REMASTERED": "dXJmEnRBAAA"
     };
+
+    const SONGS_EXTRAS = [
+      { title: 'Eject', artist: '' },
+      { title: 'Future Nostalgia', artist: '' },
+      { title: 'Los Pollos Familys REMIX', artist: '' },
+      { title: 'Other Adventure', artist: '' },
+      { title: 'The Victory is here', artist: '' },
+      { title: 'El Rap de Minecraft REMASTERED', artist: 'Gokenrik', producer: 'DJ Sigma Boy' },
+    ];
 
     const SONGS_ED2 = [
       { title: 'Un relámpago miope buscaba mis calcetas', artist: 'Superpajas33', score: 30.25 },
@@ -2179,18 +2228,18 @@
     //  MUSIC PLAYER / PLAYLISTS
     // ════════════════════════════════════════════
     function buildPlaylistUI(edIdx) {
-      const songs = edIdx === 0 ? SONGS_AV : edIdx === 1 ? SONGS_ED2 : SONGS_ED1;
+      const songs = edIdx === 0 ? SONGS_AV : edIdx === 1 ? SONGS_ED2 : edIdx === 2 ? SONGS_ED1 : SONGS_EXTRAS;
       const listEl = document.getElementById(`playlist-${edIdx}`);
       const countEl = document.getElementById(`count-${edIdx}`);
-      const sorted = edIdx === 0 ? songs : [...songs].sort((a, b) => b.score - a.score);
+      const sorted = (edIdx === 0 || edIdx === 3) ? songs : [...songs].sort((a, b) => b.score - a.score);
       countEl.textContent = sorted.length;
 
       listEl.innerHTML = sorted.map((s, i) => `
-    <div class="playlist-item" onclick="selectSong(${edIdx}, '${esc(s.title)}', '${esc(s.artist)}', this)">
+    <div class="playlist-item" onclick="selectSong(${edIdx}, '${esc(s.title)}', '${esc(s.artist || '')}', this)">
       <div class="pi-num">${i + 1}</div>
       <div class="pi-info">
         <div class="pi-title">${s.title}</div>
-        <div class="pi-artist">${s.artist}</div>
+        <div class="pi-artist">${s.artist ? s.artist + (s.producer ? ' · Prod. ' + s.producer : '') : 'Sin artista'}</div>
       </div>
       <div class="pi-play-icon"><svg viewBox="0 0 10 10"><polygon points="2,1 9,5 2,9"/></svg></div>
     </div>
@@ -2209,7 +2258,7 @@
       if (placeholder) placeholder.classList.add('hidden');
 
       document.getElementById(`npb-title-${edIdx}`).textContent = title;
-      document.getElementById(`npb-artist-${edIdx}`).textContent = artist;
+      document.getElementById(`npb-artist-${edIdx}`).textContent = artist || '—';
 
       const list = document.getElementById(`playlist-${edIdx}`);
       if (list) list.querySelectorAll('.playlist-item.active').forEach(el => el.classList.remove('active'));
@@ -2235,7 +2284,7 @@
     }
 
     function initPlaylists() {
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < 4; i++) {
         // No precargamos ningún vídeo: la caja empieza en blanco con el
         // mensaje "Selecciona una canción" hasta que el usuario elija una.
         buildPlaylistUI(i);

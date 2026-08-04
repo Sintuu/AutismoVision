@@ -1,0 +1,3703 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutismoVision</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080810;
+      --bg2: #0e0e1a;
+      --bg3: #13131f;
+      --accent1: #ff2d78;
+      --accent2: #00e5ff;
+      --accent3: #ffe600;
+      --accent4: #7c3aed;
+      --text: #f0f0ff;
+      --muted: #6b6b8a;
+      --card: #111120;
+      --border: #1e1e35;
+      --gold: #ffd700;
+      --gold-dim: #b8962e;
+      --silver: #c0c0c0;
+      --bronze: #cd7f32;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 400;
+      overflow-x: hidden;
+      cursor: default;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent1);
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: .4;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 50%, rgba(124, 58, 237, .18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(255, 45, 120, .12) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 80% 20%, rgba(0, 229, 255, .1) 0%, transparent 60%);
+      animation: bgPulse 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes bgPulse {
+      from {
+        opacity: .7;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .stars {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle var(--d, 3s) ease-in-out infinite var(--delay, 0s);
+      opacity: var(--op, .6);
+    }
+
+    @keyframes twinkle {
+
+      0%,
+      100% {
+        opacity: var(--op, .6);
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: .1;
+        transform: scale(.5);
+      }
+    }
+
+    .hero-edition-badge {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: .85rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      border: 1px solid rgba(0, 229, 255, .3);
+      padding: .35rem 1.2rem;
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+      animation: fadeInDown .8s both;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 14vw, 10rem);
+      line-height: .9;
+      position: relative;
+      z-index: 1;
+      animation: fadeInDown .9s .1s both;
+      letter-spacing: .02em;
+    }
+
+    .hero-title .line2 {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 2px var(--accent1);
+      text-shadow: 0 0 40px rgba(255, 45, 120, .5);
+    }
+
+    .hero-subtitle {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: .12em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-top: 1rem;
+      position: relative;
+      z-index: 1;
+      animation: fadeInDown 1s .2s both;
+    }
+
+    .hero-nav {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      animation: fadeInDown 1s .3s both;
+    }
+
+    .hero-nav a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: .9rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: .7rem 1.6rem;
+      border-radius: 2px;
+      transition: all .2s;
+    }
+
+    .hero-nav a.primary {
+      background: var(--accent1);
+      color: white;
+    }
+
+    .hero-nav a.primary:hover {
+      background: #ff5599;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255, 45, 120, .4);
+    }
+
+    .hero-nav a.secondary {
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .hero-nav a.secondary:hover {
+      border-color: var(--accent2);
+      color: var(--accent2);
+      transform: translateY(-2px);
+    }
+
+    .hero-nav a.gold-nav {
+      border: 1px solid rgba(255, 215, 0, .35);
+      color: var(--gold);
+    }
+
+    .hero-nav a.gold-nav:hover {
+      border-color: var(--gold);
+      background: rgba(255, 215, 0, .08);
+      transform: translateY(-2px);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+      color: var(--muted);
+      font-size: .75rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      font-family: 'Barlow Condensed', sans-serif;
+      animation: fadeIn 2s 1s both;
+    }
+
+    .scroll-hint::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--muted), transparent);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollLine {
+
+      0%,
+      100% {
+        transform: scaleY(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scaleY(.5);
+        opacity: .3;
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* ─── SECTIONS ─── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .8rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--accent1);
+      margin-bottom: .75rem;
+    }
+
+    .section-label.gold-label {
+      color: var(--gold);
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .section-title.gold-title {
+      background: linear-gradient(120deg, #fff2b8, var(--gold) 40%, #a67c00 80%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      font-size: .95rem;
+      max-width: 620px;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+
+    .header-action-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ─── RANDOM SONG BUTTON ─── */
+    .random-song-btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--accent1), var(--accent4));
+      color: white;
+      border: none;
+      padding: .75rem 1.4rem;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      box-shadow: 0 4px 15px rgba(255, 45, 120, .3);
+      transition: all .2s ease;
+    }
+
+    .random-song-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 6px 20px rgba(255, 45, 120, .5);
+      background: linear-gradient(135deg, #ff5599, #9055ff);
+    }
+
+    .random-song-btn:active {
+      transform: translateY(0);
+    }
+
+    /* ─── EDITION TABS ─── */
+    .edition-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: .9rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .8rem 1.8rem;
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      position: relative;
+      transition: color .2s;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .tab-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--accent1);
+      transform: scaleX(0);
+      transition: transform .25s;
+    }
+
+    .tab-btn.active {
+      color: var(--text);
+    }
+
+    .tab-btn.active::after {
+      transform: scaleX(1);
+    }
+
+    .tab-btn:hover {
+      color: var(--text);
+    }
+
+    /* ─── PLAYER ─── */
+    .player-layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 800px) {
+      .player-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .playlist-panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      max-height: 480px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .playlist-header {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .playlist-header span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .8rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .playlist-count {
+      background: var(--accent1);
+      color: white;
+      font-size: .7rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      padding: .15rem .5rem;
+      border-radius: 2px;
+    }
+
+    .playlist-list {
+      overflow-y: auto;
+      flex: 1;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+
+    .playlist-item {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: .75rem 1.25rem;
+      cursor: pointer;
+      transition: background .15s;
+      border-bottom: 1px solid rgba(255, 255, 255, .03);
+    }
+
+    .playlist-item:hover {
+      background: rgba(255, 255, 255, .04);
+    }
+
+    .playlist-item.active {
+      background: rgba(255, 45, 120, .08);
+    }
+
+    .playlist-item.active .pi-num {
+      color: var(--accent1);
+    }
+
+    .pi-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      color: var(--muted);
+      min-width: 24px;
+      text-align: center;
+    }
+
+    .pi-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .pi-title {
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .pi-artist {
+      font-size: .75rem;
+      color: var(--muted);
+      margin-top: .1rem;
+    }
+
+    .pi-play-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--accent1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      opacity: 0;
+      transition: opacity .15s;
+    }
+
+    .playlist-item:hover .pi-play-icon,
+    .playlist-item.active .pi-play-icon {
+      opacity: 1;
+    }
+
+    .pi-play-icon svg {
+      width: 10px;
+      height: 10px;
+      fill: white;
+      margin-left: 1px;
+    }
+
+    .video-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      background: #000;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .75rem;
+      color: var(--muted);
+      background: radial-gradient(ellipse 80% 80% at 50% 40%, rgba(124, 58, 237, .10), transparent 70%), #000;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .video-placeholder.hidden {
+      display: none;
+    }
+
+    .vp-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--accent2);
+    }
+
+    .vp-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .vp-subtext {
+      font-size: .78rem;
+      color: var(--muted);
+      max-width: 260px;
+    }
+
+    .now-playing-bar {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: .25rem;
+    }
+
+    .npb-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent2);
+    }
+
+    .npb-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .npb-artist {
+      font-size: .85rem;
+      color: var(--muted);
+    }
+
+    .npb-hint {
+      font-size: .75rem;
+      color: var(--muted);
+      margin-top: .35rem;
+    }
+
+    .edition-tabs-content {
+      display: none;
+    }
+
+    .edition-tabs-content.active {
+      display: block;
+    }
+
+    /* ─── VIDEO MODAL ─── */
+    .video-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(4, 4, 10, .88);
+      backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .video-modal.open {
+      display: flex;
+    }
+
+    .video-modal-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      width: 100%;
+      max-width: 760px;
+      overflow: hidden;
+      animation: modalPop .25s ease both;
+    }
+
+    @keyframes modalPop {
+      from {
+        opacity: 0;
+        transform: scale(.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .video-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .video-modal-info .vm-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .video-modal-info .vm-artist {
+      font-size: .8rem;
+      color: var(--muted);
+    }
+
+    .video-modal-close {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 1.6rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: .25rem .5rem;
+      transition: color .2s;
+    }
+
+    .video-modal-close:hover {
+      color: var(--text);
+    }
+
+    .video-modal-frame {
+      position: relative;
+      padding-bottom: 56.25%;
+      background: #000;
+    }
+
+    .video-modal-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* ─── CONCURSANTES ─── */
+    .contestants-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .contestant-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.5rem 1.25rem;
+      cursor: pointer;
+      transition: all .2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contestant-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--accent-color, var(--accent1));
+      transform: scaleX(0);
+      transition: transform .3s;
+    }
+
+    .contestant-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .contestant-card:hover {
+      border-color: rgba(255, 255, 255, .15);
+      transform: translateY(-3px);
+    }
+
+    .contestant-card.active-contestant {
+      border-color: rgba(255, 45, 120, .4);
+      background: rgba(255, 45, 120, .06);
+    }
+
+    .contestant-card.active-contestant::before {
+      transform: scaleX(1);
+    }
+
+    .cc-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      background: var(--accent-color-bg, rgba(255, 45, 120, .15));
+      color: var(--accent-color, var(--accent1));
+      border: 1px solid var(--accent-color-border, rgba(255, 45, 120, .3));
+    }
+
+    .cc-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .25rem;
+    }
+
+    .cc-songs {
+      font-size: .8rem;
+      color: var(--muted);
+    }
+
+    /* Contestant panel with statistics */
+    .contestant-songs-panel {
+      margin-top: 2rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      display: none;
+      animation: fadeIn .3s ease-out;
+    }
+
+    .contestant-songs-panel.visible {
+      display: block;
+    }
+
+    .csp-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .csp-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+    }
+
+    .csp-close {
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 1.5rem;
+      line-height: 1;
+      padding: .25rem;
+      transition: color .2s;
+    }
+
+    .csp-close:hover {
+      color: var(--text);
+    }
+
+    /* ─── ESTADÍSTICAS MINI-SECCIÓN ─── */
+    .stats-container {
+      padding: 1.25rem 1.5rem;
+      background: rgba(0, 0, 0, 0.25);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stats-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid rgba(255, 255, 255, .06);
+      border-radius: 4px;
+      padding: .85rem 1rem;
+    }
+
+    .stat-label {
+      font-size: .75rem;
+      color: var(--muted);
+      font-family: 'Barlow Condensed', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: .2rem;
+    }
+
+    .stat-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      color: var(--text);
+      line-height: 1.1;
+    }
+
+    .stat-subvalue {
+      font-size: .75rem;
+      color: var(--accent3);
+      margin-top: .25rem;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    .csp-songs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .csp-song-item {
+      background: var(--card);
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      transition: background .15s;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+
+    .csp-song-item:hover {
+      background: rgba(255, 255, 255, .04);
+    }
+
+    .csp-song-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      color: var(--muted);
+      min-width: 20px;
+    }
+
+    .csp-song-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .csp-song-title {
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.35;
+    }
+
+    .csp-song-edition {
+      font-size: .75rem;
+      color: var(--muted);
+      margin-top: .25rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: .05em;
+    }
+
+    .csp-play-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 45, 120, .15);
+      border: 1px solid rgba(255, 45, 120, .3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all .2s;
+    }
+
+    .csp-song-item:hover .csp-play-btn {
+      background: var(--accent1);
+      border-color: var(--accent1);
+    }
+
+    .csp-play-btn svg {
+      width: 10px;
+      height: 10px;
+      fill: var(--accent1);
+      margin-left: 1px;
+    }
+
+    .csp-song-item:hover .csp-play-btn svg {
+      fill: white;
+    }
+
+    /* ─── PREMIOS SECUNDARIOS SECTION ─── */
+    .awards-ed-block {
+      margin-bottom: 2.5rem;
+    }
+
+    .awards-ed-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      color: var(--accent2);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: .4rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .award-card {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.25rem;
+      position: relative;
+      overflow: hidden;
+      transition: all .2s;
+      cursor: pointer;
+    }
+
+    .award-card:hover {
+      border-color: var(--accent1);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(255, 45, 120, .15);
+    }
+
+    .award-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--accent-color, var(--accent1));
+    }
+
+    .award-category {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent3);
+      margin-bottom: .4rem;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    .award-song-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: .25rem;
+    }
+
+    .award-artist {
+      font-size: .8rem;
+      color: var(--muted);
+    }
+
+    .award-play-tag {
+      margin-top: .75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      font-size: .7rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--accent1);
+    }
+
+    /* ─── RANKINGS & CLASIFICACIONES ─── */
+    .ranking-table {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .rt-header {
+      display: grid;
+      grid-template-columns: 40px 1fr 90px 32px;
+      padding: .6rem 1rem;
+      background: rgba(255, 255, 255, .03);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .rt-header span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .rt-header span:nth-child(3) {
+      text-align: right;
+    }
+
+    .rt-row {
+      display: grid;
+      grid-template-columns: 40px 1fr 90px 32px;
+      padding: .7rem 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .025);
+      align-items: center;
+      transition: background .15s;
+    }
+
+    .rt-row:last-child {
+      border-bottom: none;
+    }
+
+    .rt-row:hover {
+      background: rgba(255, 255, 255, .025);
+    }
+
+    .rt-pos {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+    }
+
+    .pos-1 {
+      color: var(--gold);
+    }
+
+    .pos-2 {
+      color: var(--silver);
+    }
+
+    .pos-3 {
+      color: var(--bronze);
+    }
+
+    .pos-other {
+      color: var(--muted);
+    }
+
+    .rt-song {
+      font-size: .88rem;
+      font-weight: 500;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding-right: .5rem;
+    }
+
+    .rt-score {
+      text-align: right;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--accent2);
+    }
+
+    .rt-row.top-3 {
+      background: rgba(255, 215, 0, .025);
+    }
+
+    .rt-play {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all .15s;
+      margin-left: .5rem;
+    }
+
+    .rt-play:hover {
+      background: var(--accent1);
+      border-color: var(--accent1);
+    }
+
+    .rt-play svg {
+      width: 9px;
+      height: 9px;
+      fill: var(--muted);
+      margin-left: 1px;
+    }
+
+    .rt-play:hover svg {
+      fill: white;
+    }
+
+    .rt-stage-tag {
+      display: inline-block;
+      font-size: .65rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      letter-spacing: .05em;
+      padding: .1rem .4rem;
+      border-radius: 2px;
+      margin-top: .15rem;
+    }
+
+    /* ─── SUB-TABS (3ª Edición AV4801) ─── */
+    .sub-tabs-container {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      justify-content: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 0.75rem;
+    }
+
+    .sub-tab-btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.55rem 1.4rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .sub-tab-btn.active {
+      color: #fff;
+      background: rgba(255, 45, 120, 0.15);
+      border-color: var(--accent1);
+      box-shadow: 0 0 12px rgba(255, 45, 120, 0.2);
+    }
+
+    .sub-tab-btn:hover:not(.active) {
+      color: var(--text);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* ─── FASE DE GRUPOS AV4801 ─── */
+    .groups-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .group-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.25rem;
+      overflow: hidden;
+    }
+
+    .group-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      color: var(--accent2);
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: .3rem;
+    }
+
+    .group-song-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .5rem;
+      padding: .6rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .03);
+      cursor: pointer;
+      transition: background .15s;
+    }
+
+    .group-song-item:last-child {
+      border-bottom: none;
+    }
+
+    .group-song-item:hover {
+      background: rgba(255, 255, 255, .02);
+    }
+
+    .gsi-seed {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .75rem;
+      color: var(--muted);
+      min-width: 22px;
+    }
+
+    .gsi-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .gsi-name {
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .gsi-artist {
+      font-size: .72rem;
+      color: var(--muted);
+    }
+
+    .gsi-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .65rem;
+      letter-spacing: .05em;
+      padding: .15rem .45rem;
+      border-radius: 2px;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .tag-bombo1 {
+      background: rgba(0, 225, 0, .15);
+      color: rgba(0, 255, 0);
+      border: 1px solid rgba(0, 255, 0, 0.3);
+    }
+
+    .tag-bombo2 {
+      background: rgba(0, 204, 255, .2);
+      color: rgba(0, 204, 255);
+      border: 1px solid rgba(0, 204, 255, 0.4);
+    }
+
+    .tag-bombo3 {
+      background: rgba(255, 174, 0, .15);
+      color: rgb(255, 174, 0);
+      border: 1px solid rgba(255, 174, 0, 0.3);
+    }
+
+    .tag-eliminated {
+      background: rgba(255, 45, 120, .15);
+      color: var(--accent1);
+      border: 1px solid rgba(255, 45, 120, .3);
+    }
+
+    /* ─── BRACKET LAYOUT AV4801 ─── */
+    .bracket-wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.5rem;
+      align-items: start;
+      overflow-x: auto;
+      padding-bottom: 1rem;
+    }
+
+    .bracket-col {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .bracket-col-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .9rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: .4rem;
+      margin-bottom: .5rem;
+    }
+
+    .matchup-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .matchup-team {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .6rem .8rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .03);
+      cursor: pointer;
+      transition: background .15s;
+    }
+
+    .matchup-team:last-child {
+      border-bottom: none;
+    }
+
+    .matchup-team:hover {
+      background: rgba(255, 255, 255, .03);
+    }
+
+    .matchup-team.winner {
+      background: rgba(0, 229, 255, .06);
+    }
+
+    .mt-title {
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mt-sub {
+      font-size: .7rem;
+      color: var(--muted);
+    }
+
+    .mt-star {
+      color: var(--gold);
+      font-size: .85rem;
+      margin-left: .25rem;
+    }
+
+    .champion-box {
+      background: linear-gradient(145deg, rgba(255, 215, 0, .12), rgba(255, 215, 0, .02));
+      border: 2px solid var(--gold);
+      border-radius: 6px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(255, 215, 0, .15);
+    }
+
+    .champion-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      color: var(--gold);
+      letter-spacing: .05em;
+      line-height: 1;
+      margin-top: .4rem;
+    }
+
+    .champion-song {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-top: .4rem;
+    }
+
+    .champion-artist {
+      font-size: .8rem;
+      color: var(--muted);
+    }
+
+    .fifth-place-box {
+      background: rgba(0, 229, 255, .05);
+      border: 1px solid rgba(0, 229, 255, .3);
+      border-radius: 6px;
+      padding: 1.2rem;
+      text-align: center;
+    }
+
+    .fifth-place-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      color: var(--accent2);
+    }
+
+    /* ─── GALA FINAL (GOLD) ─── */
+    .gala-section {
+      background: radial-gradient(ellipse 120% 80% at 50% 0%, rgba(255, 215, 0, .06), transparent 60%), var(--bg2);
+      border-top: 1px solid rgba(255, 215, 0, .15);
+      border-bottom: 1px solid rgba(255, 215, 0, .15);
+    }
+
+    .gala-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .gala-subhead {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin: 2.5rem 0 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+
+    .gala-subhead:first-of-type {
+      margin-top: 0;
+    }
+
+    .gala-subhead::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, rgba(255, 215, 0, .3), transparent);
+    }
+
+    .gala-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .gala-card {
+      background: linear-gradient(160deg, rgba(255, 215, 0, .05), rgba(255, 215, 0, .01));
+      border: 1px solid rgba(255, 215, 0, .2);
+      border-radius: 5px;
+      padding: 1.4rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      transition: all .2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gala-card:hover {
+      border-color: rgba(255, 215, 0, .5);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(255, 215, 0, .08);
+    }
+
+    .gala-card.pending {
+      border-style: dashed;
+      border-color: rgba(255, 215, 0, .18);
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 148px;
+      opacity: .65;
+    }
+
+    .gala-card.pending .gala-q {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      color: var(--gold-dim);
+      letter-spacing: .1em;
+    }
+
+    .gala-card.pending .gala-q-label {
+      font-size: .7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-top: .35rem;
+    }
+
+    .gala-card-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .gala-card-artist {
+      font-size: .78rem;
+      color: var(--muted);
+    }
+
+    .gala-card-edition {
+      font-size: .68rem;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+
+    .gala-card-listen {
+      margin-top: .3rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      align-self: flex-start;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #06060a;
+      background: var(--gold);
+      padding: .35rem .75rem;
+      border-radius: 2px;
+      border: none;
+      cursor: pointer;
+      transition: all .15s;
+    }
+
+    .gala-card-listen:hover {
+      background: #fff2b8;
+      transform: translateY(-1px);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: .8rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    footer strong {
+      color: var(--accent1);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px) scale(.97);
+      filter: blur(6px);
+      transition: opacity .8s cubic-bezier(.16, .8, .3, 1), transform .8s cubic-bezier(.16, .8, .3, 1), filter .8s cubic-bezier(.16, .8, .3, 1);
+      will-change: opacity, transform, filter;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), transparent);
+      margin: 0 2rem;
+    }
+
+    /* ─── BARRAS ─── */
+    .barras-menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .barras-option-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2.2rem 1.8rem;
+      cursor: pointer;
+      text-align: center;
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+    }
+
+    .barras-option-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent1);
+      box-shadow: 0 10px 30px rgba(255, 45, 120, .15);
+    }
+
+    .barras-option-icon {
+      font-size: 2.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .barras-option-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.7rem;
+      letter-spacing: .04em;
+      margin-bottom: .6rem;
+    }
+
+    .barras-option-desc {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.55;
+    }
+
+    .barras-view {
+      display: none;
+    }
+
+    .barras-view.active {
+      display: block;
+    }
+
+    .barras-back-btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .85rem;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: .6rem 1.1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 1.5rem;
+      transition: all .2s ease;
+    }
+
+    .barras-back-btn:hover {
+      color: var(--text);
+      border-color: var(--accent2);
+    }
+
+    .barras-museum-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .barra-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent1);
+      border-radius: 8px;
+      padding: 1.3rem 1.4rem;
+    }
+
+    .barra-quote {
+      font-style: italic;
+      white-space: pre-line;
+      line-height: 1.55;
+      margin-bottom: 1rem;
+      font-size: .95rem;
+    }
+
+    .barra-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: .5rem;
+      flex-wrap: wrap;
+      font-size: .8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: .7rem;
+    }
+
+    .barra-meta .barra-author {
+      color: var(--accent2);
+      font-weight: 600;
+    }
+
+    .barra-meta .barra-song {
+      color: var(--accent3);
+    }
+
+    .quiz-setup {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2rem;
+      max-width: 640px;
+    }
+
+    .quiz-setup-group {
+      margin-bottom: 1.6rem;
+    }
+
+    .quiz-setup-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-size: .8rem;
+      color: var(--accent1);
+      margin-bottom: .8rem;
+    }
+
+    .quiz-choice-row {
+      display: flex;
+      gap: .7rem;
+      flex-wrap: wrap;
+    }
+
+    .quiz-choice-btn {
+      padding: .6rem 1.15rem;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      color: var(--muted);
+      cursor: pointer;
+      font-size: .85rem;
+      font-family: 'Barlow', sans-serif;
+      transition: all .2s ease;
+    }
+
+    .quiz-choice-btn.selected {
+      border-color: var(--accent1);
+      color: var(--text);
+      background: rgba(255, 45, 120, .12);
+    }
+
+    .quiz-choice-btn:hover {
+      color: var(--text);
+    }
+
+    .quiz-start-btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--accent1), var(--accent4));
+      color: white;
+      border: none;
+      padding: .8rem 1.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 45, 120, .3);
+      transition: all .2s ease;
+    }
+
+    .quiz-start-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 6px 20px rgba(255, 45, 120, .5);
+    }
+
+    .quiz-question-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2.4rem;
+      max-width: 720px;
+    }
+
+    .quiz-score {
+      display: flex;
+      gap: 1.2rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: .9rem;
+      letter-spacing: .05em;
+      margin-bottom: 1rem;
+    }
+
+    .quiz-score .score-correct {
+      color: #2ecc71;
+    }
+
+    .quiz-score .score-incorrect {
+      color: #e74c3c;
+    }
+
+    .quiz-progress {
+      color: var(--muted);
+      font-size: .8rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .quiz-quote-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.35rem;
+      font-style: italic;
+      white-space: pre-line;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .quiz-options-list {
+      display: grid;
+      gap: .8rem;
+    }
+
+    .quiz-option-btn {
+      padding: 1rem 1.3rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+      transition: all .2s ease;
+      font-size: 1rem;
+      font-family: 'Barlow', sans-serif;
+    }
+
+    .quiz-option-btn:hover:not(:disabled) {
+      border-color: var(--accent2);
+    }
+
+    .quiz-option-btn.correct {
+      border-color: #2ecc71;
+      background: rgba(46, 204, 113, .15);
+    }
+
+    .quiz-option-btn.incorrect {
+      border-color: #e74c3c;
+      background: rgba(231, 76, 60, .15);
+    }
+
+    .quiz-option-btn:disabled {
+      cursor: default;
+      opacity: .85;
+    }
+
+    .quiz-result {
+      margin-top: 1.5rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: .03em;
+    }
+
+    .quiz-result.correct-result {
+      color: #2ecc71;
+    }
+
+    .quiz-result.incorrect-result {
+      color: #e74c3c;
+    }
+
+    .quiz-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.6rem;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="stars" id="stars"></div>
+
+  <!-- ─── HERO ─── -->
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-edition-badge">✦ Eurovisión vamos a por ti 😈 ✦</div>
+    <h1 class="hero-title">
+      <span class="line1">Autismo</span>
+      <span class="line2">Vision</span>
+    </h1>
+    <p class="hero-subtitle">El concurso de canciones más autistas del universo</p>
+    <nav class="hero-nav">
+      <a href="#musica" class="primary">🎵 Escuchar Temazos</a>
+      <a href="#barras" class="secondary">✍️ Barras</a>
+      <a href="#concursantes" class="secondary">👤 Concursantes & Stats</a>
+      <a href="#premios-secundarios" class="secondary">🎖️ Premios Secundarios</a>
+      <a href="#clasificaciones" class="secondary">🏆 Clasificaciones</a>
+      <a href="#gala-final" class="gold-nav">🏅 La Última Gala</a>
+    </nav>
+    <div class="scroll-hint">Scroll</div>
+  </div>
+
+  <!-- ─── ESTADISTICAS GENERALES ─── -->
+  <section id="estadisticas-generales" class="reveal" style="padding-bottom: 2rem;">
+    <div class="section-label">📊 Visión Global</div>
+    <h2 class="section-title">Estadísticas Generales</h2>
+    <div class="stats-grid" style="display:flex; gap:1rem; margin-top:1rem; max-width:280px;">
+      <div class="stat-card"
+        style="flex:1; text-align:center; padding: 2rem; background: var(--card); border: 1px solid var(--border); border-radius: 6px;">
+        <div class="stat-label" style="font-size: 1rem; margin-bottom: 0.5rem;">Canciones Totales</div>
+        <div class="stat-value" id="global-total-songs" style="font-size:3rem; color:var(--accent1);">0</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ─── MÚSICA ─── -->
+  <section id="musica" class="reveal">
+    <div class="header-action-row">
+      <div>
+        <div class="section-label">▶ Reproductor</div>
+        <h2 class="section-title">Temazos</h2>
+      </div>
+      <button class="random-song-btn" onclick="playRandomSong()">
+        🎲 ¡Temazo Aleatorio!
+      </button>
+    </div>
+    <p class="section-subtitle">Todas las canciones de todas las ediciones de AutismoVision, listas para escuchar.</p>
+
+    <div class="edition-tabs">
+      <button class="tab-btn active" onclick="switchEdition(0, this)">3ª Edición - AV4801</button>
+      <button class="tab-btn" onclick="switchEdition(1, this)">2ª Edición — AV3</button>
+      <button class="tab-btn" onclick="switchEdition(2, this)">1ª Edición — AV</button>
+      <button class="tab-btn" onclick="switchEdition(3, this)">Extras</button>
+    </div>
+
+    <div class="edition-tabs-content active" id="edition-0">
+      <div class="player-layout">
+        <div class="playlist-panel">
+          <div class="playlist-header"><span>Lista de reproducción</span><span class="playlist-count"
+              id="count-0"></span></div>
+          <div class="playlist-list" id="playlist-0"></div>
+        </div>
+        <div class="video-panel">
+          <div class="video-wrapper">
+            <iframe id="player-0" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+            <div class="video-placeholder" id="video-placeholder-0">
+              <div class="vp-icon">▶</div>
+              <div class="vp-text">Selecciona una canción</div>
+              <div class="vp-subtext">Haz clic en cualquier canción de la lista para reproducirla aquí</div>
+            </div>
+          </div>
+          <div class="now-playing-bar">
+            <span class="npb-label">▶ Reproduciendo</span>
+            <div class="npb-title" id="npb-title-0">Ninguna canción seleccionada</div>
+            <div class="npb-artist" id="npb-artist-0">—</div>
+            <div class="npb-hint">Haz clic en una canción de la lista para escucharla aquí mismo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="edition-tabs-content" id="edition-1">
+      <div class="player-layout">
+        <div class="playlist-panel">
+          <div class="playlist-header"><span>Lista de reproducción</span><span class="playlist-count"
+              id="count-1"></span></div>
+          <div class="playlist-list" id="playlist-1"></div>
+        </div>
+        <div class="video-panel">
+          <div class="video-wrapper">
+            <iframe id="player-1" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+            <div class="video-placeholder" id="video-placeholder-1">
+              <div class="vp-icon">▶</div>
+              <div class="vp-text">Selecciona una canción</div>
+              <div class="vp-subtext">Haz clic en cualquier canción de la lista para reproducirla aquí</div>
+            </div>
+          </div>
+          <div class="now-playing-bar">
+            <span class="npb-label">▶ Reproduciendo</span>
+            <div class="npb-title" id="npb-title-1">Ninguna canción seleccionada</div>
+            <div class="npb-artist" id="npb-artist-1">—</div>
+            <div class="npb-hint">Haz clic en una canción de la lista para escucharla aquí mismo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="edition-tabs-content" id="edition-2">
+      <div class="player-layout">
+        <div class="playlist-panel">
+          <div class="playlist-header"><span>Lista de reproducción</span><span class="playlist-count"
+              id="count-2"></span></div>
+          <div class="playlist-list" id="playlist-2"></div>
+        </div>
+        <div class="video-panel">
+          <div class="video-wrapper">
+            <iframe id="player-2" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+            <div class="video-placeholder" id="video-placeholder-2">
+              <div class="vp-icon">▶</div>
+              <div class="vp-text">Selecciona una canción</div>
+              <div class="vp-subtext">Haz clic en cualquier canción de la lista para reproducirla aquí</div>
+            </div>
+          </div>
+          <div class="now-playing-bar">
+            <span class="npb-label">▶ Reproduciendo</span>
+            <div class="npb-title" id="npb-title-2">Ninguna canción seleccionada</div>
+            <div class="npb-artist" id="npb-artist-2">—</div>
+            <div class="npb-hint">Haz clic en una canción de la lista para escucharla aquí mismo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="edition-tabs-content" id="edition-3">
+      <div class="player-layout">
+        <div class="playlist-panel">
+          <div class="playlist-header"><span>Lista de reproducción</span><span class="playlist-count"
+              id="count-3"></span></div>
+          <div class="playlist-list" id="playlist-3"></div>
+        </div>
+        <div class="video-panel">
+          <div class="video-wrapper">
+            <iframe id="player-3" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+            <div class="video-placeholder" id="video-placeholder-3">
+              <div class="vp-icon">▶</div>
+              <div class="vp-text">Selecciona una canción</div>
+              <div class="vp-subtext">Haz clic en cualquier canción de la lista para reproducirla aquí</div>
+            </div>
+          </div>
+          <div class="now-playing-bar">
+            <span class="npb-label">▶ Reproduciendo</span>
+            <div class="npb-title" id="npb-title-3">Ninguna canción seleccionada</div>
+            <div class="npb-artist" id="npb-artist-3">—</div>
+            <div class="npb-hint">Haz clic en una canción de la lista para escucharla aquí mismo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ─── BARRAS ─── -->
+  <section id="barras" class="reveal">
+    <div class="section-label">✍️ Lírica Autista</div>
+    <h2 class="section-title">Barras</h2>
+    <p class="section-subtitle">Las mejores frases de todas las ediciones de AutismoVision. Explóralas o pon a
+      prueba tu conocimiento.</p>
+
+    <!-- Menú principal -->
+    <div class="barras-view active" id="barras-view-menu">
+      <div class="barras-menu">
+        <div class="barras-option-card" onclick="showBarrasView('museo')">
+          <div class="barras-option-icon">🖼️</div>
+          <div class="barras-option-title">Museo de Barras</div>
+          <div class="barras-option-desc">Aquí se podrán ver las mejores barras de todo AutismoVision.</div>
+        </div>
+        <div class="barras-option-card" onclick="showBarrasView('quiz-setup')">
+          <div class="barras-option-icon">🎯</div>
+          <div class="barras-option-title">Adivina la Barra</div>
+          <div class="barras-option-desc">Aparecerá una barra en pantalla y tendrás que adivinar quién la ha
+            dicho o en qué canción se ha dicho.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Museo de Barras -->
+    <div class="barras-view" id="barras-view-museo">
+      <button class="barras-back-btn" onclick="showBarrasView('menu')">← Volver</button>
+      <div class="edition-tabs" id="museo-tabs">
+        <button class="tab-btn active" onclick="filterBarrasMuseo('all', this)">Todas</button>
+        <button class="tab-btn" onclick="filterBarrasMuseo(0, this)">3ª Edición - AV4801</button>
+        <button class="tab-btn" onclick="filterBarrasMuseo(1, this)">2ª Edición — AV3</button>
+        <button class="tab-btn" onclick="filterBarrasMuseo(2, this)">1ª Edición — AV1</button>
+      </div>
+      <div class="barras-museum-grid" id="barras-museum-grid"></div>
+    </div>
+
+    <!-- Adivina la Barra: Configuración -->
+    <div class="barras-view" id="barras-view-quiz-setup">
+      <button class="barras-back-btn" onclick="showBarrasView('menu')">← Volver</button>
+      <div class="quiz-setup">
+        <div class="quiz-setup-group">
+          <div class="quiz-setup-label">¿Qué quieres adivinar?</div>
+          <div class="quiz-choice-row" id="quiz-mode-options">
+            <button class="quiz-choice-btn selected" data-mode="quien" onclick="selectQuizMode('quien', this)">👤
+              ¿Quién la ha dicho?</button>
+            <button class="quiz-choice-btn" data-mode="cancion" onclick="selectQuizMode('cancion', this)">🎵 ¿En
+              qué canción?</button>
+          </div>
+        </div>
+        <div class="quiz-setup-group">
+          <div class="quiz-setup-label">¿De qué ediciones?</div>
+          <div class="quiz-choice-row" id="quiz-edition-options">
+            <button class="quiz-choice-btn selected" data-ed="0" onclick="toggleQuizEdition(0, this)">3ª
+              Edición - AV4801</button>
+            <button class="quiz-choice-btn selected" data-ed="1" onclick="toggleQuizEdition(1, this)">2ª
+              Edición — AV3</button>
+            <button class="quiz-choice-btn selected" data-ed="2" onclick="toggleQuizEdition(2, this)">1ª
+              Edición — AV1</button>
+          </div>
+        </div>
+        <button class="quiz-start-btn" onclick="startBarraQuiz()">▶ Jugar</button>
+      </div>
+    </div>
+
+    <!-- Adivina la Barra: Juego -->
+    <div class="barras-view" id="barras-view-quiz-play">
+      <button class="barras-back-btn" onclick="backToQuizSetup()">← Cambiar ajustes</button>
+      <div class="quiz-question-box">
+        <div class="quiz-score" id="quiz-score-text"></div>
+        <div class="quiz-progress" id="quiz-progress-text"></div>
+        <div class="quiz-quote-text" id="quiz-quote-text"></div>
+        <div class="quiz-options-list" id="quiz-options-list"></div>
+        <div class="quiz-result" id="quiz-result-text"></div>
+        <div class="quiz-actions" id="quiz-actions"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ─── CONCURSANTES & ESTADÍSTICAS ─── -->
+  <section id="concursantes" class="reveal">
+    <div class="section-label">👤 Artistas & Estadísticas</div>
+    <h2 class="section-title">Concursantes</h2>
+    <p class="section-subtitle">Los artistas que compiten en AutismoVision. Haz clic en cualquiera para desplegar sus
+      estadísticas detalladas y discografía completa.</p>
+
+    <div class="contestants-grid" id="contestants-grid"></div>
+
+    <div class="contestant-songs-panel" id="contestant-panel">
+      <div class="csp-header">
+        <div class="csp-name" id="csp-name"></div>
+        <button class="csp-close" onclick="closeContestantPanel()">✕</button>
+      </div>
+
+      <!-- Mini-Sección Estadísticas -->
+      <div class="stats-container">
+        <div class="stats-title">📊 Estadísticas del Concursante</div>
+        <div class="stats-grid" id="stats-grid"></div>
+      </div>
+
+      <div class="csp-songs-grid" id="csp-songs-grid"></div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ─── PREMIOS SECUNDARIOS ─── -->
+  <section id="premios-secundarios" class="reveal">
+    <div class="section-label">🎖️ Galardones Especiales</div>
+    <h2 class="section-title">Premios Secundarios</h2>
+    <p class="section-subtitle">Reconocimientos especiales otorgados en cada edición a la excelencia autista, lírica y
+      musical.</p>
+
+    <div id="awards-container"></div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ─── CLASIFICACIONES ─── -->
+  <section id="clasificaciones" class="reveal">
+    <div class="section-label">🏆 Resultados</div>
+    <h2 class="section-title">Clasificaciones</h2>
+    <p class="section-subtitle">Revive las clasificaciones de todas las ediciones.</p>
+
+    <div class="edition-tabs" id="ranking-tabs">
+      <button class="tab-btn active" onclick="switchRanking(0, this)">3ª Edición - AV4801</button>
+      <button class="tab-btn" onclick="switchRanking(1, this)">2ª Edición — AV3</button>
+      <button class="tab-btn" onclick="switchRanking(2, this)">1ª Edición — AV</button>
+    </div>
+
+    <!-- 3ª Edición: AV4801 (Pestaña principal 0) -->
+    <div class="ranking-content active" id="ranking-tab-0">
+      <!-- Sub-navegación exclusiva para la 3ª Edición -->
+      <div class="sub-tabs-container">
+        <button class="sub-tab-btn active" onclick="switchAvSubTab('ranking', this)">RANKING</button>
+        <button class="sub-tab-btn" onclick="switchAvSubTab('grupos', this)">FASE DE GRUPOS</button>
+        <button class="sub-tab-btn" onclick="switchAvSubTab('bracket', this)">BRACKET</button>
+      </div>
+
+      <!-- Sub-Vista: Ranking -->
+      <div id="av-sub-ranking" class="av-sub-view">
+        <div class="ranking-table">
+          <div class="rt-header"><span>#</span><span>Canción</span><span>Pts</span><span></span></div>
+          <div id="ranking-av"></div>
+        </div>
+      </div>
+
+      <!-- Sub-Vista: Fase de Grupos -->
+      <div id="av-sub-grupos" class="av-sub-view" style="display:none;">
+        <div class="groups-grid" id="groups-grid"></div>
+      </div>
+
+      <!-- Sub-Vista: Bracket -->
+      <div id="av-sub-bracket" class="av-sub-view" style="display:none;">
+        <div class="bracket-wrapper" id="bracket-wrapper"></div>
+      </div>
+    </div>
+
+    <!-- 2ª Edición: AV3 (Pestaña principal 1) -->
+    <div class="ranking-content" id="ranking-tab-1" style="display:none;">
+      <div class="ranking-table">
+        <div class="rt-header"><span>#</span><span>Canción</span><span>Pts</span><span></span></div>
+        <div id="ranking-ed2"></div>
+      </div>
+    </div>
+
+    <!-- 1ª Edición: AV (Pestaña principal 2) -->
+    <div class="ranking-content" id="ranking-tab-2" style="display:none;">
+      <div class="ranking-table">
+        <div class="rt-header"><span>#</span><span>Canción</span><span>Pts</span><span></span></div>
+        <div id="ranking-ed1"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── GALA FINAL (DORADO) ─── -->
+  <div class="gala-section" id="gala-final">
+    <div class="gala-container reveal">
+      <div class="section-label gold-label">🏅 La Última Gala</div>
+      <h2 class="section-title gold-title">AutismoVision: La Última Gala</h2>
+      <p class="section-subtitle">El último gran evento que reúne a las mejores canciones de la historia de
+        AutismoVision.</p>
+
+      <div class="gala-subhead">🏆 Clasificación por Campeonato</div>
+      <p class="section-subtitle"><strong style="color:var(--gold)"> CLASIFICACIÓN DIRECTA AL BRACKET </strong><br>
+        Clasificados por ganar su edición.</p>
+      <div class="gala-grid" id="gala-campeonato"></div>
+
+      <div class="gala-subhead">📊 Clasificación por Posición</div>
+      <p class="section-subtitle"><strong style="color:var(--gold)"> CLASIFICACIÓN A LOS PLAYOFFS </strong><br>
+        Las casillas con<strong style="color:var(--gold)"> ??? </strong>son canciones por definir en próximas
+        ediciones.<br>
+        Clasificados por quedar entre 2º y 5º puesto en su edición.</p>
+      <div class="gala-grid" id="gala-posicion"></div>
+
+      <div class="gala-subhead">🗳️ Clasificación por Votación</div>
+      <p class="section-subtitle"><strong style="color:var(--gold)"> CLASIFICACIÓN A LOS PLAYOFFS </strong><br></p>
+      <div class="gala-grid" id="gala-votacion"></div>
+
+      <br><strong style="color:var(--gold)"> VOTACIÓN DE MEJOR SEXTO PUESTO </strong><br>Clasifica la mejor canción que
+      haya quedado en 6ª posición.<br>
+      <ul style="margin-top:.5rem; margin-left:1.5rem; color:var(--muted); font-size:.9rem; line-height:1.6;">
+        <li>*** - Sintu_</li>
+        <li>La tetera jiró con un pulso vibrante - Superpajas33</li>
+        <li>Minecraft en lo mas alto - Gokenrik</li>
+      </ul>
+      <br><strong style="color:var(--gold)"> VOTACIÓN DE CANCIÓN FAVORITA </strong><br>Clasifica la canción favorita
+      entre todas las que no han logrado clasificar.
+    </div>
+  </div>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <strong>AutismoVision</strong> &nbsp;·&nbsp; El concurso de canciones más autista &nbsp;·&nbsp; Todos los derechos
+    reservados @sintu_ &nbsp;·&nbsp; Eurovisión vamos a por ti
+  </footer>
+
+  <!-- ─── VIDEO MODAL ─── -->
+  <div class="video-modal" id="videoModal" onclick="if(event.target===this) closeVideoModal()">
+    <div class="video-modal-box">
+      <div class="video-modal-header">
+        <div class="video-modal-info">
+          <div class="vm-title" id="modalTitle">—</div>
+          <div class="vm-artist" id="modalArtist">—</div>
+        </div>
+        <button class="video-modal-close" onclick="closeVideoModal()">✕</button>
+      </div>
+      <div class="video-modal-frame">
+        <iframe id="modalIframe" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ════════════════════════════════════════════
+    //  DATA & PLAYLISTS
+    // ════════════════════════════════════════════
+    const PLAYLISTS = [
+      { id: 'PLEruMucOnuJi38PBixIVQbDGiM-AUCVk6', label: '3ª Edición - AV4801' },
+      { id: 'PLzBhxtfC93KdMze3bYUTDIJCAdjECg-A-', label: '2ª Edición — AutismoVision 3' },
+      { id: 'PLEruMucOnuJgNyGZlzEXwO3wFMm0ZgcI2', label: '1ª Edición — AutismoVision' },
+    ];
+
+    const YOUTUBE_VIDEO_MAP = {
+      // AutismoVision (3ª Edición - AV4801)
+      "Teampanas": "VCJGLf2ETDc",
+      "El Mister": "7P17V5Qq1w4",
+      "Lionella Pepsi": "wIh8ifrRfE0",
+      "Un Arabe Jamonero": "-5CDIh7g_0Y",
+      "Bnet Fan": "ppmtj9QtCvE",
+      "La Noche de Mario": "jhwMQ7aPmmA",
+      "Fried": "KoQRHc5O3dw",
+      "Minecraft en lo mas alto": "SvEYFxxytvU",
+      "No Punchs ;)": "iDto3pFzZEg",
+      "YMNS": "kXxodlr9gwo",
+      "Chillax Zone": "BH1ERoBGHd0",
+      "Susurro de traicion dihh poema": "x-0QZNjLnZg",
+      "grito de ayuda ahh cancion": "Z6IjdDBGiYY",
+      "El Glazer de Carlota": "XSePcgsXUZM",
+      "Round 2": "eMXIJB-KN5M",
+      "Epstein Type Beat": "khte83BJDaQ",
+      "Genghis Kahn't": "lSHtAITFwb0",
+      "Me he fumado un porro lo se, Parte -1": "ABC9YIxFA7I",
+      "Lo que pasa cuando a Diego se le sube": "2UmITkACeGU",
+      "La Cena": "Ch-2E-2-ZcY",
+      "Pingüino Patineta": "Xh6TULDBplo",
+      "La fatimona pechugona": "kjL9FDZ7Bt0",
+      "Backstage": "YoLXxhkFlJw",
+      "La Masoneria": "wAgfUhKXvss",
+      "Round 1": "GaflH9A9vfk",
+      "Round 3": "MuV3kfOeOFU",
+      "MVP Berenjena": "fMQkWrrlmBQ",
+      "Sexo, polla verga": "ObvjpaZj2Ik",
+      "El Mierdon": "VqSDv_Am4W8",
+      "Panza Galactica": "-D6TRCuqEDE",
+      "No entiendo puta mierda": "dfA1XfR0KEE",
+      "🐺🐾": "5PbpwqSFbg8",
+      "Panza Titanica": "plkxRtEd6zI",
+      "GH": "J7ORsVkz5Ok",
+      "Neon en el vacio": "-_GEK018fGc",
+      "STFPGT": "ArhwfJLXkFI",
+      "Circuito de Caramelo": "fPG8GAL1CiI",
+      "La Marcha Gallega": "BS5C15wYs38",
+      "Gordo Borracho": "P0PwZSqH7_8",
+      "Motel": "TJGpFZWNEm4",
+      "MVP": "QwGekGXOh_E",
+      "El Gordo": "b17spIYyMTA",
+      "In Silence Pls": "C8414iiadoE",
+      "Calaphonk": "uxN7UFZfNg8",
+      "Autismo de Minecraft": "8cnp3H-W_nQ",
+      "Madre, Leche Pan": "fSb4ccDCij8",
+      "La gordura de Diego": "TLUvKQI1jF0",
+      "Hay un cojon en mi": "dhWjPjDYY60",
+      "Hotel": "7e1SWn_b3mg",
+
+      // 1ª Edición — AV
+      "Eggs": "b767411o-XQ",
+      "Un relámpago miope buscaba mis calcetas": "AULNoi0wmPc",
+      "La Gorda Putima": "BZxhvsEzRfE",
+      "La Hoja": "EziEuSAfW-0",
+      "La Función": "6n0VDpEJayA",
+      "Del Mazo Escapé": "xLCqjiQ7kTw",
+      "Papeada Gitana": "aoSMeEplSGM",
+      "Rap de Minecraft": "W6ZaHteGvQk",
+      "OLL, ARF, CHICHICHU": "2Y74Z7raSHo",
+      "Sara…": "Fspr5UJGLq4",
+      "S.A. (Sirios Afganos)": "3aazUyVWlyE",
+      "La tetera jiró con un pulso vibrante": "Zb1jXhnoFZg",
+      "El Teclado estalló con un ritmo enredado": "X8LJc__BFK4",
+      "BG4E": "fYz1OHruJGU",
+      "Seimon jas sou meni rizz": "_3Glthu0VWg",
+      "BBMierda": "FGf8ZS8NckQ",
+      "Ani-Whore-F": "tu3p0xx5cCs",
+      "I LOVE ISRAEL": "5osWTfBtlZ4",
+      "Kebab con Ajil": "zAGkwueObAE",
+      "Sara la desesperada en busca de mamada": "2zTtrky2MZg",
+      "Didi Diego la morsa": "31rDGyKLbbc",
+      "Another one bites the ham": "WTHgZwCFWNk",
+      "Minerfuets": "NZuCA4VYwfE",
+      "Danza Gitana": "rnz4SH7lFHA",
+      "Camiseta con pandereta": "-1Xz5siVFF4",
+      "Me he fumado un porro lo se": "DzfStvL5gwE",
+      "Me he fumado un porro lo se, Parte 2": "gf29Ty7Aa1o",
+      "Naviperu": "vzvKIHq_vRg",
+      "Auminertista": "17ks_1PNdmA",
+
+      // 2ª Edición — AV3
+      "El Manjar": "Ttvy5wBmgTo",
+      "El Pepino de Carlos": "-tEYU14JK2k",
+      "El Pepino gigantesco de la madre de Diego Mier Gil": "WI_YGENmSJw",
+      "Sara y la Berenjena": "rGnGQUOs2ys",
+      "F*cking Mier-da": "E-AaLWWtp8U",
+      "Las aventuras de minwertista": "4ZiCPhVwHEM",
+      "BSGA": "yvChZoJj2QE",
+      "Cuantas veces me cumee": "bpj6gaodr8E",
+      "Zapato vuela en la sopa lunar": "PmlIGy_AgRA",
+      "Perro come galletas": "zLpf7jSgXR0",
+      "Colacao My Amore": "fG9_lFLJ-GY",
+      "¿Quién dejó el microondas encendido en mi columna vertebral?": "rLrknHUAMAg",
+      "¡BLARF! ¡ÑEEE! ¡TOSTADORA EMOCIONAL!": "cgD81gYGp-Y",
+      "Mohamón": "2xK2wh4hRh8",
+      "Rim tim tagi dim": "1APybA4sMKs",
+      "Mohamed Cooked": "26D9a3lBBQY",
+      "El terror de las nenas": "-ZAFCQfdUpI",
+      "Minwertista": "tXPHtxTuB8w",
+      "Mychelin tin tin tin": "Y36JJX6TSrY",
+      "La Aclaracion": "v9F9sbQ0kMc",
+      "***": "GyrL3lx5Yeg",
+      "Soy Simón": "cFjiZw_Y3hQ",
+      "Sara y su mirada": "hw3nntQs1E8",
+      "Phonk final boss": "kxl4r6JMA7s",
+      "La sexy Sara Arkelian": "JcS59SJOAJI",
+      "El Gran Encanto de Carlos": "I8I4suToKKY",
+      "Te voy a humillar": "9x6V3eUoueA",
+      "¿Mohaquien?": "VUqDvYm6_7Y",
+
+      // Extras
+      "Eject": "Uc6pBKqzGI4",
+      "Future Nostalgia": "TgXVdPTRjg8",
+      "Los Pollos Familys REMIX": "VrH-9RvO0uc",
+      "Other Adventure": "ZQUsCHZp9-Y",
+      "The Victory is here": "Yp5xxQnP2nU",
+      "El Rap de Minecraft REMASTERED": "dXJmEnRBAAA"
+    };
+
+    const SONGS_EXTRAS = [
+      { title: 'Eject', artist: '' },
+      { title: 'Future Nostalgia', artist: '' },
+      { title: 'Los Pollos Familys REMIX', artist: '' },
+      { title: 'Other Adventure', artist: '' },
+      { title: 'The Victory is here', artist: '' },
+      { title: 'El Rap de Minecraft REMASTERED', artist: 'Gokenrik', producer: 'DJ Sigma Boy' },
+    ];
+
+    const SONGS_ED1 = [
+      { title: 'Sara y la Berenjena', artist: 'Borja', score: 7.7 },
+      { title: 'Cuantas veces me cumee', artist: 'Superpajas33 & DJ Sigma Boy', score: 7.625 },
+      { title: '¡BLARF! ¡ÑEEE! ¡TOSTADORA EMOCIONAL!', artist: 'Superpajas33', score: 7.6 },
+      { title: 'F*cking Mier-da', artist: 'DJ Sigma Boy & Superpajas33', score: 7.5825 },
+      { title: '¿Quién dejó el microondas encendido en mi columna vertebral?', artist: 'Superpajas33', score: 7.55 },
+      { title: '***', artist: 'Sintu_', score: 7.4375 },
+      { title: 'Las aventuras de minwertista', artist: 'Superpajas33 & DJ Sigma Boy', score: 7.25 },
+      { title: 'La Aclaracion', artist: 'Sintu_', score: 7.25 },
+      { title: 'BSGA', artist: 'DJ Sigma Boy', score: 7.25 },
+      { title: 'El Manjar', artist: 'Sintu_', score: 7.2 },
+      { title: 'Phonk final boss', artist: 'Superpajas33', score: 7.1875 },
+      { title: 'El Pepino gigantesco de la madre de Diego Mier Gil', artist: 'Sintu_', score: 7.1 },
+      { title: 'Mohamed Cooked', artist: 'Minwerfu', score: 7.1 },
+      { title: 'El Pepino de Carlos', artist: 'Borja', score: 7 },
+      { title: 'Mohamón', artist: 'Minwerfu', score: 6.9 },
+      { title: '¿Mohaquien?', artist: 'Minwerfu', score: 6.8125 },
+      { title: 'Minwertista', artist: 'Minwerfu', score: 6.8 },
+      { title: 'Zapato vuela en la sopa lunar', artist: 'Superpajas33', score: 6.75 },
+      { title: 'Sara y su mirada', artist: 'Borja', score: 6.6875 },
+      { title: 'Soy Simón', artist: 'Borja', score: 6.625 },
+      { title: 'La sexy Sara Arkelian', artist: 'Borja', score: 6.5625 },
+      { title: 'El Gran Encanto de Carlos', artist: 'Borja', score: 6.375 },
+      { title: 'Te voy a humillar', artist: 'DJ Sigma Boy', score: 6.25 },
+      { title: 'El terror de las nenas', artist: 'Borja', score: 6.05 },
+      { title: 'Perro come galletas', artist: 'Sintu_', score: 5.1 },
+      { title: 'Rim tim tagi dim', artist: 'Gheorge777', score: 2.875 },
+      { title: 'Mychelin tin tin tin', artist: 'Gheorge777', score: 2.7475 },
+      { title: 'Colacao My Amore', artist: 'Gheorge777', score: 2.4 },
+    ];
+
+    const SONGS_ED2 = [
+      { title: 'Eggs', artist: 'DJ Sigma Boy & Superpajas33', score: 32.34 },
+      { title: 'OLL, ARF, CHICHICHU', artist: 'Superpajas33', score: 32 },
+      { title: 'La Función', artist: 'Sintu_', score: 31.5 },
+      { title: 'BG4E', artist: 'Sintu_', score: 31.5 },
+      { title: 'Me he fumado un porro lo se', artist: 'Sintu_', score: 30.75 },
+      { title: 'La tetera jiró con un pulso vibrante', artist: 'Superpajas33', score: 30.5 },
+      { title: 'Seimon jas sou meni rizz', artist: 'Sintu_', score: 30.5 },
+      { title: 'I LOVE ISRAEL', artist: 'DJ Sigma Boy', score: 30.5 },
+      { title: 'Un relámpago miope buscaba mis calcetas', artist: 'Superpajas33', score: 30.25 },
+      { title: 'BBMierda', artist: 'Sintu_', score: 30.25 },
+      { title: 'El Teclado estalló con un ritmo enredado', artist: 'Superpajas33', score: 29.5 },
+      { title: 'Kebab con Ajil', artist: 'Sintu_', score: 29.5 },
+      { title: 'Me he fumado un porro lo se, Parte 2', artist: 'Sintu_', score: 29.5 },
+      { title: 'La Hoja', artist: 'DJ Sigma Boy & Superpajas33', score: 29.33 },
+      { title: 'Didi Diego la morsa', artist: 'Borja', score: 28.75 },
+      { title: 'Naviperu', artist: 'Sintu_', score: 28.5 },
+      { title: 'Camiseta con pandereta', artist: 'Minwerfu', score: 28.25 },
+      { title: 'Papeada Gitana', artist: 'Borja', score: 28 },
+      { title: 'S.A. (Sirios Afganos)', artist: 'Minwerfu', score: 28 },
+      { title: 'Sara la desesperada en busca de mamada', artist: 'Borja', score: 28 },
+      { title: 'Auminertista', artist: 'DJ Sigma Boy', score: 28 },
+      { title: 'La Gorda Putima', artist: 'DJ Sigma Boy', score: 27.5 },
+      { title: 'Minerfuets', artist: 'DJ Sigma Boy', score: 27.5 },
+      { title: 'Sara…', artist: 'Borja', score: 27.25 },
+      { title: 'Ani-Whore-F', artist: 'DJ Sigma Boy', score: 27.25 },
+      { title: 'Rap de Minecraft', artist: 'Gokenrik', score: 27.2 },
+      { title: 'Another one bites the ham', artist: 'Minwerfu', score: 25.5 },
+      { title: 'Danza Gitana', artist: 'Minwerfu', score: 25 },
+      { title: 'Del Mazo Escapé', artist: 'Minwerfu', score: 23.5 },
+      { title: 'Rape negga ball sex', artist: 'DJ Sigma Boy', score: 18.75 },
+    ];
+
+    const SONGS_AV = [
+      { title: 'Teampanas', artist: 'Superpajas33', score: 37.2, stage: 'campeon', badge: '🏆 Campeón' },
+      { title: 'No Punchs ;)', artist: 'Sintu_', score: 36.8, stage: 'octavos', badge: 'Octavos de Final' },
+      { title: 'Lionella Pepsi', artist: 'Borja', score: 35.4, stage: 'cuarto', badge: '4º Puesto' },
+      { title: 'El Mister', artist: 'DJ Sigma Boy', score: 34.8, stage: 'final', badge: '🥈 Subcampeón' },
+      { title: 'La Noche de Mario', artist: 'Sintu_', score: 34.6, stage: 'cuartos', badge: 'Cuartos de Final' },
+      { title: 'Fried', artist: 'DJ Sigma Boy & Superpajas33', score: 33.5, stage: 'cuartos', badge: 'Cuartos de Final' },
+      { title: "Genghis Kahn't", artist: 'DJ Sigma Boy', score: 33, stage: 'grupos', badge: 'Fase de Grupos' },
+      { title: 'Un Arabe Jamonero', artist: 'Sintu_ & Borja', score: 32.25, stage: 'tercero', badge: '🥉 3er Puesto' },
+      { title: 'YMNS', artist: 'DJ Sigma Boy', score: 32.2, stage: 'octavos', badge: 'Octavos de Final' },
+      { title: 'Me he fumado un porro lo se, Parte -1', artist: 'Sintu_', score: 32.2, stage: 'grupos', badge: 'Fase de Grupos' },
+      { title: 'Bnet Fan', artist: 'DJ Sigma Boy', score: 32, stage: 'quinto', badge: '5º Puesto' },
+      { title: 'Lo que pasa cuando a Diego se le sube', artist: 'Sintu_', score: 31.2, stage: 'grupos', badge: 'Fase de Grupos' },
+      { title: 'La Cena', artist: 'Sintu_', score: 30.6, stage: 'grupos', badge: 'Fase de Grupos' },
+      { title: 'Chillax Zone', artist: 'Sintu_', score: 30.6, stage: 'octavos', badge: 'Octavos de Final' },
+      { title: 'Pingüino Patineta', artist: 'Superpajas33', score: 30.4, stage: 'grupos', badge: 'Fase de Grupos' },
+      { title: 'Susurro de traicion dihh poema', artist: 'DJ Sigma Boy', score: 30.4, stage: 'octavos', badge: 'Octavos de Final' },
+      { title: 'La fatimona pechugona', artist: 'Borja', score: 30.2, stage: 'grupos', badge: 'Fase de Grupos' },
+      { title: 'Round 2', artist: 'Sintu_', score: 30.2, stage: 'octavos', badge: 'Octavos de Final' },
+      { title: 'grito de ayuda ahh cancion', artist: 'DJ Sigma Boy', score: 30.2, stage: 'octavos', badge: 'Octavos de Final' },
+      { title: 'El Glazer de Carlota', artist: 'Borja', score: 30.2, stage: 'octavos', badge: 'Octavos de Final' },
+      { title: 'Backstage', artist: 'Sintu_', score: 30, stage: 'grupos', badge: 'Fase de Grupos' },
+      { title: 'La Masoneria', artist: 'Sintu_', score: 29.8, stage: 'grupos', badge: 'Fase de Grupos' },
+      { title: 'Minecraft en lo mas alto', artist: 'Gokenrik', score: 29.67, stage: 'sexto', badge: '6º Puesto' },
+      { title: 'Epstein Type Beat', artist: 'Sintu_', score: 29.6, stage: 'octavos', badge: 'Octavos de Final' },
+      { title: 'Round 1', artist: 'Sintu_', score: 29.2, stage: 'none' },
+      { title: 'Round 3', artist: 'Sintu_', score: 29.2, stage: 'none' },
+      { title: 'MVP Berenjena', artist: 'Borja', score: 29, stage: 'none' },
+      { title: 'Sexo, polla verga', artist: 'Sintu_', score: 29, stage: 'none' },
+      { title: 'El Mierdon', artist: 'Gokenrik', score: 29, stage: 'penalizada', badge: 'Penalizada' },
+      { title: 'Panza Galactica', artist: 'Borja', score: 28.8, stage: 'none' },
+      { title: 'No entiendo puta mierda', artist: 'Sintu_', score: 28.2, stage: 'none' },
+      { title: '🐺🐾', artist: 'Minwerfu', score: 28.2, stage: 'none' },
+      { title: 'Panza Titanica', artist: 'Borja', score: 28, stage: 'none' },
+      { title: 'GH', artist: 'Minwerfu', score: 27, stage: 'none' },
+      { title: 'Neon en el vacio', artist: 'Superpajas33', score: 27, stage: 'none' },
+      { title: 'STFPGT', artist: 'Minwerfu', score: 26.8, stage: 'none' },
+      { title: 'Circuito de Caramelo', artist: 'Superpajas33', score: 26.8, stage: 'none' },
+      { title: 'La Marcha Gallega', artist: 'Gheorge777', score: 23.5, stage: 'none' },
+      { title: 'Gordo Borracho', artist: 'Gheorge777', score: 23.33, stage: 'none' },
+      { title: 'Motel', artist: 'DJ Sigma Boy & Superpajas33', score: 21.5, stage: 'none' },
+      { title: 'MVP', artist: 'Borja', score: 21, stage: 'none' },
+      { title: 'El Gordo', artist: 'Gheorge777', score: 20.33, stage: 'none' },
+      { title: 'In Silence Pls', artist: 'Gheorge777', score: 20.01, stage: 'none' },
+      { title: 'Calaphonk', artist: 'Minwerfu', score: 20, stage: 'none' },
+      { title: 'Autismo de Minecraft', artist: 'Gheorge777', score: 19.99, stage: 'none' },
+      { title: 'Madre, Leche Pan', artist: 'Gheorge777', score: 18.66, stage: 'none' },
+      { title: 'La gordura de Diego', artist: 'Gheorge777', score: 17.99, stage: 'none' },
+      { title: 'Hay un cojon en mi', artist: 'Gheorge777', score: 17.33, stage: 'none' },
+      { title: 'Hotel', artist: 'DJ Sigma Boy & Superpajas33', score: 16.5, stage: 'none' },
+    ];
+
+    // FASE DE GRUPOS AV4801
+    const GROUPS_AV = [
+      {
+        name: "GRUPO A",
+        songs: [
+          { seed: "#4", title: "El Mister", artist: "DJ Sigma Boy", tag: "BOMBO 1", type: "bombo1" },
+          { seed: "#11", title: "Bnet Fan", artist: "DJ Sigma Boy", tag: "BOMBO 2", type: "bombo2" },
+          { seed: "#21", title: "Backstage", artist: "Sintu_", tag: "ELIMINADA", type: "eliminated" }
+        ]
+      },
+      {
+        name: "GRUPO B",
+        songs: [
+          { seed: "#7", title: "Genghis Kahn't", artist: "DJ Sigma Boy", tag: "ELIMINADA", type: "eliminated" },
+          { seed: "#16", title: "Susurro de traicion dihh poema", artist: "DJ Sigma Boy", tag: "BOMBO 2", type: "bombo2" },
+          { seed: "#18", title: "Round 2", artist: "Sintu_", tag: "BOMBO 3", type: "bombo3" }
+        ]
+      },
+      {
+        name: "GRUPO C",
+        songs: [
+          { seed: "#1", title: "Teampanas", artist: "Superpajas33", tag: "BOMBO 1", type: "bombo1" },
+          { seed: "#13", title: "La Cena", artist: "Sintu_", tag: "ELIMINADA", type: "eliminated" },
+          { seed: "#24", title: "Epstein Type Beat", artist: "Sintu_", tag: "BOMBO 3", type: "bombo3" }
+        ]
+      },
+      {
+        name: "GRUPO D",
+        songs: [
+          { seed: "#8", title: "Un Arabe Jamonero", artist: "Sintu_ & Borja", tag: "BOMBO 1", type: "bombo1" },
+          { seed: "#9", title: "YMNS", artist: "DJ Sigma Boy", tag: "BOMBO 2", type: "bombo2" },
+          { seed: "#17", title: "La fatimona pechugona", artist: "Borja", tag: "ELIMINADA", type: "eliminated" }
+        ]
+      },
+      {
+        name: "GRUPO E",
+        songs: [
+          { seed: "#3", title: "Lionella Pepsi", artist: "Borja", tag: "BOMBO 1", type: "bombo1" },
+          { seed: "#14", title: "Chillax Zone", artist: "Sintu_", tag: "BOMBO 2", type: "bombo2" },
+          { seed: "#22", title: "La Masoneria", artist: "Sintu_", tag: "ELIMINADA", type: "eliminated" }
+        ]
+      },
+      {
+        name: "GRUPO F",
+        songs: [
+          { seed: "#2", title: "No Punchs ;)", artist: "Sintu_", tag: "BOMBO 1", type: "bombo1" },
+          { seed: "#12", title: "Lo que pasa cuando a Diego se...", artist: "Sintu_", tag: "ELIMINADA", type: "eliminated" },
+          { seed: "#23", title: "Minecraft en lo mas alto", artist: "Gokenrik", tag: "BOMBO 3", type: "bombo3" }
+        ]
+      },
+      {
+        name: "GRUPO G",
+        songs: [
+          { seed: "#6", title: "Fried", artist: "DJ Sigma Boy & Superpajas33", tag: "BOMBO 1", type: "bombo1" },
+          { seed: "#10", title: "Me he fumado un porro lo se, P...", artist: "Sintu_", tag: "ELIMINADA", type: "eliminated" },
+          { seed: "#19", title: "grito de ayuda ahh cancion", artist: "DJ Sigma Boy", tag: "BOMBO 3", type: "bombo3" }
+        ]
+      },
+      {
+        name: "GRUPO H",
+        songs: [
+          { seed: "#5", title: "La Noche de Mario", artist: "Sintu_", tag: "BOMBO 1", type: "bombo1" },
+          { seed: "#15", title: "Pingüino Patineta", artist: "Superpajas33", tag: "ELIMINADA", type: "eliminated" },
+          { seed: "#20", title: "El Glazer de Carlota", artist: "Borja", tag: "BOMBO 3", type: "bombo3" }
+        ]
+      }
+    ];
+
+    const STAGE_COLORS = {
+      campeon: '#FFC300',
+      final: '#B2BABB',
+      tercero: '#CD7F32',
+      cuarto: '#2E86C1',
+      quinto: '#5DADE2',
+      sexto: '#17A589',
+      cuartos: '#8E44AD',
+      octavos: '#F39C12',
+      grupos: '#9CB080',
+      penalizada: '#7F8C8D',
+      none: null
+    };
+
+    // Concursantes y curiosidades
+    const CONTESTANTS = [
+      { name: 'Superpajas33', aka: 'Antes: Luner', color: '#ff2d78', colorBg: 'rgba(255,45,120,.15)', colorBorder: 'rgba(255,45,120,.3)', curiosity: 'Es el unico en tener un bicampeonato' },
+      { name: 'Sintu_', aka: null, color: '#00e5ff', colorBg: 'rgba(0,229,255,.12)', colorBorder: 'rgba(0,229,255,.3)', curiosity: 'En todas las ediciones ha ganado el tercer puesto' },
+      { name: 'Borja', aka: null, color: '#ffe600', colorBg: 'rgba(255,230,0,.12)', colorBorder: 'rgba(255,230,0,.3)', curiosity: 'El 52% de sus canciones tienen a una mujer como protagonista' },
+      { name: 'Minwerfu', aka: null, color: '#7c3aed', colorBg: 'rgba(124,58,237,.15)', colorBorder: 'rgba(124,58,237,.3)', curiosity: 'Es el unico que no ha clasificado a la gala final en 2 ediciones consecutivas' },
+      { name: 'DJ Sigma Boy', aka: 'Antes: Madi', color: '#ff6b35', colorBg: 'rgba(255,107,53,.13)', colorBorder: 'rgba(255,107,53,.3)', curiosity: 'Es el unico que una canción suya ha sido baneada por Youtube' },
+      { name: 'Gokenrik', aka: null, color: '#39d353', colorBg: 'rgba(57,211,83,.12)', colorBorder: 'rgba(57,211,83,.3)', curiosity: 'Aunque sea el que tenga la menor cantidad de canciones, es de los que mejor rendimiento tienen' },
+      { name: 'Gheorge777', aka: null, color: '#f472b6', colorBg: 'rgba(244,114,182,.12)', colorBorder: 'rgba(244,114,182,.3)', curiosity: 'Nunca ha entrado a Gala' },
+    ];
+
+    // Premios Secundarios Data
+    const PREMIOS_SECUNDARIOS = [
+      {
+        edition: "AutismoVisión (1ª Edición)",
+        awards: [
+          { category: "🔥 Mejor Flow", song: "Cuantas veces me cumee", artist: "Superpajas33 & DJ Sigma Boy" },
+          { category: "✍️ Mejor Letra", song: "F*cking Mier-da", artist: "DJ Sigma Boy & Superpajas33" },
+          { category: "🎹 Mejor Instrumental", song: "¡BLARF! ¡ÑEEE! ¡TOSTADORA EMOCIONAL!", artist: "Superpajas33" },
+          { category: "🧠 Mejor Autismo", song: "¿Quién dejó el microondas encendido en mi columna vertebral?", artist: "Superpajas33" }
+        ]
+      },
+      {
+        edition: "AutismoVisión 3 (2ª Edición)",
+        awards: [
+          { category: "🔥 Mejor Flow", song: "Me he fumado un porro lo se", artist: "Sintu_" },
+          { category: "✍️ Mejor Letra", song: "OLL, ARF, CHICHICHU", artist: "Superpajas33" },
+          { category: "🎹 Mejor Instrumental", song: "Eggs", artist: "DJ Sigma Boy & Superpajas33" },
+          { category: "🧠 Mejor Autismo", song: "Un relámpago miope buscaba mis calcetas", artist: "Superpajas33" }
+        ]
+      },
+      {
+        edition: "AutismoVisión 4801 (3ª Edición)",
+        awards: [
+          { category: "🔥 Mejor Flow", song: "No Punchs ;)", artist: "Sintu_" },
+          { category: "✍️ Mejor Letra", song: "Teampanas", artist: "Superpajas33" },
+          { category: "🎹 Mejor Instrumental", song: "Teampanas", artist: "Superpajas33" },
+          { category: "🧠 Mejor Autismo", song: "La Noche de Mario", artist: "Sintu_" }
+        ]
+      }
+    ];
+
+    // Mapeo completo de premios para estadísticas
+    const ALL_AWARDS = [
+      { title: "Sara y la Berenjena", type: "🏆 Campeón", edition: 1 },
+      { title: "Eggs", type: "🏆 Campeón", edition: 2 },
+      { title: "Teampanas", type: "🏆 Campeón", edition: 3 },
+      { title: "Cuantas veces me cumee", type: "🔥 Mejor Flow", edition: 1 },
+      { title: "F*cking Mier-da", type: "✍️ Mejor Letra", edition: 1 },
+      { title: "¡BLARF! ¡ÑEEE! ¡TOSTADORA EMOCIONAL!", type: "🎹 Mejor Instrumental", edition: 1 },
+      { title: "¿Quién dejó el microondas encendido en mi columna vertebral?", type: "🧠 Mejor Autismo", edition: 1 },
+      { title: "Me he fumado un porro lo se", type: "🔥 Mejor Flow", edition: 2 },
+      { title: "OLL, ARF, CHICHICHU", type: "✍️ Mejor Letra", edition: 2 },
+      { title: "Eggs", type: "🎹 Mejor Instrumental", edition: 2 },
+      { title: "Un relámpago miope buscaba mis calcetas", type: "🧠 Mejor Autismo", edition: 2 },
+      { title: "No Punchs ;)", type: "🔥 Mejor Flow", edition: 3 },
+      { title: "Teampanas", type: "✍️ Mejor Letra", edition: 3 },
+      { title: "Teampanas", type: "🎹 Mejor Instrumental", edition: 3 },
+      { title: "La Noche de Mario", type: "🧠 Mejor Autismo", edition: 3 }
+    ];
+
+    // Gala Final Data
+    const GALA_CAMPEONATO = [
+      { title: 'Sara y la Berenjena', artist: 'Borja', edition: '1ª Edición · Campeón' },
+      { title: 'Eggs', artist: 'DJ Sigma Boy & Superpajas33', edition: '2ª Edición · Campeón' },
+      { title: 'Teampanas', artist: 'Superpajas33', edition: '3ª Edición · Campeón' },
+      null, null,
+    ];
+
+    const GALA_POSICION = [
+      { title: 'Cuantas veces me cumee', artist: 'Superpajas33 & DJ Sigma Boy', edition: '1ª Edición · 2º Puesto' },
+      { title: '¡BLARF! ¡ÑEEE! ¡TOSTADORA EMOCIONAL!', artist: 'Superpajas33', edition: '1ª Edición · 3º Puesto' },
+      { title: 'F*cking Mier-da', artist: 'DJ Sigma Boy & Superpajas33', edition: '1ª Edición · 4º Puesto' },
+      { title: '¿Quién dejó el microondas encendido en mi columna vertebral?', artist: 'Superpajas33', edition: '1ª Edición · 5º Puesto' },
+      { title: 'OLL, ARF, CHICHICHU', artist: 'Superpajas33', edition: '2ª Edición · 2º Puesto' },
+      { title: 'La Función', artist: 'Sintu_', edition: '2ª Edición · 3º Puesto' },
+      { title: 'BG4E', artist: 'Sintu_', edition: '2ª Edición · 4º Puesto' },
+      { title: 'Me he fumado un porro lo se', artist: 'Sintu_', edition: '2ª Edición · 5º Puesto' },
+      { title: 'El Mister', artist: 'DJ Sigma Boy', edition: '3ª Edición · 2º Puesto' },
+      { title: 'Un Arabe Jamonero', artist: 'Sintu_ & Borja', edition: '3ª Edición · 3º Puesto' },
+      { title: 'Lionella Pepsi', artist: 'Borja', edition: '3ª Edición · 4º Puesto' },
+      { title: 'Bnet Fan', artist: 'DJ Sigma Boy', edition: '3ª Edición · 5º Puesto' },
+      null, null, null, null, null, null, null, null,
+    ];
+
+    const GALA_VOTACION = [null, null];
+
+    function clean(str) {
+      return String(str).toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]/g, "");
+    }
+
+    function esc(str) {
+      return String(str).replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    }
+
+    function getSongsForContestant(name) {
+      const aliasMap = {
+        'Superpajas33': ['Superpajas33', 'Luner'],
+        'DJ Sigma Boy': ['DJ Sigma Boy', 'Madi', 'Madie'],
+      };
+      const aliases = aliasMap[name] || [name];
+      const matches = (artist) => aliases.some(a => artist.includes(a));
+
+      const list = [];
+      SONGS_ED1.forEach(s => { if (matches(s.artist)) list.push({ ...s, edition: '1ª Edición', edNum: 1, maxScore: 10, origIndex: SONGS_ED1.indexOf(s) }); });
+      SONGS_ED2.forEach(s => { if (matches(s.artist)) list.push({ ...s, edition: '2ª Edición', edNum: 2, maxScore: 43, origIndex: SONGS_ED2.indexOf(s) }); });
+      SONGS_AV.forEach(s => { if (matches(s.artist)) list.push({ ...s, edition: '3ª Edición - AV4801', edNum: 3, maxScore: 43, origIndex: SONGS_AV.indexOf(s) }); });
+      SONGS_EXTRAS.forEach(s => { if (s.artist && matches(s.artist)) list.push({ ...s, edition: 'Extras', edNum: 4, score: 0, maxScore: 0, origIndex: 99 }); });
+
+      // Añadir etiquetas de los premios ganados
+      list.forEach(s => {
+        s.awards = ALL_AWARDS.filter(a => a.title === s.title && a.edition === s.edNum).map(a => a.type);
+      });
+
+      return list;
+    }
+
+    // ════════════════════════════════════════════
+    //  STATS CALCULATION
+    // ════════════════════════════════════════════
+    function calculateContestantStats(name) {
+      const songs = getSongsForContestant(name);
+      const totalSongs = songs.length;
+
+      const ed1Songs = songs.filter(s => s.edNum === 1);
+      const ed2Songs = songs.filter(s => s.edNum === 2);
+      const ed3Songs = songs.filter(s => s.edNum === 3);
+
+      const avgRankEd1 = ed1Songs.length ? '#' + (ed1Songs.reduce((acc, s) => acc + s.origIndex + 1, 0) / ed1Songs.length).toFixed(1) : null;
+      const avgRankEd2 = ed2Songs.length ? '#' + (ed2Songs.reduce((acc, s) => acc + s.origIndex + 1, 0) / ed2Songs.length).toFixed(1) : null;
+      const avgRankEd3 = ed3Songs.length ? '#' + (ed3Songs.reduce((acc, s) => acc + s.origIndex + 1, 0) / ed3Songs.length).toFixed(1) : null;
+
+      const avgScoreEd1 = ed1Songs.length ? (ed1Songs.reduce((acc, s) => acc + s.score, 0) / ed1Songs.length).toFixed(2) + ' / 10' : null;
+      const avgScoreEd2 = ed2Songs.length ? (ed2Songs.reduce((acc, s) => acc + s.score, 0) / ed2Songs.length).toFixed(2) + ' / 43' : null;
+      const avgScoreEd3 = ed3Songs.length ? (ed3Songs.reduce((acc, s) => acc + s.score, 0) / ed3Songs.length).toFixed(2) + ' / 43' : null;
+
+      let pctSum = 0;
+      let ratedSongsCount = 0;
+      let ranksSum = 0;
+      let totalAwards = 0;
+
+      let bestSongData = null;
+      let maxPct = -1;
+
+      songs.forEach(s => {
+        if (s.awards) totalAwards += s.awards.length;
+
+        if (s.maxScore > 0) {
+          const pct = (s.score / s.maxScore) * 100;
+          pctSum += pct;
+          ratedSongsCount++;
+          ranksSum += (s.origIndex + 1);
+
+          if (pct > maxPct) {
+            maxPct = pct;
+            bestSongData = s;
+          }
+        }
+      });
+
+      const avgPct = ratedSongsCount ? (pctSum / ratedSongsCount).toFixed(1) + '%' : 'N/A';
+      const avgScoreTotalNorm = ratedSongsCount ? ((pctSum / ratedSongsCount) / 10).toFixed(2) + ' / 10' : 'N/A';
+      const avgRank = ratedSongsCount ? '#' + (ranksSum / ratedSongsCount).toFixed(1) : 'N/A';
+
+      return {
+        totalSongs,
+        avgRankEd1,
+        avgRankEd2,
+        avgRankEd3,
+        avgScoreEd1,
+        avgScoreEd2,
+        avgScoreEd3,
+        avgScoreTotalNorm,
+        avgPct,
+        avgRank,
+        totalAwards,
+        bestSongData
+      };
+    }
+
+    function findPlaylistFallback(title) {
+      const cleanTitle = clean(title);
+      const sources = [
+        { arr: SONGS_AV, plId: PLAYLISTS[0].id },
+        { arr: SONGS_ED2, plId: PLAYLISTS[1].id },
+        { arr: SONGS_ED1, plId: PLAYLISTS[2].id },
+      ];
+      for (const { arr, plId } of sources) {
+        const idx = arr.findIndex(s => clean(s.title) === cleanTitle);
+        if (idx !== -1) return { plId, index: idx };
+      }
+      return null;
+    }
+
+    function resolveVideoSrc(title, autoplay) {
+      const cleanTitle = clean(title);
+      let videoId = YOUTUBE_VIDEO_MAP[title] || YOUTUBE_VIDEO_MAP[cleanTitle];
+
+      if (!videoId) {
+        for (const key in YOUTUBE_VIDEO_MAP) {
+          if (clean(key) === cleanTitle) {
+            videoId = YOUTUBE_VIDEO_MAP[key];
+            break;
+          }
+        }
+      }
+
+      const ap = autoplay ? '&autoplay=1' : '';
+      if (videoId) {
+        return `https://www.youtube.com/embed/${videoId}?enablejsapi=1${ap}&rel=0`;
+      }
+
+      const fb = findPlaylistFallback(title);
+      if (fb) {
+        return `https://www.youtube.com/embed/videoseries?list=${fb.plId}&index=${fb.index + 1}&enablejsapi=1${ap}&rel=0`;
+      }
+      return '';
+    }
+
+    function openVideoModal(title, artist) {
+      const modal = document.getElementById('videoModal');
+      const iframe = document.getElementById('modalIframe');
+      const src = resolveVideoSrc(title, true);
+
+      iframe.src = src;
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalArtist').textContent = artist || 'AutismoVision';
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeVideoModal() {
+      document.getElementById('videoModal').classList.remove('open');
+      document.getElementById('modalIframe').src = '';
+      document.body.style.overflow = '';
+    }
+
+    // 🎲 CANCIÓN ALEATORIA
+    function playRandomSong() {
+      const allSongs = [
+        ...SONGS_AV.map(s => ({ ...s, edIdx: 0 })),
+        ...SONGS_ED2.map(s => ({ ...s, edIdx: 1 })),
+        ...SONGS_ED1.map(s => ({ ...s, edIdx: 2 })),
+        ...SONGS_EXTRAS.map(s => ({ ...s, edIdx: 3 }))
+      ];
+
+      const random = allSongs[Math.floor(Math.random() * allSongs.length)];
+      openVideoModal(random.title, random.artist);
+    }
+
+    // ════════════════════════════════════════════
+    //  UI RENDERING & TABS
+    // ════════════════════════════════════════════
+    function buildPlaylistUI(edIdx) {
+      const songs = edIdx === 0 ? SONGS_AV : edIdx === 1 ? SONGS_ED2 : edIdx === 2 ? SONGS_ED1 : SONGS_EXTRAS;
+      const listEl = document.getElementById(`playlist-${edIdx}`);
+      const countEl = document.getElementById(`count-${edIdx}`);
+      const sorted = (edIdx === 0 || edIdx === 3) ? songs : [...songs].sort((a, b) => b.score - a.score);
+      countEl.textContent = sorted.length;
+
+      listEl.innerHTML = sorted.map((s, i) => `
+        <div class="playlist-item" onclick="selectSong(${edIdx}, '${esc(s.title)}', '${esc(s.artist || '')}', this)">
+          <div class="pi-num">${i + 1}</div>
+          <div class="pi-info">
+            <div class="pi-title">${s.title}</div>
+            <div class="pi-artist">${s.artist ? s.artist + (s.producer ? ' · Prod. ' + s.producer : '') : 'Sin artista'}</div>
+          </div>
+          <div class="pi-play-icon"><svg viewBox="0 0 10 10"><polygon points="2,1 9,5 2,9"/></svg></div>
+        </div>
+      `).join('');
+    }
+
+    function selectSong(edIdx, title, artist, itemEl) {
+      const iframe = document.getElementById(`player-${edIdx}`);
+      const placeholder = document.getElementById(`video-placeholder-${edIdx}`);
+      const src = resolveVideoSrc(title, true);
+      if (!src) return;
+
+      iframe.src = src;
+      if (placeholder) placeholder.classList.add('hidden');
+
+      document.getElementById(`npb-title-${edIdx}`).textContent = title;
+      document.getElementById(`npb-artist-${edIdx}`).textContent = artist || '—';
+
+      const list = document.getElementById(`playlist-${edIdx}`);
+      if (list) list.querySelectorAll('.playlist-item.active').forEach(el => el.classList.remove('active'));
+      if (itemEl) itemEl.classList.add('active');
+    }
+
+    function switchEdition(idx, btn) {
+      const contents = document.querySelectorAll('.edition-tabs-content');
+      contents.forEach((el, i) => el.classList.toggle('active', i === idx));
+      btn.parentElement.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    let activeContestant = null;
+
+    function buildContestants() {
+      const grid = document.getElementById('contestants-grid');
+      grid.innerHTML = CONTESTANTS.map((c, i) => {
+        const songs = getSongsForContestant(c.name);
+        return `
+          <div class="contestant-card" id="cc-${i}" style="--accent-color:${c.color}; --accent-color-bg:${c.colorBg}; --accent-color-border:${c.colorBorder};" onclick="toggleContestant(${i})">
+            <div class="cc-avatar" style="background:${c.colorBg}; color:${c.color}; border-color:${c.colorBorder};">${c.name.charAt(0).toUpperCase()}</div>
+            <div class="cc-name">${c.name}</div>
+            ${c.aka ? `<div class="cc-songs" style="color:${c.color}; opacity:.7; font-size:.72rem; margin-bottom:.15rem;">${c.aka}</div>` : ''}
+            <div class="cc-songs">${songs.length} canciones creadas</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleContestant(idx) {
+      const c = CONTESTANTS[idx];
+      const panel = document.getElementById('contestant-panel');
+      const cards = document.querySelectorAll('.contestant-card');
+
+      if (activeContestant === idx) {
+        panel.classList.remove('visible');
+        cards[idx].classList.remove('active-contestant');
+        activeContestant = null;
+        return;
+      }
+
+      activeContestant = idx;
+      cards.forEach((el, i) => el.classList.toggle('active-contestant', i === idx));
+
+      const songs = getSongsForContestant(c.name);
+      const stats = calculateContestantStats(c.name);
+
+      document.getElementById('csp-name').textContent = c.name;
+      document.getElementById('csp-name').style.color = c.color;
+
+      let avgEdHTML = '';
+      if (stats.avgRankEd1) avgEdHTML += `<div class="stat-subvalue">1ª Edición: <strong>${stats.avgRankEd1}</strong></div>`;
+      if (stats.avgRankEd2) avgEdHTML += `<div class="stat-subvalue">2ª Edición: <strong>${stats.avgRankEd2}</strong></div>`;
+      if (stats.avgRankEd3) avgEdHTML += `<div class="stat-subvalue">3ª Edición: <strong>${stats.avgRankEd3}</strong></div>`;
+      if (avgEdHTML === '') avgEdHTML = `<div class="stat-subvalue">Sin participaciones</div>`;
+
+      let avgScoreEdHTML = '';
+      if (stats.avgScoreEd1) avgScoreEdHTML += `<div class="stat-subvalue">1ª Edición: <strong>${stats.avgScoreEd1}</strong></div>`;
+      if (stats.avgScoreEd2) avgScoreEdHTML += `<div class="stat-subvalue">2ª Edición: <strong>${stats.avgScoreEd2}</strong></div>`;
+      if (stats.avgScoreEd3) avgScoreEdHTML += `<div class="stat-subvalue">3ª Edición: <strong>${stats.avgScoreEd3}</strong></div>`;
+      if (avgScoreEdHTML === '') avgScoreEdHTML = `<div class="stat-subvalue">Sin puntuaciones</div>`;
+
+      let bestSongStr = 'Ninguna';
+      if (stats.bestSongData) {
+        bestSongStr = `${stats.bestSongData.title} (#${stats.bestSongData.origIndex + 1} - ${stats.bestSongData.score} pts)`;
+      }
+
+      const statsGrid = document.getElementById('stats-grid');
+      statsGrid.innerHTML = `
+        <div class="stat-card">
+          <div class="stat-label">Canciones creadas</div>
+          <div class="stat-value" style="color:${c.color}">${stats.totalSongs}</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Nota Promedio Total</div>
+          <div class="stat-value" style="color:var(--accent2);">${stats.avgScoreTotalNorm}</div>
+          <div class="stat-subvalue">Rendimiento: <strong>${stats.avgPct}</strong></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Puesto Prom. Total</div>
+          <div class="stat-value">${stats.avgRank}</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Premios Ganados</div>
+          <div class="stat-value" style="color:var(--gold)">${stats.totalAwards}</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Nota Promedio x Edición</div>
+          ${avgScoreEdHTML}
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Puesto Promedio x Edición</div>
+          ${avgEdHTML}
+        </div>
+        <div class="stat-card" style="grid-column: span 2;">
+          <div class="stat-label">Mejor Canción</div>
+          <div class="stat-value" style="font-size:1.1rem; color:var(--accent3); border-left: 2px solid var(--gold); padding-left:.5rem; margin-top:.2rem;">
+            ${bestSongStr}
+          </div>
+        </div>
+        <div class="stat-card" style="grid-column: span 2;">
+          <div class="stat-label">Curiosidad</div>
+          <div class="stat-value" style="font-size:1rem; color:var(--text); font-weight:400; font-family:'Barlow', sans-serif; margin-top:.2rem; line-height: 1.4;">
+            ${c.curiosity}
+          </div>
+        </div>
+      `;
+
+      const grid = document.getElementById('csp-songs-grid');
+      grid.innerHTML = songs.length === 0
+        ? `<div style="padding:2rem; color:var(--muted); font-size:.9rem;">No se encontraron canciones.</div>`
+        : songs.map((s, i) => {
+          const badges = (s.awards || []).map(aw => `
+            <span style="background:rgba(255,215,0,0.15); color:var(--gold); border:1px solid rgba(255,215,0,0.4); padding:2px 6px; border-radius:3px; font-size:0.68rem; font-family:'Barlow Condensed', sans-serif; display:inline-block;">${aw}</span>
+          `).join('');
+
+          const badgeBlock = (s.awards && s.awards.length > 0)
+            ? `<br><div style="display:inline-flex; flex-wrap:wrap; gap:4px; margin-top:4px;">${badges}</div>`
+            : '';
+
+          const placement = s.maxScore > 0 ? ` &nbsp;·&nbsp; Puesto #${s.origIndex + 1}` : '';
+
+          return `
+              <div class="csp-song-item" onclick="openVideoModal('${esc(s.title)}', '${esc(s.artist)}')">
+                <div class="csp-song-num">${i + 1}</div>
+                <div class="csp-song-info">
+                  <div class="csp-song-title">${s.title}${badgeBlock}</div>
+                  <div class="csp-song-edition">${s.edition} ${s.score ? '&nbsp;·&nbsp; ' + s.score + ' pts' : ''}${placement}</div>
+                </div>
+                <div class="csp-play-btn"><svg viewBox="0 0 10 10"><polygon points="2,1 9,5 2,9"/></svg></div>
+              </div>
+            `;
+        }).join('');
+
+      panel.classList.add('visible');
+      setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+    }
+
+    function closeContestantPanel() {
+      document.getElementById('contestant-panel').classList.remove('visible');
+      document.querySelectorAll('.contestant-card').forEach(el => el.classList.remove('active-contestant'));
+      activeContestant = null;
+    }
+
+    function buildSecondaryAwards() {
+      const container = document.getElementById('awards-container');
+      container.innerHTML = PREMIOS_SECUNDARIOS.map(ed => `
+        <div class="awards-ed-block">
+          <div class="awards-ed-title">🏆 ${ed.edition}</div>
+          <div class="awards-grid">
+            ${ed.awards.map(a => `
+              <div class="award-card" onclick="openVideoModal('${esc(a.song)}', '${esc(a.artist)}')">
+                <div class="award-category">${a.category}</div>
+                <div class="award-song-title">${a.song}</div>
+                <div class="award-artist">${a.artist}</div>
+                <div class="award-play-tag">▶ Escuchar Canción</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderRankingRow(s, pos) {
+      const cls = pos <= 3 ? `pos-${pos}` : 'pos-other';
+      const stageBadge = s.badge ? `<span class="rt-stage-tag" style="background:${STAGE_COLORS[s.stage]}22; color:${STAGE_COLORS[s.stage]}; border:1px solid ${STAGE_COLORS[s.stage]}55">${s.badge}</span>` : '';
+
+      return `
+        <div class="rt-row ${pos <= 3 ? 'top-3' : ''}">
+          <div class="rt-pos ${cls}">${pos}</div>
+          <div style="min-width:0">
+            <div class="rt-song">${s.title}</div>
+            <div style="font-size:.72rem; color:var(--muted); margin-top:.1rem">${s.artist} ${stageBadge}</div>
+          </div>
+          <div class="rt-score">${s.score} pts</div>
+          <div class="rt-play" onclick="openVideoModal('${esc(s.title)}', '${esc(s.artist)}')">
+            <svg viewBox="0 0 10 10"><polygon points="2,1 9,5 2,9"/></svg>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderRankings() {
+      document.getElementById('ranking-av').innerHTML = SONGS_AV.map((s, i) => renderRankingRow(s, i + 1)).join('');
+      document.getElementById('ranking-ed1').innerHTML = SONGS_ED1.map((s, i) => renderRankingRow(s, i + 1)).join('');
+      document.getElementById('ranking-ed2').innerHTML = SONGS_ED2.map((s, i) => renderRankingRow(s, i + 1)).join('');
+    }
+
+    function switchRanking(idx, btn) {
+      [0, 1, 2].forEach(i => {
+        const el = document.getElementById(`ranking-tab-${i}`);
+        if (el) el.style.display = i === idx ? 'block' : 'none';
+      });
+      btn.parentElement.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // Cambiar Sub-pestañas en AV4801 (Ranking / Fase de Grupos / Bracket)
+    function switchAvSubTab(sub, btn) {
+      document.querySelectorAll('.av-sub-view').forEach(el => el.style.display = 'none');
+      document.getElementById(`av-sub-${sub}`).style.display = 'block';
+
+      btn.parentElement.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function renderGroups() {
+      const container = document.getElementById('groups-grid');
+      if (!container) return;
+
+      container.innerHTML = GROUPS_AV.map(g => `
+        <div class="group-card">
+          <div class="group-title">${g.name}</div>
+          ${g.songs.map(s => `
+            <div class="group-song-item" onclick="openVideoModal('${esc(s.title)}', '${esc(s.artist)}')">
+              <div class="gsi-seed">${s.seed}</div>
+              <div class="gsi-info">
+                <div class="gsi-name">${s.title}</div>
+                <div class="gsi-artist">${s.artist}</div>
+              </div>
+              <div class="gsi-tag tag-${s.type}">${s.tag}</div>
+            </div>
+          `).join('')}
+        </div>
+      `).join('');
+    }
+
+    function renderBracket() {
+      const container = document.getElementById('bracket-wrapper');
+      if (!container) return;
+
+      container.innerHTML = `
+        <!-- Octavos de Final -->
+        <div class="bracket-col">
+          <div class="bracket-col-title">Octavos de Final</div>
+
+          <div class="matchup-box">
+            <div class="matchup-team winner" onclick="openVideoModal('El Mister', 'DJ Sigma Boy')">
+              <div><div class="mt-title">El Mister</div><div class="mt-sub">DJ Sigma Boy</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('grito de ayuda ahh cancion', 'DJ Sigma Boy')">
+              <div><div class="mt-title">grito de ayuda ahh cancion</div><div class="mt-sub">DJ Sigma Boy</div></div>
+            </div>
+          </div>
+
+          <div class="matchup-box">
+            <div class="matchup-team winner" onclick="openVideoModal('La Noche de Mario', 'Sintu_')">
+              <div><div class="mt-title">La Noche de Mario</div><div class="mt-sub">Sintu_</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('Round 2', 'Sintu_')">
+              <div><div class="mt-title">Round 2</div><div class="mt-sub">Sintu_</div></div>
+            </div>
+          </div>
+
+          <div class="matchup-box">
+            <div class="matchup-team" onclick="openVideoModal('No Punchs ;)', 'Sintu_')">
+              <div><div class="mt-title">No Punchs ;)</div><div class="mt-sub">Sintu_</div></div>
+            </div>
+            <div class="matchup-team winner" onclick="openVideoModal('Minecraft en lo mas alto', 'Gokenrik')">
+              <div><div class="mt-title">Minecraft en lo mas alto</div><div class="mt-sub">Gokenrik</div></div>
+              <span class="mt-star">★</span>
+            </div>
+          </div>
+
+          <div class="matchup-box">
+            <div class="matchup-team winner" onclick="openVideoModal('Un Arabe Jamonero', 'Sintu_ & Borja')">
+              <div><div class="mt-title">Un Arabe Jamonero</div><div class="mt-sub">Sintu_ & Borja</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('Chillax Zone', 'Sintu_')">
+              <div><div class="mt-title">Chillax Zone</div><div class="mt-sub">Sintu_</div></div>
+            </div>
+          </div>
+
+          <div class="matchup-box">
+            <div class="matchup-team winner" onclick="openVideoModal('Teampanas', 'Superpajas33')">
+              <div><div class="mt-title">Teampanas</div><div class="mt-sub">Superpajas33</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('Epstein Type Beat', 'Sintu_')">
+              <div><div class="mt-title">Epstein Type Beat</div><div class="mt-sub">Sintu_</div></div>
+            </div>
+          </div>
+
+          <div class="matchup-box">
+            <div class="matchup-team" onclick="openVideoModal('YMNS', 'DJ Sigma Boy')">
+              <div><div class="mt-title">YMNS</div><div class="mt-sub">DJ Sigma Boy</div></div>
+            </div>
+            <div class="matchup-team winner" onclick="openVideoModal('Bnet Fan', 'DJ Sigma Boy')">
+              <div><div class="mt-title">Bnet Fan</div><div class="mt-sub">DJ Sigma Boy</div></div>
+              <span class="mt-star">★</span>
+            </div>
+          </div>
+
+          <div class="matchup-box">
+            <div class="matchup-team winner" onclick="openVideoModal('Lionella Pepsi', 'Borja')">
+              <div><div class="mt-title">Lionella Pepsi</div><div class="mt-sub">Borja</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('El Glazer de Carlota', 'Borja')">
+              <div><div class="mt-title">El Glazer de Carlota</div><div class="mt-sub">Borja</div></div>
+            </div>
+          </div>
+
+          <div class="matchup-box">
+            <div class="matchup-team winner" onclick="openVideoModal('Fried', 'DJ Sigma Boy & Superpajas33')">
+              <div><div class="mt-title">Fried</div><div class="mt-sub">DJ Sigma Boy & Superpajas33</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('Susurro de traicion dihh poema', 'DJ Sigma Boy')">
+              <div><div class="mt-title">Susurro de traicion dihh poema</div><div class="mt-sub">DJ Sigma Boy</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cuartos de Final -->
+        <div class="bracket-col" style="margin-top:2rem;">
+          <div class="bracket-col-title">Cuartos de Final</div>
+
+          <div class="matchup-box" style="margin-bottom:3rem;">
+            <div class="matchup-team winner" onclick="openVideoModal('El Mister', 'DJ Sigma Boy')">
+              <div><div class="mt-title">El Mister</div><div class="mt-sub">DJ Sigma Boy</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('La Noche de Mario', 'Sintu_')">
+              <div><div class="mt-title">La Noche de Mario</div><div class="mt-sub">Sintu_</div></div>
+            </div>
+          </div>
+
+          <div class="matchup-box" style="margin-bottom:3rem;">
+            <div class="matchup-team" onclick="openVideoModal('Minecraft en lo mas alto', 'Gokenrik')">
+              <div><div class="mt-title">Minecraft en lo mas alto</div><div class="mt-sub">Gokenrik</div></div>
+            </div>
+            <div class="matchup-team winner" onclick="openVideoModal('Un Arabe Jamonero', 'Sintu_ & Borja')">
+              <div><div class="mt-title">Un Arabe Jamonero</div><div class="mt-sub">Sintu_ & Borja</div></div>
+              <span class="mt-star">★</span>
+            </div>
+          </div>
+
+          <div class="matchup-box" style="margin-bottom:3rem;">
+            <div class="matchup-team winner" onclick="openVideoModal('Teampanas', 'Superpajas33')">
+              <div><div class="mt-title">Teampanas</div><div class="mt-sub">Superpajas33</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('Bnet Fan', 'DJ Sigma Boy')">
+              <div><div class="mt-title">Bnet Fan</div><div class="mt-sub">DJ Sigma Boy</div></div>
+            </div>
+          </div>
+
+          <div class="matchup-box">
+            <div class="matchup-team winner" onclick="openVideoModal('Lionella Pepsi', 'Borja')">
+              <div><div class="mt-title">Lionella Pepsi</div><div class="mt-sub">Borja</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('Fried', 'DJ Sigma Boy & Superpajas33')">
+              <div><div class="mt-title">Fried</div><div class="mt-sub">DJ Sigma Boy & Superpajas33</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Semifinales -->
+        <div class="bracket-col" style="margin-top:6rem;">
+          <div class="bracket-col-title">Semifinales</div>
+
+          <div class="matchup-box" style="margin-bottom:8rem;">
+            <div class="matchup-team winner" onclick="openVideoModal('El Mister', 'DJ Sigma Boy')">
+              <div><div class="mt-title">El Mister</div><div class="mt-sub">DJ Sigma Boy</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('Un Arabe Jamonero', 'Sintu_ & Borja')">
+              <div><div class="mt-title">Un Arabe Jamonero</div><div class="mt-sub">Sintu_ & Borja</div></div>
+            </div>
+          </div>
+
+          <div class="matchup-box">
+            <div class="matchup-team winner" onclick="openVideoModal('Teampanas', 'Superpajas33')">
+              <div><div class="mt-title">Teampanas</div><div class="mt-sub">Superpajas33</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('Lionella Pepsi', 'Borja')">
+              <div><div class="mt-title">Lionella Pepsi</div><div class="mt-sub">Borja</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tercer Puesto & Gran Final -->
+        <div class="bracket-col" style="margin-top:3rem;">
+          <div class="bracket-col-title">Tercer Puesto</div>
+          <div class="matchup-box" style="margin-bottom:3rem;">
+            <div class="matchup-team winner" onclick="openVideoModal('Un Arabe Jamonero', 'Sintu_ & Borja')">
+              <div><div class="mt-title">Un Arabe Jamonero</div><div class="mt-sub">Sintu_ & Borja</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('Lionella Pepsi', 'Borja')">
+              <div><div class="mt-title">Lionella Pepsi</div><div class="mt-sub">Borja</div></div>
+            </div>
+          </div>
+
+          <div class="bracket-col-title">Gran Final</div>
+          <div class="matchup-box" style="margin-bottom:2.5rem;">
+            <div class="matchup-team" onclick="openVideoModal('El Mister', 'DJ Sigma Boy')">
+              <div><div class="mt-title">El Mister</div><div class="mt-sub">DJ Sigma Boy</div></div>
+            </div>
+            <div class="matchup-team winner" onclick="openVideoModal('Teampanas', 'Superpajas33')">
+              <div><div class="mt-title">Teampanas</div><div class="mt-sub">Superpajas33</div></div>
+              <span class="mt-star">★</span>
+            </div>
+          </div>
+
+          <div class="champion-box" onclick="openVideoModal('Teampanas', 'Superpajas33')">
+            <div style="font-size:1.5rem">🏆</div>
+            <div class="champion-title">CAMPEÓN</div>
+            <div class="champion-song">Teampanas</div>
+            <div class="champion-artist">Superpajas33</div>
+          </div>
+        </div>
+
+        <!-- Quinto Puesto - Fase 1 -->
+        <div class="bracket-col">
+          <div class="bracket-col-title">Última Oportunidad - Semifinales</div>
+          <div class="matchup-box" style="margin-bottom:1.5rem;">
+            <div class="matchup-team" onclick="openVideoModal('La Noche de Mario', 'Sintu_')">
+              <div><div class="mt-title">La Noche de Mario</div><div class="mt-sub">Sintu_</div></div>
+            </div>
+            <div class="matchup-team winner" onclick="openVideoModal('Minecraft en lo mas alto', 'Gokenrik')">
+              <div><div class="mt-title">Minecraft en lo mas alto</div><div class="mt-sub">Gokenrik</div></div>
+              <span class="mt-star">★</span>
+            </div>
+          </div>
+
+          <div class="matchup-box">
+            <div class="matchup-team winner" onclick="openVideoModal('Bnet Fan', 'DJ Sigma Boy')">
+              <div><div class="mt-title">Bnet Fan</div><div class="mt-sub">DJ Sigma Boy</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('Fried', 'DJ Sigma Boy & Superpajas33')">
+              <div><div class="mt-title">Fried</div><div class="mt-sub">DJ Sigma Boy & Superpajas33</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quinto Puesto - Fase 2 -->
+        <div class="bracket-col" style="margin-top:2.5rem;">
+          <div class="bracket-col-title">Última Oportunidad - Final</div>
+          <div class="matchup-box">
+            <div class="matchup-team winner" onclick="openVideoModal('Bnet Fan', 'DJ Sigma Boy')">
+              <div><div class="mt-title">Bnet Fan</div><div class="mt-sub">DJ Sigma Boy</div></div>
+              <span class="mt-star">★</span>
+            </div>
+            <div class="matchup-team" onclick="openVideoModal('Minecraft en lo mas alto', 'Gokenrik')">
+              <div><div class="mt-title">Minecraft en lo mas alto</div><div class="mt-sub">Gokenrik</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ganador 5º Puesto -->
+        <div class="bracket-col" style="margin-top:3.5rem;">
+          <div class="fifth-place-box" onclick="openVideoModal('Bnet Fan', 'DJ Sigma Boy')">
+            <div class="fifth-place-title">5º PUESTO</div>
+            <div style="font-weight:700; color:#fff; font-size:1rem; margin-top:.2rem;">Bnet Fan</div>
+            <div style="font-size:.75rem; color:var(--muted)">DJ Sigma Boy</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderGala() {
+      const renderGrid = (items, targetId) => {
+        const el = document.getElementById(targetId);
+        if (!el) return;
+        el.innerHTML = items.map(item => {
+          if (!item) {
+            return `
+              <div class="gala-card pending">
+                <div class="gala-q">???</div>
+                <div class="gala-q-label">Por Definir</div>
+              </div>
+            `;
+          }
+          return `
+            <div class="gala-card">
+              <div class="gala-card-title">${item.title}</div>
+              <div class="gala-card-artist">${item.artist}</div>
+              <div class="gala-card-edition">${item.edition}</div>
+              <button class="gala-card-listen" onclick="openVideoModal('${esc(item.title)}', '${esc(item.artist)}')">
+                ▶ Escuchar
+              </button>
+            </div>
+          `;
+        }).join('');
+      };
+
+      renderGrid(GALA_CAMPEONATO, 'gala-campeonato');
+      renderGrid(GALA_POSICION, 'gala-posicion');
+      renderGrid(GALA_VOTACION, 'gala-votacion');
+    }
+
+    window.onload = function () {
+      // Background Stars
+      const starsContainer = document.getElementById('stars');
+      for (let i = 0; i < 100; i++) {
+        const s = document.createElement('div');
+        s.className = 'star';
+        s.style.cssText = `left:${Math.random() * 100}%; top:${Math.random() * 100}%; --d:${2 + Math.random() * 4}s; --delay:-${Math.random() * 4}s; --op:${0.2 + Math.random() * 0.7};`;
+        starsContainer.appendChild(s);
+      }
+
+      // Populate Total Global Songs
+      const globalTotalSongs = SONGS_ED1.length + SONGS_ED2.length + SONGS_AV.length + SONGS_EXTRAS.length;
+      const totalSongsEl = document.getElementById('global-total-songs');
+      if (totalSongsEl) totalSongsEl.textContent = globalTotalSongs;
+
+      // Initializations
+      for (let i = 0; i < 4; i++) buildPlaylistUI(i);
+      buildContestants();
+      buildSecondaryAwards();
+      renderRankings();
+      renderGroups();
+      renderBracket();
+      renderGala();
+
+      // Intersection Observer for Animations (aparición Y desaparición en ambos sentidos)
+      // threshold bajo (no un %) para que funcione también con secciones muy altas
+      // (como la Gala Final), que en móvil nunca llegan a cubrir un 12% del viewport.
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          entry.target.classList.toggle('visible', entry.isIntersecting);
+        });
+      }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    };
+
+    // ════════════════════════════════════════════
+    //  BARRAS
+    // ════════════════════════════════════════════
+    // edition: 0 = 3ª Edición (AV4801), 1 = 2ª Edición (AV3), 2 = 1ª Edición (AV1)
+    const BARRAS = [
+      // 1ª edición - AV1
+      { edition: 2, author: 'Borja', song: 'Sara y la berenjena', text: `Sara le come toda la berenjena\nEn la cocina o bajo luna llena\nDicen que no hay nadie que la entrena\nSara y su Flow, ella nunca se frena` },
+      { edition: 2, author: 'Borja', song: 'Sara y la berenjena', text: `Berenjena en mano, un acto supremo,\nSara domina el juego, siempre extremo.\nLa calle murmura, todo un emblema,\nLa reina del sazón, su alma es el tema` },
+      { edition: 2, author: 'Sintu_', song: '***', text: `Haciendo que te masturbes con mi pluma…, otra vez\nPor lo que se entiende, no tiene suficiente\nEl deficiente no lo entiende\nQue todo lo que se ve es que solo es un negligente evidente` },
+      { edition: 2, author: 'Sintu_', song: 'La Aclaración', text: `Ayer paso\nLo que paso\nÉl se lo gozo\nY hoy me lo follo yo` },
+      { edition: 2, author: 'Sintu_', song: 'La Aclaración', text: `¿Y enserio piensa que gana con su canción?\nSi solo la misma cosa repitió\nQue el cerdo no comería jamón\nPero resulta que Mier si comerá Mier-don` },
+      { edition: 2, author: 'DJ Sigma Boy', song: 'BSGA', text: `Familia no tengo porque sigma boy se la humillo\nAhora mi única esperanza es el pene de Simón\nSabes que soy gordo come jamón\nCuando ni pedro me la quiere comer sin follon` },
+      { edition: 2, author: 'Luner', song: 'Phonk Final Boss', text: `Autismo en mi piel, pero no es mi cárcel\nMi mente es galaxia, aunque nadie lo capte\nPhonk en mis penis, Monjo en el loop\n3AM despierto, siempre en mi mood` },
+      { edition: 2, author: 'Borja', song: 'El Pepino de Carlos', text: `A Sara le gusta el pepino de Carlos\nNo hay comparación con su brillo tan alto\nEs verde y fresco como un rocio temprano\nA Sara le encanta, lo lleva en la mano` },
+      { edition: 2, author: 'DJ Sigma Boy', song: 'Te voy a humillar', text: `Me escribe a las once que escribira ya la canción\nY con lo que estará ocupada es el pene de simon\nNo podrá levantarse del sofa porque es un panzon\nY eso explica la ausencia de tu cancion` },
+
+      // 2ª edición - AV3
+      { edition: 1, author: 'Sintu_', song: 'La Función', text: `El dijo Go-go-go en la bañera disfruto\nSimon se la comio, dijo que prefiero con jamón\nLas vitaminas Z se las tomo y sus senos crecieron en proporción\nGo-go dijo Lilith y el show comenzo` },
+      { edition: 1, author: 'Sintu_', song: 'BG4E', text: `Sin-tu mierda la que nos has dejado\nTanto que el gallego de autismovision se ha marchado\nUn tirano, porque tiras pero no lo has continuado\nYo te tiraría de planetas y de pajas pero veo que tu viaje si ha sido el mas largo` },
+      { edition: 1, author: 'DJ Sigma Boy', song: 'I Love Israel', text: `Amo a Israel\nTierra de Valor` },
+      { edition: 1, author: 'Sintu_', song: 'MHFUPLS P2', text: `Sus padres se fueron como la X a la algebra\nTiene Daddy Issues desde que mamaba\nMe dice teorías, voy directo a la practica\nPractica con su polla para la cesaria` },
+      { edition: 1, author: 'Minwerfu', song: 'Sirios afganos', text: `¿En serio o en sirio?\nVamos tio dale al suicidio\nComo el del avión\nQue fue tu primo` },
+      { edition: 1, author: 'Gokenrik', song: 'Rap de Minecraft', text: `Minecraft, el mejor juego del mundo\nDesde el inicio de todo hasta el final del dragon` },
+
+      // 3ª Edición - AV4801
+      { edition: 0, author: 'Sintu_', song: 'No Punchs 😉', text: `¡Qué difícil es hacer una canción!\n¡Otra crisis dentro de mi habitación!\nComplicado el arte de la creación,\n¡se ha secado mi fuente de inspiración!` },
+      { edition: 0, author: 'Borja', song: 'Lionella Pepsi', text: `La selección de Argentina\nQue a Infantino le rompen la vagina\nSe la comen a Leo Messi\nY infantino lo ve sexy` },
+      { edition: 0, author: 'DJ Sigma Boy', song: 'El Mister', text: `Messi pagando los árbitros\nAunque me callo que el ruso me parte en dos\nCanticos racistas escuchas vos\nEn el campo al lado de los de vox` },
+      { edition: 0, author: 'DJ Sigma Boy & Superpajas33', song: 'Fried', text: `Fans de lectura cuando toca escribir\nDespues de todo el semen recibir\nPase por la casa blanca y vi el kirk\nNo me imagino a Diego sujetando el Joy-stick y eso es asi` },
+      { edition: 0, author: 'DJ Sigma Boy', song: "Genghis Kahn't", text: `Como puedo empezar con sigma boy\nSi a japerame es a lo que voy\nEscribiendo con IA como un Good boy\nSiendo mas bauti que Mariano Rajoy` },
+      { edition: 0, author: 'DJ Sigma Boy', song: 'YMNS', text: `El escuchador de Azali y baby no munney\nTres átomos de calci y se cree funny\nBuscate un poco de ensalzi y Raw Hunney\nSube cuatro kilos si le das un vitamin gummy` },
+      { edition: 0, author: 'DJ Sigma Boy', song: 'YMNS', text: `Con la berenjenita él en clase se distrajo\nSi le insultas mínimamente te llora el tajo\nWemmbu al mundo no hay nada que trajo\nUn trabajo? Con chatGPT siempre hay atajo` },
+      { edition: 0, author: 'DJ Sigma Boy', song: 'YMNS', text: `Tong Tong Sahur, pero él es el bate\nEn el váter, como skibidi Toilet no hay quien le mate\nEra broma. En PvP?\nEso era un hecho falso, contra él` },
+      { edition: 0, author: 'Sintu_', song: 'MHFUPLS, P-1', text: `El Carlitos y su calcio aumentara\nEl perfume permanente una vez hará\nContra Jean Paul luchara\nPero el perfume de Illojuan le vencera` },
+      { edition: 0, author: 'DJ Sigma Boy', song: 'Bnet Fan', text: `Sebastian, soy el furro\nCon Carlota me toco el churro\nHago una competición de befes\nY mi canción ni me la curro` },
+      { edition: 0, author: 'Sintu_ & Borja', song: 'Un Arabe Jamonero', text: `Mohammed, se moja en internet\nViendo porno de Israel` },
+      { edition: 0, author: 'Sintu_', song: 'Round 2', text: `Madi se puso Ma' hiriento\nSe ofendio como oponente\nNo tiene grande mente\nAunque si un gran ojete` },
+      { edition: 0, author: 'DJ Sigma Boy', song: 'Grito de Ayuda ahh cancion', text: `Rule treintaicuatro me meto\nVeo inflación y me seco\nMiro otro lado\nVeo a Moha en el cosecho` },
+      { edition: 0, author: 'Borja', song: 'El Glazer de Carlota', text: `Tienes la putisima altura ideal\nPara que te inviten al cumpleaños de Lamine Yamal\nUn enano de Feria\nMas feo que una armenia` },
+      { edition: 0, author: 'Borja', song: 'El Glazer de Carlota', text: `La Luz de tu casa parece cubana\nSe te corta a mitad de paja` },
+      { edition: 0, author: 'Sintu_', song: 'Epstein Type Beat', text: `Una mas, otra vez vine pa chingar\nLe pongan L al pelele que no tiene fucking rap\nTodos mas inútiles que una Kas con gas\nEsa es la diferencia entre Kast y Rap` },
+      { edition: 0, author: 'Sintu_', song: 'Round 1', text: `Que me gana en árabe, pero contigo acabare\nTe ganare y en tu cara me reiré\nY habla de la primera edición ¿Para que?\nSi fue en la que mejor quedaste\nY mira que quedo mucho superior mi nivel` },
+      { edition: 0, author: 'Sintu_', song: 'Round 1', text: `Pero me llama cerdo\nY soy como Jigsaw porque tú acabas muerto` },
+      { edition: 0, author: 'Sintu_', song: 'Round 3', text: `Tu única buena base fue la de tu maquillaje\nCuando te duches y veas tus moratones\nSabras quien es tu padre` },
+      { edition: 0, author: 'Borja', song: 'MVP Berenjena', text: `Dijo que nunca fue gorda\nPorque la palabra le queda corta\nEs fan de los hebreos\nPorque solo le gustan los viejos puteros` },
+      { edition: 0, author: 'Minwerfu', song: 'STFPGT', text: `Tol' tiempo se ha librao' de llevarse un beef\nDe relleno sus canciones lo resumo: Brief\nMe sudan los cojones, te otorgo un gift\nDos ediciones y al final, solo pulsa shift` },
+    ];
+
+    const BARRAS_EDITION_LABELS = ['3ª Edición - AV4801', '2ª Edición — AV3', '1ª Edición — AV1'];
+
+    function showBarrasView(view) {
+      document.querySelectorAll('#barras .barras-view').forEach(v => v.classList.remove('active'));
+      const map = { menu: 'barras-view-menu', museo: 'barras-view-museo', 'quiz-setup': 'barras-view-quiz-setup', 'quiz-play': 'barras-view-quiz-play' };
+      document.getElementById(map[view]).classList.add('active');
+      if (view === 'museo') renderBarrasMuseo('all');
+    }
+
+    function renderBarrasMuseo(filter) {
+      const grid = document.getElementById('barras-museum-grid');
+      const list = filter === 'all' ? BARRAS : BARRAS.filter(b => b.edition === filter);
+      grid.innerHTML = list.map(b => `
+        <div class="barra-card">
+          <div class="barra-quote">"${b.text}"</div>
+          <div class="barra-meta">
+            <span class="barra-author">${b.author}</span>
+            <span class="barra-song">${b.song}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterBarrasMuseo(filter, btn) {
+      btn.parentElement.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderBarrasMuseo(filter);
+    }
+
+    let quizMode = 'quien';
+    let quizEditions = [0, 1, 2];
+    let quizPool = [];
+    let quizQueue = [];
+    let currentQuizBarra = null;
+    let quizScore = { correct: 0, total: 0 };
+
+    function selectQuizMode(mode, btn) {
+      quizMode = mode;
+      btn.parentElement.querySelectorAll('.quiz-choice-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    }
+
+    function toggleQuizEdition(ed, btn) {
+      if (quizEditions.includes(ed)) {
+        quizEditions = quizEditions.filter(e => e !== ed);
+      } else {
+        quizEditions.push(ed);
+      }
+      btn.classList.toggle('selected');
+    }
+
+    function shuffleArray(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function startBarraQuiz() {
+      const activeEditions = quizEditions.length ? quizEditions : [0, 1, 2];
+      quizPool = BARRAS.filter(b => activeEditions.includes(b.edition));
+      quizQueue = [];
+      quizScore = { correct: 0, total: 0 };
+      showBarrasView('quiz-play');
+      nextBarraQuestion();
+    }
+
+    function backToQuizSetup() {
+      quizScore = { correct: 0, total: 0 };
+      quizQueue = [];
+      showBarrasView('quiz-setup');
+    }
+
+    function updateQuizScoreDisplay() {
+      document.getElementById('quiz-score-text').innerHTML =
+        `<span class="score-correct">✅ Aciertos: ${quizScore.correct}</span><span class="score-incorrect">❌ Fallos: ${quizScore.total - quizScore.correct}</span>`;
+    }
+
+    function nextBarraQuestion() {
+      if (!quizPool.length) return;
+      if (!quizQueue.length) quizQueue = shuffleArray(quizPool);
+      currentQuizBarra = quizQueue.pop();
+      const correctAnswer = quizMode === 'quien' ? currentQuizBarra.author : currentQuizBarra.song;
+      const uniqueOthers = [...new Set(quizPool.map(b => quizMode === 'quien' ? b.author : b.song))]
+        .filter(a => a !== correctAnswer);
+      const wrongOptions = shuffleArray(uniqueOthers).slice(0, 3);
+      const options = shuffleArray([correctAnswer, ...wrongOptions]);
+
+      updateQuizScoreDisplay();
+      document.getElementById('quiz-progress-text').textContent =
+        `Pregunta ${quizScore.total + 1} · ${quizMode === 'quien' ? '¿Quién ha dicho esta barra?' : '¿En qué canción se ha dicho esta barra?'}`;
+      document.getElementById('quiz-quote-text').textContent = `"${currentQuizBarra.text}"`;
+      document.getElementById('quiz-result-text').textContent = '';
+      document.getElementById('quiz-result-text').className = 'quiz-result';
+      document.getElementById('quiz-actions').innerHTML = '';
+
+      const optionsList = document.getElementById('quiz-options-list');
+      optionsList.innerHTML = options.map(opt => `
+        <button class="quiz-option-btn" onclick="answerBarraQuiz(this, '${opt.replace(/'/g, "\\'")}', '${correctAnswer.replace(/'/g, "\\'")}')">${opt}</button>
+      `).join('');
+    }
+
+    function answerBarraQuiz(btn, chosen, correct) {
+      quizScore.total++;
+      const allBtns = document.querySelectorAll('#quiz-options-list .quiz-option-btn');
+      allBtns.forEach(b => b.disabled = true);
+
+      const resultEl = document.getElementById('quiz-result-text');
+      if (chosen === correct) {
+        quizScore.correct++;
+        btn.classList.add('correct');
+        resultEl.textContent = '✅ ¡Correcto!';
+        resultEl.className = 'quiz-result correct-result';
+      } else {
+        btn.classList.add('incorrect');
+        allBtns.forEach(b => { if (b.textContent === correct) b.classList.add('correct'); });
+        resultEl.textContent = `❌ Fallaste. La respuesta correcta era: ${correct}`;
+        resultEl.className = 'quiz-result incorrect-result';
+      }
+      updateQuizScoreDisplay();
+
+      document.getElementById('quiz-actions').innerHTML = `
+        <button class="quiz-start-btn" onclick="nextBarraQuestion()">Siguiente pregunta ▶</button>
+      `;
+    }
+  </script>
+</body>
+
+</html>

@@ -552,11 +552,15 @@
       justify-content: center;
       gap: .75rem;
       color: var(--muted);
-      background: radial-gradient(ellipse 80% 80% at 50% 40%, rgba(124,58,237,.10), transparent 70%), #000;
+      background: radial-gradient(ellipse 80% 80% at 50% 40%, rgba(124, 58, 237, .10), transparent 70%), #000;
       text-align: center;
       padding: 1rem;
     }
-    .video-placeholder.hidden { display: none; }
+
+    .video-placeholder.hidden {
+      display: none;
+    }
+
     .vp-icon {
       width: 56px;
       height: 56px;
@@ -568,6 +572,7 @@
       font-size: 1.3rem;
       color: var(--accent2);
     }
+
     .vp-text {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1rem;
@@ -576,6 +581,7 @@
       font-weight: 600;
       color: var(--text);
     }
+
     .vp-subtext {
       font-size: .78rem;
       color: var(--muted);
@@ -1185,7 +1191,7 @@
     .reveal {
       opacity: 0;
       transform: translateY(24px);
-      transition: opacity .6s cubic-bezier(.16,.8,.3,1), transform .6s cubic-bezier(.16,.8,.3,1);
+      transition: opacity .6s cubic-bezier(.16, .8, .3, 1), transform .6s cubic-bezier(.16, .8, .3, 1);
     }
 
     .reveal.visible {
@@ -1597,7 +1603,7 @@
         </div>
         <div class="video-panel">
           <div class="video-wrapper">
-            <iframe id="player-1" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+            <iframe id="player-2" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
             <div class="video-placeholder" id="video-placeholder-1">
               <div class="vp-icon">▶</div>
               <div class="vp-text">Selecciona una canción</div>
@@ -1623,7 +1629,7 @@
         </div>
         <div class="video-panel">
           <div class="video-wrapper">
-            <iframe id="player-2" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+            <iframe id="player-1" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
             <div class="video-placeholder" id="video-placeholder-2">
               <div class="vp-icon">▶</div>
               <div class="vp-text">Selecciona una canción</div>

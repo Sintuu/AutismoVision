@@ -1594,16 +1594,16 @@
       </div>
     </div>
 
-    <div class="edition-tabs-content" id="edition-2">
+    <div class="edition-tabs-content" id="edition-1">
       <div class="player-layout">
         <div class="playlist-panel">
           <div class="playlist-header"><span>Lista de reproducción</span><span class="playlist-count"
-              id="count-2"></span></div>
-          <div class="playlist-list" id="playlist-2"></div>
+              id="count-1"></span></div>
+          <div class="playlist-list" id="playlist-1"></div>
         </div>
         <div class="video-panel">
           <div class="video-wrapper">
-            <iframe id="player-2" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+            <iframe id="player-1" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
             <div class="video-placeholder" id="video-placeholder-1">
               <div class="vp-icon">▶</div>
               <div class="vp-text">Selecciona una canción</div>
@@ -1620,16 +1620,16 @@
       </div>
     </div>
 
-    <div class="edition-tabs-content" id="edition-1">
+    <div class="edition-tabs-content" id="edition-2">
       <div class="player-layout">
         <div class="playlist-panel">
           <div class="playlist-header"><span>Lista de reproducción</span><span class="playlist-count"
-              id="count-1"></span></div>
-          <div class="playlist-list" id="playlist-1"></div>
+              id="count-2"></span></div>
+          <div class="playlist-list" id="playlist-2"></div>
         </div>
         <div class="video-panel">
           <div class="video-wrapper">
-            <iframe id="player-1" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+            <iframe id="player-2" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
             <div class="video-placeholder" id="video-placeholder-2">
               <div class="vp-icon">▶</div>
               <div class="vp-text">Selecciona una canción</div>
@@ -2122,8 +2122,8 @@
       const cleanTitle = clean(title);
       const sources = [
         { arr: SONGS_AV, plId: PLAYLISTS[0].id },
-        { arr: SONGS_ED1, plId: PLAYLISTS[1].id },
-        { arr: SONGS_ED2, plId: PLAYLISTS[2].id },
+        { arr: SONGS_ED2, plId: PLAYLISTS[1].id },
+        { arr: SONGS_ED1, plId: PLAYLISTS[2].id },
       ];
       for (const { arr, plId } of sources) {
         const idx = arr.findIndex(s => clean(s.title) === cleanTitle);
@@ -2179,7 +2179,7 @@
     //  MUSIC PLAYER / PLAYLISTS
     // ════════════════════════════════════════════
     function buildPlaylistUI(edIdx) {
-      const songs = edIdx === 0 ? SONGS_AV : edIdx === 1 ? SONGS_ED1 : SONGS_ED2;
+      const songs = edIdx === 0 ? SONGS_AV : edIdx === 1 ? SONGS_ED2 : SONGS_ED1;
       const listEl = document.getElementById(`playlist-${edIdx}`);
       const countEl = document.getElementById(`count-${edIdx}`);
       const sorted = edIdx === 0 ? songs : [...songs].sort((a, b) => b.score - a.score);

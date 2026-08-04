@@ -1673,6 +1673,273 @@
       background: linear-gradient(to right, transparent, var(--border), transparent);
       margin: 0 2rem;
     }
+
+    /* ─── BARRAS ─── */
+    .barras-menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .barras-option-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2.2rem 1.8rem;
+      cursor: pointer;
+      text-align: center;
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+    }
+
+    .barras-option-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent1);
+      box-shadow: 0 10px 30px rgba(255, 45, 120, .15);
+    }
+
+    .barras-option-icon {
+      font-size: 2.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .barras-option-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.7rem;
+      letter-spacing: .04em;
+      margin-bottom: .6rem;
+    }
+
+    .barras-option-desc {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.55;
+    }
+
+    .barras-view {
+      display: none;
+    }
+
+    .barras-view.active {
+      display: block;
+    }
+
+    .barras-back-btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .85rem;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: .6rem 1.1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 1.5rem;
+      transition: all .2s ease;
+    }
+
+    .barras-back-btn:hover {
+      color: var(--text);
+      border-color: var(--accent2);
+    }
+
+    .barras-museum-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .barra-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent1);
+      border-radius: 8px;
+      padding: 1.3rem 1.4rem;
+    }
+
+    .barra-quote {
+      font-style: italic;
+      white-space: pre-line;
+      line-height: 1.55;
+      margin-bottom: 1rem;
+      font-size: .95rem;
+    }
+
+    .barra-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: .5rem;
+      flex-wrap: wrap;
+      font-size: .8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: .7rem;
+    }
+
+    .barra-meta .barra-author {
+      color: var(--accent2);
+      font-weight: 600;
+    }
+
+    .barra-meta .barra-song {
+      color: var(--accent3);
+    }
+
+    .quiz-setup {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2rem;
+      max-width: 640px;
+    }
+
+    .quiz-setup-group {
+      margin-bottom: 1.6rem;
+    }
+
+    .quiz-setup-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-size: .8rem;
+      color: var(--accent1);
+      margin-bottom: .8rem;
+    }
+
+    .quiz-choice-row {
+      display: flex;
+      gap: .7rem;
+      flex-wrap: wrap;
+    }
+
+    .quiz-choice-btn {
+      padding: .6rem 1.15rem;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      color: var(--muted);
+      cursor: pointer;
+      font-size: .85rem;
+      font-family: 'Barlow', sans-serif;
+      transition: all .2s ease;
+    }
+
+    .quiz-choice-btn.selected {
+      border-color: var(--accent1);
+      color: var(--text);
+      background: rgba(255, 45, 120, .12);
+    }
+
+    .quiz-choice-btn:hover {
+      color: var(--text);
+    }
+
+    .quiz-start-btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--accent1), var(--accent4));
+      color: white;
+      border: none;
+      padding: .8rem 1.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 45, 120, .3);
+      transition: all .2s ease;
+    }
+
+    .quiz-start-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 6px 20px rgba(255, 45, 120, .5);
+    }
+
+    .quiz-question-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2.4rem;
+      max-width: 720px;
+    }
+
+    .quiz-progress {
+      color: var(--muted);
+      font-size: .8rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .quiz-quote-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.35rem;
+      font-style: italic;
+      white-space: pre-line;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .quiz-options-list {
+      display: grid;
+      gap: .8rem;
+    }
+
+    .quiz-option-btn {
+      padding: 1rem 1.3rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+      transition: all .2s ease;
+      font-size: 1rem;
+      font-family: 'Barlow', sans-serif;
+    }
+
+    .quiz-option-btn:hover:not(:disabled) {
+      border-color: var(--accent2);
+    }
+
+    .quiz-option-btn.correct {
+      border-color: #2ecc71;
+      background: rgba(46, 204, 113, .15);
+    }
+
+    .quiz-option-btn.incorrect {
+      border-color: #e74c3c;
+      background: rgba(231, 76, 60, .15);
+    }
+
+    .quiz-option-btn:disabled {
+      cursor: default;
+      opacity: .85;
+    }
+
+    .quiz-result {
+      margin-top: 1.5rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: .03em;
+    }
+
+    .quiz-result.correct-result {
+      color: #2ecc71;
+    }
+
+    .quiz-result.incorrect-result {
+      color: #e74c3c;
+    }
+
+    .quiz-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.6rem;
+      flex-wrap: wrap;
+    }
   </style>
 </head>
 
@@ -1691,6 +1958,7 @@
     <p class="hero-subtitle">El concurso de canciones más autistas del universo</p>
     <nav class="hero-nav">
       <a href="#musica" class="primary">🎵 Escuchar Temazos</a>
+      <a href="#barras" class="secondary">✍️ Barras</a>
       <a href="#concursantes" class="secondary">👤 Concursantes & Stats</a>
       <a href="#premios-secundarios" class="secondary">🎖️ Premios Secundarios</a>
       <a href="#clasificaciones" class="secondary">🏆 Clasificaciones</a>
@@ -1835,6 +2103,85 @@
             <div class="npb-hint">Haz clic en una canción de la lista para escucharla aquí mismo</div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ─── BARRAS ─── -->
+  <section id="barras" class="reveal">
+    <div class="section-label">✍️ Lírica Autista</div>
+    <h2 class="section-title">Barras</h2>
+    <p class="section-subtitle">Las mejores frases de todas las ediciones de AutismoVision. Explóralas o pon a
+      prueba tu conocimiento.</p>
+
+    <!-- Menú principal -->
+    <div class="barras-view active" id="barras-view-menu">
+      <div class="barras-menu">
+        <div class="barras-option-card" onclick="showBarrasView('museo')">
+          <div class="barras-option-icon">🖼️</div>
+          <div class="barras-option-title">Museo de Barras</div>
+          <div class="barras-option-desc">Aquí se podrán ver las mejores barras de todo AutismoVision.</div>
+        </div>
+        <div class="barras-option-card" onclick="showBarrasView('quiz-setup')">
+          <div class="barras-option-icon">🎯</div>
+          <div class="barras-option-title">Adivina la Barra</div>
+          <div class="barras-option-desc">Aparecerá una barra en pantalla y tendrás que adivinar quién la ha
+            dicho o en qué canción se ha dicho.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Museo de Barras -->
+    <div class="barras-view" id="barras-view-museo">
+      <button class="barras-back-btn" onclick="showBarrasView('menu')">← Volver</button>
+      <div class="edition-tabs" id="museo-tabs">
+        <button class="tab-btn active" onclick="filterBarrasMuseo('all', this)">Todas</button>
+        <button class="tab-btn" onclick="filterBarrasMuseo(0, this)">3ª Edición - AV4801</button>
+        <button class="tab-btn" onclick="filterBarrasMuseo(1, this)">2ª Edición — AV3</button>
+        <button class="tab-btn" onclick="filterBarrasMuseo(2, this)">1ª Edición — AV1</button>
+      </div>
+      <div class="barras-museum-grid" id="barras-museum-grid"></div>
+    </div>
+
+    <!-- Adivina la Barra: Configuración -->
+    <div class="barras-view" id="barras-view-quiz-setup">
+      <button class="barras-back-btn" onclick="showBarrasView('menu')">← Volver</button>
+      <div class="quiz-setup">
+        <div class="quiz-setup-group">
+          <div class="quiz-setup-label">¿Qué quieres adivinar?</div>
+          <div class="quiz-choice-row" id="quiz-mode-options">
+            <button class="quiz-choice-btn selected" data-mode="quien" onclick="selectQuizMode('quien', this)">👤
+              ¿Quién la ha dicho?</button>
+            <button class="quiz-choice-btn" data-mode="cancion" onclick="selectQuizMode('cancion', this)">🎵 ¿En
+              qué canción?</button>
+          </div>
+        </div>
+        <div class="quiz-setup-group">
+          <div class="quiz-setup-label">¿De qué ediciones?</div>
+          <div class="quiz-choice-row" id="quiz-edition-options">
+            <button class="quiz-choice-btn selected" data-ed="0" onclick="toggleQuizEdition(0, this)">3ª
+              Edición - AV4801</button>
+            <button class="quiz-choice-btn selected" data-ed="1" onclick="toggleQuizEdition(1, this)">2ª
+              Edición — AV3</button>
+            <button class="quiz-choice-btn selected" data-ed="2" onclick="toggleQuizEdition(2, this)">1ª
+              Edición — AV1</button>
+          </div>
+        </div>
+        <button class="quiz-start-btn" onclick="startBarraQuiz()">▶ Jugar</button>
+      </div>
+    </div>
+
+    <!-- Adivina la Barra: Juego -->
+    <div class="barras-view" id="barras-view-quiz-play">
+      <button class="barras-back-btn" onclick="showBarrasView('quiz-setup')">← Cambiar ajustes</button>
+      <div class="quiz-question-box">
+        <div class="quiz-progress" id="quiz-progress-text"></div>
+        <div class="quiz-quote-text" id="quiz-quote-text"></div>
+        <div class="quiz-options-list" id="quiz-options-list"></div>
+        <div class="quiz-result" id="quiz-result-text"></div>
+        <div class="quiz-actions" id="quiz-actions"></div>
       </div>
     </div>
   </section>
@@ -3155,6 +3502,166 @@
 
       document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     };
+
+    // ════════════════════════════════════════════
+    //  BARRAS
+    // ════════════════════════════════════════════
+    // edition: 0 = 3ª Edición (AV4801), 1 = 2ª Edición (AV3), 2 = 1ª Edición (AV1)
+    const BARRAS = [
+      // 1ª edición - AV1
+      { edition: 2, author: 'Borja', song: 'Sara y la berenjena', text: `Sara le come toda la berenjena\nEn la cocina o bajo luna llena\nDicen que no hay nadie que la entrena\nSara y su Flow, ella nunca se frena` },
+      { edition: 2, author: 'Borja', song: 'Sara y la berenjena', text: `Berenjena en mano, un acto supremo,\nSara domina el juego, siempre extremo.\nLa calle murmura, todo un emblema,\nLa reina del sazón, su alma es el tema` },
+      { edition: 2, author: 'Sintu_', song: '***', text: `Haciendo que te masturbes con mi pluma…, otra vez\nPor lo que se entiende, no tiene suficiente\nEl deficiente no lo entiende\nQue todo lo que se ve es que solo es un negligente evidente` },
+      { edition: 2, author: 'Sintu_', song: 'La Aclaración', text: `Ayer paso\nLo que paso\nÉl se lo gozo\nY hoy me lo follo yo` },
+      { edition: 2, author: 'Sintu_', song: 'La Aclaración', text: `¿Y enserio piensa que gana con su canción?\nSi solo la misma cosa repitió\nQue el cerdo no comería jamón\nPero resulta que Mier si comerá Mier-don` },
+      { edition: 2, author: 'DJ Sigma Boy', song: 'BSGA', text: `Familia no tengo porque sigma boy se la humillo\nAhora mi única esperanza es el pene de Simón\nSabes que soy gordo come jamón\nCuando ni pedro me la quiere comer sin follon` },
+      { edition: 2, author: 'Luner', song: 'Phonk Final Boss', text: `Autismo en mi piel, pero no es mi cárcel\nMi mente es galaxia, aunque nadie lo capte\nPhonk en mis penis, Monjo en el loop\n3AM despierto, siempre en mi mood` },
+      { edition: 2, author: 'Borja', song: 'El Pepino de Carlos', text: `A Sara le gusta el pepino de Carlos\nNo hay comparación con su brillo tan alto\nEs verde y fresco como un rocio temprano\nA Sara le encanta, lo lleva en la mano` },
+      { edition: 2, author: 'DJ Sigma Boy', song: 'Te voy a humillar', text: `Me escribe a las once que escribira ya la canción\nY con lo que estará ocupada es el pene de simon\nNo podrá levantarse del sofa porque es un panzon\nY eso explica la ausencia de tu cancion` },
+
+      // 2ª edición - AV3
+      { edition: 1, author: 'Sintu_', song: 'La Función', text: `El dijo Go-go-go en la bañera disfruto\nSimon se la comio, dijo que prefiero con jamón\nLas vitaminas Z se las tomo y sus senos crecieron en proporción\nGo-go dijo Lilith y el show comenzo` },
+      { edition: 1, author: 'Sintu_', song: 'BG4E', text: `Sin-tu mierda la que nos has dejado\nTanto que el gallego de autismovision se ha marchado\nUn tirano, porque tiras pero no lo has continuado\nYo te tiraría de planetas y de pajas pero veo que tu viaje si ha sido el mas largo` },
+      { edition: 1, author: 'DJ Sigma Boy', song: 'I Love Israel', text: `Amo a Israel\nTierra de Valor` },
+      { edition: 1, author: 'Sintu_', song: 'MHFUPLS P2', text: `Sus padres se fueron como la X a la algebra\nTiene Daddy Issues desde que mamaba\nMe dice teorías, voy directo a la practica\nPractica con su polla para la cesaria` },
+      { edition: 1, author: 'Minwerfu', song: 'Sirios afganos', text: `¿En serio o en sirio?\nVamos tio dale al suicidio\nComo el del avión\nQue fue tu primo` },
+      { edition: 1, author: 'Gokenrik', song: 'Rap de Minecraft', text: `Minecraft, el mejor juego del mundo\nDesde el inicio de todo hasta el final del dragon` },
+
+      // 3ª Edición - AV4801
+      { edition: 0, author: 'Sintu_', song: 'No Punchs 😉', text: `¡Qué difícil es hacer una canción!\n¡Otra crisis dentro de mi habitación!\nComplicado el arte de la creación,\n¡se ha secado mi fuente de inspiración!` },
+      { edition: 0, author: 'Borja', song: 'Lionella Pepsi', text: `La selección de Argentina\nQue a Infantino le rompen la vagina\nSe la comen a Leo Messi\nY infantino lo ve sexy` },
+      { edition: 0, author: 'DJ Sigma Boy', song: 'El Mister', text: `Messi pagando los árbitros\nAunque me callo que el ruso me parte en dos\nCanticos racistas escuchas vos\nEn el campo al lado de los de vox` },
+      { edition: 0, author: 'DJ Sigma Boy & Superpajas33', song: 'Fried', text: `Fans de lectura cuando toca escribir\nDespues de todo el semen recibir\nPase por la casa blanca y vi el kirk\nNo me imagino a Diego sujetando el Joy-stick y eso es asi` },
+      { edition: 0, author: 'DJ Sigma Boy', song: "Genghis Kahn't", text: `Como puedo empezar con sigma boy\nSi a japerame es a lo que voy\nEscribiendo con IA como un Good boy\nSiendo mas bauti que Mariano Rajoy` },
+      { edition: 0, author: 'DJ Sigma Boy', song: 'YMNS', text: `El escuchador de Azali y baby no munney\nTres átomos de calci y se cree funny\nBuscate un poco de ensalzi y Raw Hunney\nSube cuatro kilos si le das un vitamin gummy` },
+      { edition: 0, author: 'DJ Sigma Boy', song: 'YMNS', text: `Con la berenjenita él en clase se distrajo\nSi le insultas mínimamente te llora el tajo\nWemmbu al mundo no hay nada que trajo\nUn trabajo? Con chatGPT siempre hay atajo` },
+      { edition: 0, author: 'DJ Sigma Boy', song: 'YMNS', text: `Tong Tong Sahur, pero él es el bate\nEn el váter, como skibidi Toilet no hay quien le mate\nEra broma. En PvP?\nEso era un hecho falso, contra él` },
+      { edition: 0, author: 'Sintu_', song: 'MHFUPLS, P-1', text: `El Carlitos y su calcio aumentara\nEl perfume permanente una vez hará\nContra Jean Paul luchara\nPero el perfume de Illojuan le vencera` },
+      { edition: 0, author: 'DJ Sigma Boy', song: 'Bnet Fan', text: `Sebastian, soy el furro\nCon Carlota me toco el churro\nHago una competición de befes\nY mi canción ni me la curro` },
+      { edition: 0, author: 'Sintu_ & Borja', song: 'Un Arabe Jamonero', text: `Mohammed, se moja en internet\nViendo porno de Israel` },
+      { edition: 0, author: 'Sintu_', song: 'Round 2', text: `Madi se puso Ma' hiriento\nSe ofendio como oponente\nNo tiene grande mente\nAunque si un gran ojete` },
+      { edition: 0, author: 'DJ Sigma Boy', song: 'Grito de Ayuda ahh cancion', text: `Rule treintaicuatro me meto\nVeo inflación y me seco\nMiro otro lado\nVeo a Moha en el cosecho` },
+      { edition: 0, author: 'Borja', song: 'El Glazer de Carlota', text: `Tienes la putisima altura ideal\nPara que te inviten al cumpleaños de Lamine Yamal\nUn enano de Feria\nMas feo que una armenia` },
+      { edition: 0, author: 'Borja', song: 'El Glazer de Carlota', text: `La Luz de tu casa parece cubana\nSe te corta a mitad de paja` },
+      { edition: 0, author: 'Sintu_', song: 'Epstein Type Beat', text: `Una mas, otra vez vine pa chingar\nLe pongan L al pelele que no tiene fucking rap\nTodos mas inútiles que una Kas con gas\nEsa es la diferencia entre Kast y Rap` },
+      { edition: 0, author: 'Sintu_', song: 'Round 1', text: `Que me gana en árabe, pero contigo acabare\nTe ganare y en tu cara me reiré\nY habla de la primera edición ¿Para que?\nSi fue en la que mejor quedaste\nY mira que quedo mucho superior mi nivel` },
+      { edition: 0, author: 'Sintu_', song: 'Round 1', text: `Pero me llama cerdo\nY soy como Jigsaw porque tú acabas muerto` },
+      { edition: 0, author: 'Sintu_', song: 'Round 3', text: `Tu única buena base fue la de tu maquillaje\nCuando te duches y veas tus moratones\nSabras quien es tu padre` },
+      { edition: 0, author: 'Borja', song: 'MVP Berenjena', text: `Dijo que nunca fue gorda\nPorque la palabra le queda corta\nEs fan de los hebreos\nPorque solo le gustan los viejos puteros` },
+      { edition: 0, author: 'Minwerfu', song: 'STFPGT', text: `Tol' tiempo se ha librao' de llevarse un beef\nDe relleno sus canciones lo resumo: Brief\nMe sudan los cojones, te otorgo un gift\nDos ediciones y al final, solo pulsa shift` },
+    ];
+
+    const BARRAS_EDITION_LABELS = ['3ª Edición - AV4801', '2ª Edición — AV3', '1ª Edición — AV1'];
+
+    function showBarrasView(view) {
+      document.querySelectorAll('#barras .barras-view').forEach(v => v.classList.remove('active'));
+      const map = { menu: 'barras-view-menu', museo: 'barras-view-museo', 'quiz-setup': 'barras-view-quiz-setup', 'quiz-play': 'barras-view-quiz-play' };
+      document.getElementById(map[view]).classList.add('active');
+      if (view === 'museo') renderBarrasMuseo('all');
+    }
+
+    function renderBarrasMuseo(filter) {
+      const grid = document.getElementById('barras-museum-grid');
+      const list = filter === 'all' ? BARRAS : BARRAS.filter(b => b.edition === filter);
+      grid.innerHTML = list.map(b => `
+        <div class="barra-card">
+          <div class="barra-quote">"${b.text}"</div>
+          <div class="barra-meta">
+            <span class="barra-author">${b.author}</span>
+            <span class="barra-song">${b.song}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterBarrasMuseo(filter, btn) {
+      btn.parentElement.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderBarrasMuseo(filter);
+    }
+
+    let quizMode = 'quien';
+    let quizEditions = [0, 1, 2];
+    let quizPool = [];
+    let currentQuizBarra = null;
+    let quizScore = { correct: 0, total: 0 };
+
+    function selectQuizMode(mode, btn) {
+      quizMode = mode;
+      btn.parentElement.querySelectorAll('.quiz-choice-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    }
+
+    function toggleQuizEdition(ed, btn) {
+      if (quizEditions.includes(ed)) {
+        quizEditions = quizEditions.filter(e => e !== ed);
+      } else {
+        quizEditions.push(ed);
+      }
+      btn.classList.toggle('selected');
+    }
+
+    function shuffleArray(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function startBarraQuiz() {
+      const activeEditions = quizEditions.length ? quizEditions : [0, 1, 2];
+      quizPool = BARRAS.filter(b => activeEditions.includes(b.edition));
+      quizScore = { correct: 0, total: 0 };
+      showBarrasView('quiz-play');
+      nextBarraQuestion();
+    }
+
+    function nextBarraQuestion() {
+      if (!quizPool.length) return;
+      currentQuizBarra = quizPool[Math.floor(Math.random() * quizPool.length)];
+      const correctAnswer = quizMode === 'quien' ? currentQuizBarra.author : currentQuizBarra.song;
+      const uniqueOthers = [...new Set(quizPool.map(b => quizMode === 'quien' ? b.author : b.song))]
+        .filter(a => a !== correctAnswer);
+      const wrongOptions = shuffleArray(uniqueOthers).slice(0, 3);
+      const options = shuffleArray([correctAnswer, ...wrongOptions]);
+
+      document.getElementById('quiz-progress-text').textContent =
+        `Pregunta ${quizScore.total + 1} · ${quizMode === 'quien' ? '¿Quién ha dicho esta barra?' : '¿En qué canción se ha dicho esta barra?'}`;
+      document.getElementById('quiz-quote-text').textContent = `"${currentQuizBarra.text}"`;
+      document.getElementById('quiz-result-text').textContent = '';
+      document.getElementById('quiz-result-text').className = 'quiz-result';
+      document.getElementById('quiz-actions').innerHTML = '';
+
+      const optionsList = document.getElementById('quiz-options-list');
+      optionsList.innerHTML = options.map(opt => `
+        <button class="quiz-option-btn" onclick="answerBarraQuiz(this, '${opt.replace(/'/g, "\\'")}', '${correctAnswer.replace(/'/g, "\\'")}')">${opt}</button>
+      `).join('');
+    }
+
+    function answerBarraQuiz(btn, chosen, correct) {
+      quizScore.total++;
+      const allBtns = document.querySelectorAll('#quiz-options-list .quiz-option-btn');
+      allBtns.forEach(b => b.disabled = true);
+
+      const resultEl = document.getElementById('quiz-result-text');
+      if (chosen === correct) {
+        quizScore.correct++;
+        btn.classList.add('correct');
+        resultEl.textContent = '✅ ¡Correcto!';
+        resultEl.className = 'quiz-result correct-result';
+      } else {
+        btn.classList.add('incorrect');
+        allBtns.forEach(b => { if (b.textContent === correct) b.classList.add('correct'); });
+        resultEl.textContent = `❌ Fallaste. La respuesta correcta era: ${correct}`;
+        resultEl.className = 'quiz-result incorrect-result';
+      }
+
+      document.getElementById('quiz-actions').innerHTML = `
+        <button class="quiz-start-btn" onclick="nextBarraQuestion()">Siguiente pregunta ▶</button>
+      `;
+    }
   </script>
 </body>
 

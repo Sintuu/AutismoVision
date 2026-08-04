@@ -543,6 +543,45 @@
       border: none;
     }
 
+    .video-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .75rem;
+      color: var(--muted);
+      background: radial-gradient(ellipse 80% 80% at 50% 40%, rgba(124,58,237,.10), transparent 70%), #000;
+      text-align: center;
+      padding: 1rem;
+    }
+    .video-placeholder.hidden { display: none; }
+    .vp-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--accent2);
+    }
+    .vp-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .vp-subtext {
+      font-size: .78rem;
+      color: var(--muted);
+      max-width: 260px;
+    }
+
     .now-playing-bar {
       background: var(--card);
       border: 1px solid var(--border);
@@ -1146,12 +1185,18 @@
     .reveal {
       opacity: 0;
       transform: translateY(24px);
-      transition: opacity .6s, transform .6s;
+      transition: opacity .6s cubic-bezier(.16,.8,.3,1), transform .6s cubic-bezier(.16,.8,.3,1);
     }
 
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    .reveal.exiting {
+      opacity: 0;
+      transform: translateY(-18px);
+      transition: opacity .4s ease, transform .4s ease;
     }
 
     .section-divider {
@@ -1525,13 +1570,19 @@
           <div class="playlist-list" id="playlist-0"></div>
         </div>
         <div class="video-panel">
-          <div class="video-wrapper"><iframe id="player-0" src="" allowfullscreen
-              allow="autoplay; encrypted-media"></iframe></div>
+          <div class="video-wrapper">
+            <iframe id="player-0" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+            <div class="video-placeholder" id="video-placeholder-0">
+              <div class="vp-icon">▶</div>
+              <div class="vp-text">Selecciona una canción</div>
+              <div class="vp-subtext">Haz clic en cualquier canción de la lista para reproducirla aquí</div>
+            </div>
+          </div>
           <div class="now-playing-bar">
-            <span class="npb-label">▶ Playlist completa</span>
-            <div class="npb-title" id="npb-title-0">3ª Edición — AV4801</div>
-            <div class="npb-artist" id="npb-artist-0">Todos los concursantes</div>
-            <div class="npb-hint">Haz clic en una canción de la lista para escucharla en una ventana emergente</div>
+            <span class="npb-label">▶ Reproduciendo</span>
+            <div class="npb-title" id="npb-title-0">Ninguna canción seleccionada</div>
+            <div class="npb-artist" id="npb-artist-0">—</div>
+            <div class="npb-hint">Haz clic en una canción de la lista para escucharla aquí mismo</div>
           </div>
         </div>
       </div>
@@ -1545,13 +1596,19 @@
           <div class="playlist-list" id="playlist-2"></div>
         </div>
         <div class="video-panel">
-          <div class="video-wrapper"><iframe id="player-1" src="" allowfullscreen
-              allow="autoplay; encrypted-media"></iframe></div>
+          <div class="video-wrapper">
+            <iframe id="player-1" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+            <div class="video-placeholder" id="video-placeholder-1">
+              <div class="vp-icon">▶</div>
+              <div class="vp-text">Selecciona una canción</div>
+              <div class="vp-subtext">Haz clic en cualquier canción de la lista para reproducirla aquí</div>
+            </div>
+          </div>
           <div class="now-playing-bar">
-            <span class="npb-label">▶ Playlist completa</span>
-            <div class="npb-title" id="npb-title-1">2ª Edición — AutismoVision 3</div>
-            <div class="npb-artist" id="npb-artist-1">Todos los concursantes</div>
-            <div class="npb-hint">Haz clic en una canción de la lista para escucharla en una ventana emergente</div>
+            <span class="npb-label">▶ Reproduciendo</span>
+            <div class="npb-title" id="npb-title-1">Ninguna canción seleccionada</div>
+            <div class="npb-artist" id="npb-artist-1">—</div>
+            <div class="npb-hint">Haz clic en una canción de la lista para escucharla aquí mismo</div>
           </div>
         </div>
       </div>
@@ -1565,13 +1622,19 @@
           <div class="playlist-list" id="playlist-1"></div>
         </div>
         <div class="video-panel">
-          <div class="video-wrapper"><iframe id="player-2" src="" allowfullscreen
-              allow="autoplay; encrypted-media"></iframe></div>
+          <div class="video-wrapper">
+            <iframe id="player-2" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+            <div class="video-placeholder" id="video-placeholder-2">
+              <div class="vp-icon">▶</div>
+              <div class="vp-text">Selecciona una canción</div>
+              <div class="vp-subtext">Haz clic en cualquier canción de la lista para reproducirla aquí</div>
+            </div>
+          </div>
           <div class="now-playing-bar">
-            <span class="npb-label">▶ Playlist completa</span>
-            <div class="npb-title" id="npb-title-2">1ª Edición — AutismoVision</div>
-            <div class="npb-artist" id="npb-artist-2">Todos los concursantes</div>
-            <div class="npb-hint">Haz clic en una canción de la lista para escucharla en una ventana emergente</div>
+            <span class="npb-label">▶ Reproduciendo</span>
+            <div class="npb-title" id="npb-title-2">Ninguna canción seleccionada</div>
+            <div class="npb-artist" id="npb-artist-2">—</div>
+            <div class="npb-hint">Haz clic en una canción de la lista para escucharla aquí mismo</div>
           </div>
         </div>
       </div>
@@ -2042,10 +2105,25 @@
         .replace(/[^a-z0-9]/g, "");
     }
 
-    function openVideoModal(title, artist) {
-      const modal = document.getElementById('videoModal');
-      const iframe = document.getElementById('modalIframe');
+    // Busca el ID directo del vídeo en YOUTUBE_VIDEO_MAP. Si no existe (canción sin ID
+    // conocido todavía), en vez de mandar al usuario a una búsqueda externa, devolvemos
+    // la playlist real de YouTube apuntando al índice exacto de esa canción, para que
+    // el reproductor emergente/incrustado siempre funcione dentro de la propia web.
+    function findPlaylistFallback(title) {
+      const cleanTitle = clean(title);
+      const sources = [
+        { arr: SONGS_AV, plId: PLAYLISTS[0].id },
+        { arr: SONGS_ED1, plId: PLAYLISTS[1].id },
+        { arr: SONGS_ED2, plId: PLAYLISTS[2].id },
+      ];
+      for (const { arr, plId } of sources) {
+        const idx = arr.findIndex(s => clean(s.title) === cleanTitle);
+        if (idx !== -1) return { plId, index: idx };
+      }
+      return null;
+    }
 
+    function resolveVideoSrc(title, autoplay) {
       const cleanTitle = clean(title);
       let videoId = YOUTUBE_VIDEO_MAP[title] || YOUTUBE_VIDEO_MAP[cleanTitle];
 
@@ -2058,17 +2136,28 @@
         }
       }
 
+      const ap = autoplay ? '&autoplay=1' : '';
       if (videoId) {
-        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
-        document.getElementById('modalTitle').textContent = title;
-        document.getElementById('modalArtist').textContent = artist;
-        modal.classList.add('open');
-        document.body.style.overflow = 'hidden';
-      } else {
-        // Fallback: Open YouTube Search in new tab
-        const query = encodeURIComponent(`${title} ${artist} AutismoVision`.trim());
-        window.open(`https://www.youtube.com/results?search_query=${query}`, '_blank');
+        return `https://www.youtube.com/embed/${videoId}?enablejsapi=1${ap}&rel=0`;
       }
+
+      const fb = findPlaylistFallback(title);
+      if (fb) {
+        return `https://www.youtube.com/embed/videoseries?list=${fb.plId}&index=${fb.index + 1}&enablejsapi=1${ap}&rel=0`;
+      }
+      return '';
+    }
+
+    function openVideoModal(title, artist) {
+      const modal = document.getElementById('videoModal');
+      const iframe = document.getElementById('modalIframe');
+      const src = resolveVideoSrc(title, true);
+
+      iframe.src = src;
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalArtist').textContent = artist;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
     }
     function closeVideoModal() {
       document.getElementById('videoModal').classList.remove('open');
@@ -2088,7 +2177,7 @@
       countEl.textContent = sorted.length;
 
       listEl.innerHTML = sorted.map((s, i) => `
-    <div class="playlist-item" onclick="openVideoModal('${esc(s.title)}', '${esc(s.artist)}')">
+    <div class="playlist-item" onclick="selectSong(${edIdx}, '${esc(s.title)}', '${esc(s.artist)}', this)">
       <div class="pi-num">${i + 1}</div>
       <div class="pi-info">
         <div class="pi-title">${s.title}</div>
@@ -2099,16 +2188,47 @@
   `).join('');
     }
 
+    // Carga una canción directamente dentro del reproductor de su propia pestaña
+    // (no en la ventana emergente), y muestra cuál está sonando.
+    function selectSong(edIdx, title, artist, itemEl) {
+      const iframe = document.getElementById(`player-${edIdx}`);
+      const placeholder = document.getElementById(`video-placeholder-${edIdx}`);
+      const src = resolveVideoSrc(title, true);
+      if (!src) return;
+
+      iframe.src = src;
+      if (placeholder) placeholder.classList.add('hidden');
+
+      document.getElementById(`npb-title-${edIdx}`).textContent = title;
+      document.getElementById(`npb-artist-${edIdx}`).textContent = artist;
+
+      const list = document.getElementById(`playlist-${edIdx}`);
+      if (list) list.querySelectorAll('.playlist-item.active').forEach(el => el.classList.remove('active'));
+      if (itemEl) itemEl.classList.add('active');
+    }
+
+    function pauseEditionPlayer(edIdx) {
+      const iframe = document.getElementById(`player-${edIdx}`);
+      if (!iframe || !iframe.src) return;
+      try {
+        iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }), '*');
+      } catch (e) { /* el iframe puede no estar listo todavía, no pasa nada */ }
+    }
+
     function switchEdition(idx, btn) {
-      document.querySelectorAll('.edition-tabs-content').forEach((el, i) => el.classList.toggle('active', i === idx));
+      const contents = document.querySelectorAll('.edition-tabs-content');
+      contents.forEach((el, i) => {
+        if (i !== idx && el.classList.contains('active')) pauseEditionPlayer(i);
+      });
+      contents.forEach((el, i) => el.classList.toggle('active', i === idx));
       btn.parentElement.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
     }
 
     function initPlaylists() {
       for (let i = 0; i < 3; i++) {
-        const iframe = document.getElementById(`player-${i}`);
-        iframe.src = `https://www.youtube.com/embed/videoseries?list=${PLAYLISTS[i].id}&rel=0`;
+        // No precargamos ningún vídeo: la caja empieza en blanco con el
+        // mensaje "Selecciona una canción" hasta que el usuario elija una.
         buildPlaylistUI(i);
       }
     }
@@ -2490,7 +2610,17 @@
     // ════════════════════════════════════════════
     function initReveal() {
       const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.remove('exiting');
+            e.target.classList.add('visible');
+          } else if (e.target.classList.contains('visible')) {
+            // Se ha ido de la pantalla: reproducimos una animación de salida
+            // y quitamos "visible" para que la de entrada pueda repetirse al volver.
+            e.target.classList.remove('visible');
+            e.target.classList.add('exiting');
+          }
+        });
       }, { threshold: 0.1 });
       document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     }

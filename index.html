@@ -2256,6 +2256,7 @@
       <button class="tab-btn active" onclick="switchRanking(0, this)">3ª Edición - AV4801</button>
       <button class="tab-btn" onclick="switchRanking(1, this)">2ª Edición — AV3</button>
       <button class="tab-btn" onclick="switchRanking(2, this)">1ª Edición — AV</button>
+      <button class="tab-btn" onclick="switchRanking(3, this)">Global</button>
     </div>
 
     <!-- 3ª Edición: AV4801 (Pestaña principal 0) -->
@@ -2299,6 +2300,16 @@
       <div class="ranking-table">
         <div class="rt-header"><span>#</span><span>Canción</span><span>Pts</span><span></span></div>
         <div id="ranking-ed1"></div>
+      </div>
+    </div>
+
+    <!-- Ranking Global -->
+    <div class="ranking-content" id="ranking-tab-3" style="display:none;">
+      <p class="section-subtitle" style="margin-bottom:1rem;">Todas las canciones combinadas,
+        comparadas por porcentaje de nota. La 1ª edición se puntúa sobre 10; la 2ª y 3ª sobre 43.</p>
+      <div class="ranking-table">
+        <div class="rt-header"><span>#</span><span>Canción</span><span>%</span><span></span></div>
+        <div id="ranking-global"></div>
       </div>
     </div>
   </section>
@@ -3173,10 +3184,36 @@
       document.getElementById('ranking-av').innerHTML = SONGS_AV.map((s, i) => renderRankingRow(s, i + 1)).join('');
       document.getElementById('ranking-ed1').innerHTML = SONGS_ED1.map((s, i) => renderRankingRow(s, i + 1)).join('');
       document.getElementById('ranking-ed2').innerHTML = SONGS_ED2.map((s, i) => renderRankingRow(s, i + 1)).join('');
+
+      // Global: normaliza sobre 10 (1ª ed.) y sobre 43 (2ª y 3ª ed.)
+      const combined = [
+        ...SONGS_ED1.map(s => ({ ...s, pct: (s.score / 10) * 100, edLabel: '1ª Edición' })),
+        ...SONGS_ED2.map(s => ({ ...s, pct: (s.score / 43) * 100, edLabel: '2ª Edición' })),
+        ...SONGS_AV.map(s => ({ ...s, pct: (s.score / 43) * 100, edLabel: '3ª Edición' })),
+      ].sort((a, b) => b.pct - a.pct);
+
+      document.getElementById('ranking-global').innerHTML = combined.map((s, i) => {
+        const pos = i + 1;
+        const cls = pos <= 3 ? `pos-${pos}` : 'pos-other';
+        return `
+          <div class="rt-row ${pos <= 3 ? 'top-3' : ''}">
+            <div class="rt-pos ${cls}">${pos}</div>
+            <div style="min-width:0">
+              <div class="rt-song">${s.title}</div>
+              <div style="font-size:.72rem; color:var(--muted); margin-top:.1rem">${s.artist}
+                <span class="rt-stage-tag" style="background:#ffffff0d; color:var(--muted); border:1px solid var(--border)">${s.edLabel}</span>
+              </div>
+            </div>
+            <div class="rt-score">${s.pct.toFixed(1)}%</div>
+            <div class="rt-play" onclick="openVideoModal('${esc(s.title)}', '${esc(s.artist)}')">
+              <svg viewBox="0 0 10 10"><polygon points="2,1 9,5 2,9"/></svg>
+            </div>
+          </div>`;
+      }).join('');
     }
 
     function switchRanking(idx, btn) {
-      [0, 1, 2].forEach(i => {
+      [0, 1, 2, 3].forEach(i => {
         const el = document.getElementById(`ranking-tab-${i}`);
         if (el) el.style.display = i === idx ? 'block' : 'none';
       });

@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Clip del Año</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #0A0C10;
+      --bg-panel: #14171D;
+      --bg-raised: #1C2028;
+      --gold: #FFC53D;
+      --gold-dim: #8a6d24;
+      --rec: #FF3B5C;
+      --ice: #ECF1F4;
+      --muted: #7C8592;
+      --line: rgba(236, 241, 244, 0.09);
+      --line-strong: rgba(236, 241, 244, 0.18);
+      --display: 'Anton', sans-serif;
+      --body: 'Space Grotesk', sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+
+    body {
+      background: var(--bg-void);
+      color: var(--ice);
+      font-family: var(--body);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* ---------- CUSTOM SCROLLBAR ---------- */
+    html {
+      scrollbar-color: var(--gold-dim) transparent;
+      scrollbar-width: thin;
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(var(--gold-dim), var(--gold));
+      border-radius: 999px;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--gold);
+      background-clip: padding-box;
+    }
+
+    /* ---------- CUSTOM CURSOR ---------- */
+    @media (pointer: fine) {
+
+      html.has-custom-cursor,
+      html.has-custom-cursor * {
+        cursor: none !important;
+      }
+    }
+
+    .cursor-dot {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 10px;
+      height: 10px;
+      margin: -5px 0 0 -5px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 8px 2px rgba(255, 197, 61, 0.9), 0 0 22px 6px rgba(255, 197, 61, 0.45);
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0;
+      transition: opacity .2s, transform .12s ease-out, width .15s, height .15s, margin .15s;
+      will-change: transform;
+    }
+
+    .cursor-dot.visible {
+      opacity: 1;
+    }
+
+    .cursor-dot.is-active {
+      width: 16px;
+      height: 16px;
+      margin: -8px 0 0 -8px;
+      background: #fff2c4;
+    }
+
+    /* ---------- ANIMATED BACKGROUND ---------- */
+    .bg-scene {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+      background: var(--bg-void);
+    }
+
+    .bg-blob {
+      position: absolute;
+      width: 46vmax;
+      height: 46vmax;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.28;
+      mix-blend-mode: screen;
+    }
+
+    .bg-blob.b1 {
+      top: -14vmax;
+      left: -10vmax;
+      background: radial-gradient(circle, rgba(255, 197, 61, 0.9), transparent 70%);
+      animation: drift1 26s ease-in-out infinite;
+    }
+
+    .bg-blob.b2 {
+      bottom: -18vmax;
+      right: -12vmax;
+      background: radial-gradient(circle, rgba(255, 59, 92, 0.85), transparent 70%);
+      animation: drift2 32s ease-in-out infinite;
+    }
+
+    .bg-blob.b3 {
+      top: 38%;
+      left: 55%;
+      width: 36vmax;
+      height: 36vmax;
+      background: radial-gradient(circle, rgba(61, 142, 255, 0.6), transparent 70%);
+      animation: drift3 38s ease-in-out infinite;
+    }
+
+    .bg-grain {
+      position: absolute;
+      inset: -10%;
+      background-image: repeating-linear-gradient(115deg, rgba(236, 241, 244, 0.03) 0px, rgba(236, 241, 244, 0.03) 1px, transparent 1px, transparent 64px);
+      animation: grainshift 60s linear infinite;
+    }
+
+    @keyframes drift1 {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      50% {
+        transform: translate(6vmax, 8vmax) scale(1.15);
+      }
+    }
+
+    @keyframes drift2 {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      50% {
+        transform: translate(-7vmax, -6vmax) scale(1.1);
+      }
+    }
+
+    @keyframes drift3 {
+
+      0%,
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      50% {
+        transform: translate(-46%, -56%) scale(1.2);
+      }
+    }
+
+    @keyframes grainshift {
+      0% {
+        transform: translate(0, 0);
+      }
+
+      100% {
+        transform: translate(-64px, -64px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .bg-blob,
+      .bg-grain {
+        animation: none !important;
+      }
+    }
+
+    /* ---------- SCROLL REVEAL ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity .7s cubic-bezier(.2, .7, .3, 1), transform .7s cubic-bezier(.2, .7, .3, 1);
+    }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: none;
+    }
+
+    .contestants-grid .reveal {
+      transition-delay: calc(var(--i, 0) * 45ms);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+
+    /* entrada escalonada del hero al cargar la página */
+    .hero-enter {
+      opacity: 0;
+      transform: translateY(18px);
+      animation: heroEnter .8s cubic-bezier(.2, .7, .3, 1) forwards;
+      animation-delay: calc(var(--d, 0) * 110ms + 120ms);
+    }
+
+    @keyframes heroEnter {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-enter {
+        opacity: 1;
+        transform: none;
+        animation: none;
+      }
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 0.6em;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: var(--rec);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--rec);
+      flex: none;
+    }
+
+    /* ---------- NAV ---------- */
+    .topnav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.9rem clamp(1rem, 4vw, 3rem);
+      background: rgba(10, 12, 16, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+      transform: translateY(0);
+      transition: transform .35s cubic-bezier(.2, .7, .3, 1), background .2s;
+    }
+
+    .topnav.nav-hidden {
+      transform: translateY(-110%);
+    }
+
+    .brand-mark {
+      font-family: var(--display);
+      font-size: 1.05rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand-mark .dot {
+      color: var(--gold);
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .navlinks a {
+      padding: 0.5rem 0.8rem;
+      border-radius: 2px;
+      color: var(--muted);
+      border: 1px solid transparent;
+      transition: color .15s, border-color .15s, background .15s;
+    }
+
+    .navlinks a:hover,
+    .navlinks a:focus-visible {
+      color: var(--ice);
+      border-color: var(--line-strong);
+      background: var(--bg-panel);
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 1.5rem 4rem;
+      background:
+        radial-gradient(ellipse at 18% 10%, rgba(255, 197, 61, 0.10), transparent 55%),
+        radial-gradient(ellipse at 85% 85%, rgba(255, 59, 92, 0.10), transparent 55%),
+        var(--bg-void);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(115deg, rgba(236, 241, 244, 0.035) 0px, rgba(236, 241, 244, 0.035) 1px, transparent 1px, transparent 64px);
+      pointer-events: none;
+    }
+
+    .hero-logo {
+      width: min(640px, 88vw);
+      height: auto;
+      margin-bottom: 0.6rem;
+      filter: drop-shadow(0 0 34px rgba(255, 197, 61, 0.35));
+    }
+
+    .hero-tag {
+      margin-bottom: 1.6rem;
+    }
+
+    .hero p.sub {
+      margin-top: 1.4rem;
+      max-width: 46ch;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    /* scoreboard */
+    .scoreboard {
+      margin-top: 2.6rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 0.9rem 1.3rem;
+      background: var(--bg-panel);
+      border: 1px solid var(--line-strong);
+      border-radius: 6px;
+    }
+
+    .scoreboard-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: left;
+      max-width: 6.5em;
+    }
+
+    .digits {
+      display: flex;
+      gap: 0.3rem;
+    }
+
+    .digit {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 1.9rem;
+      color: var(--gold);
+      background: #0d0f13;
+      border: 1px solid var(--line-strong);
+      border-radius: 4px;
+      width: 1.5em;
+      text-align: center;
+      padding: 0.15em 0;
+      text-shadow: 0 0 12px rgba(255, 197, 61, 0.45);
+    }
+
+    .digits-suffix {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      align-self: flex-end;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-nav {
+      margin-top: 2.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      max-width: 44rem;
+    }
+
+    .pill {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.7rem 1.2rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      color: var(--ice);
+      background: var(--bg-panel);
+      transition: transform .15s, border-color .15s, background .15s;
+    }
+
+    .pill:hover,
+    .pill:focus-visible {
+      border-color: var(--gold);
+      background: var(--bg-raised);
+      transform: translateY(-2px);
+    }
+
+    .pill.primary {
+      background: var(--gold);
+      color: #141108;
+      border-color: var(--gold);
+      font-weight: 700;
+    }
+
+    .pill.primary:hover {
+      background: #ffd257;
+    }
+
+    /* ---------- SECTION SHELL ---------- */
+    section {
+      padding: 5.5rem clamp(1.2rem, 5vw, 4rem);
+      border-top: 1px solid var(--line);
+      position: relative;
+    }
+
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 2.6rem;
+    }
+
+    .section-head h2 {
+      font-family: var(--display);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      text-transform: uppercase;
+      line-height: 1;
+      margin-top: 0.4rem;
+    }
+
+    .section-desc {
+      max-width: 32rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* ---------- PROXIMAMENTE PANELS ---------- */
+    .slate {
+      position: relative;
+      border: 1px dashed var(--line-strong);
+      border-radius: 8px;
+      padding: 3.5rem 2rem;
+      text-align: center;
+      background:
+        repeating-linear-gradient(135deg, rgba(255, 197, 61, 0.06) 0 10px, transparent 10px 20px),
+        var(--bg-panel);
+      overflow: hidden;
+    }
+
+    .slate::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: repeating-linear-gradient(115deg, var(--gold) 0 14px, #14171D 14px 28px);
+    }
+
+    .slate .lock {
+      width: 44px;
+      height: 44px;
+      margin: 0 auto 1.4rem;
+      border: 2px solid var(--muted);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+    }
+
+    .slate h3 {
+      font-family: var(--display);
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      text-transform: uppercase;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+    }
+
+    .slate p {
+      margin-top: 0.8rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 34ch;
+      margin-inline: auto;
+    }
+
+    /* ---------- CLIPS ---------- */
+    .clips-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-random {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.75rem 1.2rem;
+      background: var(--rec);
+      color: #160308;
+      font-weight: 700;
+      border-radius: 4px;
+      transition: transform .15s, filter .15s;
+    }
+
+    .btn-random:hover,
+    .btn-random:focus-visible {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+    }
+
+    .clips-layout {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 1.4rem;
+      align-items: stretch;
+    }
+
+    @media (max-width:900px) {
+      .clips-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .clips-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      max-height: 520px;
+      overflow-y: auto;
+      padding-right: 0.3rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: var(--bg-panel);
+      padding: 0.7rem;
+    }
+
+    @media (max-width:900px) {
+      .clips-list {
+        max-height: 340px;
+      }
+    }
+
+    .clip-list-item {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      width: 100%;
+      text-align: left;
+      padding: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      background: transparent;
+      transition: background .15s, border-color .15s;
+    }
+
+    .clip-list-item:hover,
+    .clip-list-item:focus-visible {
+      background: var(--bg-raised);
+      border-color: var(--line-strong);
+    }
+
+    .clip-list-item.active {
+      background: var(--bg-raised);
+      border-color: var(--gold);
+    }
+
+    .clip-list-thumb {
+      flex: none;
+      width: 56px;
+      height: 40px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, var(--thumb-a, #22262f), var(--thumb-b, #14171D));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .clip-list-thumb svg {
+      width: 16px;
+      height: 16px;
+      color: rgba(236, 241, 244, 0.85);
+    }
+
+    .clip-list-thumb .dur {
+      position: absolute;
+      bottom: 2px;
+      right: 3px;
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      background: rgba(10, 12, 16, 0.75);
+      padding: 0 0.25rem;
+      border-radius: 2px;
+    }
+
+    .clip-list-info {
+      min-width: 0;
+    }
+
+    .clip-list-info h4 {
+      font-size: 0.82rem;
+      font-weight: 600;
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .clip-list-info .who {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .player-stage {
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: var(--bg-panel);
+      padding: 1.3rem;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 1.4rem;
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    @media (max-width:760px) {
+      .player-stage {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+    }
+
+    .player-screen {
+      aspect-ratio: 16/9;
+      border: 1px dashed var(--line-strong);
+      border-radius: 6px;
+      background:
+        linear-gradient(120deg, rgba(255, 197, 61, 0.06), rgba(255, 59, 92, 0.06)),
+        #0d0f13;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 0.7rem;
+      padding: 1.5rem;
+    }
+
+    .player-screen .play-ico {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+    }
+
+    .player-screen small {
+      font-family: var(--mono);
+      color: var(--muted);
+      font-size: 0.7rem;
+      max-width: 32ch;
+      line-height: 1.5;
+    }
+
+    .player-embed {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 16/9;
+      border: 1px solid var(--line-strong);
+      border-radius: 6px;
+      background: #0d0f13;
+    }
+
+    @media (max-width:760px) {
+      .player-embed {
+        height: auto;
+      }
+    }
+
+    .player-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+
+    .player-info .kicker {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .player-info h3 {
+      font-family: var(--display);
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .player-info .meta {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .player-info .embed-hint {
+      margin-top: 0.4rem;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      background: #0d0f13;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 0.6rem 0.7rem;
+      word-break: break-all;
+    }
+
+    /* ---------- CONCURSANTES ---------- */
+    .contestants-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.1rem;
+    }
+
+    .contestant-card {
+      width: 100%;
+      text-align: left;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: var(--bg-panel);
+      padding: 1.2rem;
+      transition: border-color .15s, background .15s;
+    }
+
+    .contestant-card:hover,
+    .contestant-card:focus-visible {
+      border-color: var(--gold);
+      background: var(--bg-raised);
+    }
+
+    .contestant-top {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--display);
+      font-size: 1.1rem;
+      color: #0d0f13;
+      flex: none;
+    }
+
+    .contestant-name {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .contestant-count {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .contestant-count b {
+      color: var(--gold);
+      font-size: 0.95rem;
+    }
+
+    .contestant-chevron {
+      flex: none;
+      color: var(--muted);
+      transition: color .15s;
+    }
+
+    .contestant-card:hover .contestant-chevron {
+      color: var(--gold);
+    }
+
+    /* ---------- MODAL: CLIPS DE UN CONCURSANTE ---------- */
+    .contestant-modal-player {
+      width: min(560px, 100%);
+    }
+
+    .contestant-modal-head {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding-right: 2.2rem;
+    }
+
+    .contestant-modal-head h3 {
+      font-family: var(--display);
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .contestant-modal-count {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    .contestant-modal-count b {
+      color: var(--gold);
+    }
+
+    .contestant-modal-clips {
+      list-style: none;
+      margin-top: 1.2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      max-height: min(50vh, 420px);
+      overflow-y: auto;
+    }
+
+    .contestant-modal-clips li button {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.82rem;
+      padding: 0.55rem 0.6rem;
+      border-radius: 4px;
+      background: #0d0f13;
+      border: 1px solid var(--line);
+      text-align: left;
+      color: var(--ice);
+      transition: border-color .15s;
+    }
+
+    .contestant-modal-clips li button:hover,
+    .contestant-modal-clips li button:focus-visible {
+      border-color: var(--gold);
+    }
+
+    .contestant-modal-clips li span {
+      font-family: var(--mono);
+      color: var(--muted);
+      font-size: 0.72rem;
+      flex: none;
+    }
+
+    .contestant-modal-empty {
+      font-family: var(--mono);
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    /* ---------- MODAL: REPRODUCTOR EMERGENTE ---------- */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(6, 7, 10, 0.78);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .modal-backdrop[hidden] {
+      display: none;
+    }
+
+    .modal-player {
+      position: relative;
+      width: min(640px, 100%);
+      border: 1px solid var(--line-strong);
+      border-radius: 10px;
+      background: var(--bg-panel);
+      padding: 1.4rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      animation: modalIn .2s cubic-bezier(.2, .7, .3, 1);
+    }
+
+    @keyframes modalIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .modal-player {
+        animation: none;
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 0.8rem;
+      right: 0.8rem;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--bg-raised);
+      border: 1px solid var(--line-strong);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ice);
+      transition: border-color .15s, color .15s;
+    }
+
+    .modal-close:hover,
+    .modal-close:focus-visible {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .modal-player .player-info {
+      margin-top: 1rem;
+    }
+
+    .other-comps-badge {
+      position: absolute;
+      top: clamp(1rem, 3vw, 1.8rem);
+      right: clamp(1rem, 3vw, 1.8rem);
+      z-index: 5;
+      cursor: pointer;
+    }
+
+    .other-comps-player {
+      text-align: center;
+      padding: 2.4rem 1.6rem 2rem;
+    }
+
+    .other-comps-player .eyebrow {
+      justify-content: center;
+      margin-bottom: 0.4rem;
+    }
+
+    .other-comps-player p.sub {
+      max-width: 32ch;
+      margin: 0 auto;
+    }
+
+    .other-comps-link {
+      display: inline-flex;
+      margin-top: 1.6rem;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--line-strong);
+      background: var(--bg-raised);
+      transition: transform .15s, border-color .15s;
+    }
+
+    .other-comps-link:hover,
+    .other-comps-link:focus-visible {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .other-comps-link img {
+      width: min(280px, 68vw);
+      height: auto;
+      display: block;
+    }
+
+    .footer-link {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.02em;
+      color: var(--muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color .15s;
+    }
+
+    .footer-link:hover,
+    .footer-link:focus-visible {
+      color: var(--gold);
+    }
+
+    footer {
+      padding: 2.5rem clamp(1.2rem, 5vw, 4rem);
+      border-top: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="bg-scene" aria-hidden="true">
+    <div class="bg-blob b1"></div>
+    <div class="bg-blob b2"></div>
+    <div class="bg-blob b3"></div>
+    <div class="bg-grain"></div>
+  </div>
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+
+  <nav class="topnav" id="topnav">
+    <div class="brand-mark">EL CLIP<span class="dot">·</span>DEL AÑO</div>
+    <div class="navlinks">
+      <a href="#inicio">Inicio</a>
+      <a href="#clips">Ver Clips</a>
+      <a href="#registrar">Registrar</a>
+      <a href="#votar">Votar</a>
+      <a href="#concursantes">Concursantes</a>
+      <a href="#clasificaciones">Ranking</a>
+    </div>
+  </nav>
+
+  <header id="inicio" class="hero">
+    <button type="button" class="pill other-comps-badge hero-enter" style="--d:0" id="other-comps-trigger-hero">
+      Otras competiciones
+    </button>
+    <p class="eyebrow hero-tag hero-enter" style="--d:0">Concurso oficial de clips</p>
+    <img class="hero-logo hero-enter" style="--d:1" src="logo/Logo.png" alt="El Clip del Año">
+    <p class="sub hero-enter" style="--d:2">La mejor jugada, la caída más ridícula o la remontada imposible: un clip de
+      Medal, un concursante, un ganador. Elige el tuyo.</p>
+
+    <div class="scoreboard hero-enter" style="--d:3">
+      <div class="scoreboard-label">Clips subidos en total</div>
+      <div class="digits" id="scoreboard-digits"></div>
+      <div class="digits-suffix">clips</div>
+    </div>
+
+    <nav class="hero-nav hero-enter" style="--d:4" aria-label="Secciones del concurso">
+      <a class="pill primary" href="#clips">Ver Clips</a>
+      <a class="pill" href="#registrar">Registrar</a>
+      <a class="pill" href="#votar">Votar</a>
+      <a class="pill" href="#concursantes">Concursantes</a>
+      <a class="pill" href="#clasificaciones">Ranking</a>
+    </nav>
+  </header>
+
+  <section id="clips">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Reproductor</p>
+        <h2>Todos los clips</h2>
+      </div>
+      <p class="section-desc" style="margin:0;">El reproductor de clips está desactivado por ahora.</p>
+    </div>
+
+    <div class="slate reveal">
+      <div class="lock" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="4" y="10" width="16" height="10" rx="2" />
+          <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+        </svg>
+      </div>
+      <h3>Próximamente</h3>
+      <p>El reproductor de clips se activará cuando arranque el concurso. Vuelve pronto por aquí.</p>
+    </div>
+  </section>
+
+  <section id="registrar">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Inscripciones</p>
+        <h2>Registrar</h2>
+      </div>
+      <p class="section-desc">Aquí podrás apuntarte al concurso y subir tus clips de Medal para competir por el título
+        del año.</p>
+    </div>
+    <div class="slate reveal">
+      <div class="lock" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="4" y="10" width="16" height="10" rx="2" />
+          <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+        </svg>
+      </div>
+      <h3>Próximamente</h3>
+      <p>El formulario de inscripción se activará antes del inicio del concurso. Vuelve pronto por aquí.</p>
+    </div>
+  </section>
+
+  <section id="votar">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Fase de votación</p>
+        <h2>Votar</h2>
+      </div>
+      <p class="section-desc">Cuando arranque la votación, cada clip aparecerá aquí para que el público elija a los
+        finalistas.</p>
+    </div>
+    <div class="slate reveal">
+      <div class="lock" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="4" y="10" width="16" height="10" rx="2" />
+          <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+        </svg>
+      </div>
+      <h3>Próximamente</h3>
+      <p>La votación se abrirá cuando se cierre el plazo de registro de clips.</p>
+    </div>
+  </section>
+
+  <section id="concursantes">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Participantes</p>
+        <h2>Concursantes</h2>
+      </div>
+      <p class="section-desc">Cada concursante y el número de clips que ha subido hasta ahora. Pulsa una tarjeta para
+        ver sus clips.</p>
+    </div>
+    <div class="contestants-grid" id="contestants-grid"></div>
+  </section>
+
+  <div class="modal-backdrop" id="contestant-modal" hidden>
+    <div class="modal-player contestant-modal-player" role="dialog" aria-modal="true"
+      aria-labelledby="contestant-modal-title">
+      <button class="modal-close" id="contestant-modal-close" type="button" aria-label="Cerrar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="4" y1="4" x2="20" y2="20" />
+          <line x1="20" y1="4" x2="4" y2="20" />
+        </svg>
+      </button>
+      <div class="contestant-modal-head">
+        <div class="avatar" id="contestant-modal-avatar"></div>
+        <div>
+          <h3 id="contestant-modal-title">—</h3>
+          <div class="contestant-modal-count" id="contestant-modal-count"></div>
+        </div>
+      </div>
+      <ul class="contestant-modal-clips" id="contestant-modal-clips"></ul>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="other-comps-modal" hidden>
+    <div class="modal-player other-comps-player" role="dialog" aria-modal="true" aria-labelledby="other-comps-title">
+      <button class="modal-close" id="other-comps-close" type="button" aria-label="Cerrar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="4" y1="4" x2="20" y2="20" />
+          <line x1="20" y1="4" x2="4" y2="20" />
+        </svg>
+      </button>
+      <p class="eyebrow" id="other-comps-title">Otras competiciones</p>
+      <p class="sub">Sal de "El Clip del Año" y visita otro concurso de la casa.</p>
+      <a class="other-comps-link" href="https://sintuu.github.io/AutismoVision/" aria-label="Ir a AutismoVision">
+        <img src="logo/AV.png" alt="AutismoVision">
+      </a>
+    </div>
+  </div>
+
+  <section id="clasificaciones">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Resultados</p>
+        <h2>Clasificaciones</h2>
+      </div>
+      <p class="section-desc">La tabla con los puestos y puntuaciones finales aparecerá aquí al cerrarse la votación.
+      </p>
+    </div>
+    <div class="slate reveal">
+      <div class="lock" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="4" y="10" width="16" height="10" rx="2" />
+          <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+        </svg>
+      </div>
+      <h3>Próximamente</h3>
+      <p>Las clasificaciones se publicarán en cuanto termine la fase de votación.</p>
+    </div>
+  </section>
+
+  <footer>
+    <span>EL CLIP DEL AÑO</span>
+    <button type="button" class="footer-link" id="other-comps-trigger-footer">Otras competiciones</button>
+    <span>Hecho para los mejores momentos grabados con Medal</span>
+  </footer>
+
+  <script>
+    // ---------- DATA (placeholders — reemplázalos con tus clips reales de Medal) ----------
+    const CONTESTANTS = [
+      { name: "Sintu_", color: "#FFC53D" },
+      { name: "Luner16", color: "#FF3B5C" },
+      { name: "Borja", color: "#3DAEFF" },
+      { name: "Madicito", color: "#B26BFF" },
+      { name: "Minwerfu", color: "#3DFFB0" },
+    ];
+
+    const CLIPS = [
+      { id: 1, title: "Eres el dildo XXL mas extraordinario del universo...", contestant: "nada", duration: "0:12", embed: "null" },
+      { id: 2, title: "Headshot a través de la pared", contestant: "ShadowFox", duration: "0:09", embed: null },
+      { id: 3, title: "Clutch 1v5 sin mirar la pantalla", contestant: "Kira_ES", duration: "0:34", embed: null },
+      { id: 4, title: "La caída más legendaria del año", contestant: "Kira_ES", duration: "0:12", embed: null },
+      { id: 5, title: "Revivo a todo el equipo en 3 segundos", contestant: "Kira_ES", duration: "0:21", embed: null },
+      { id: 6, title: "La jugada que nadie vio venir", contestant: "ElPistolero", duration: "0:27", embed: null },
+      { id: 7, title: "Snipe a 300 metros sin mira", contestant: "ElPistolero", duration: "0:15", embed: null },
+      { id: 8, title: "Combo imposible en el último round", contestant: "Nebulosa", duration: "0:41", embed: null },
+      { id: 9, title: "Escapo por los pelos (literalmente)", contestant: "Nebulosa", duration: "0:19", embed: null },
+      { id: 10, title: "Triple kill con una granada", contestant: "Trigger_Max", duration: "0:23", embed: null },
+      { id: 11, title: "El bug que nos hizo ganar", contestant: "Trigger_Max", duration: "0:16", embed: null },
+      { id: 12, title: "Remontada 0-3 en la final", contestant: "LunaClips", duration: "0:52", embed: null },
+      { id: 13, title: "Baile de la victoria (nivel dios)", contestant: "LunaClips", duration: "0:08", embed: null },
+    ];
+
+    const contestantColor = name => (CONTESTANTS.find(c => c.name === name) || {}).color || "#7C8592";
+
+    function hexToPair(hex) {
+      // devuelve un degradado suave a partir del color del concursante
+      return { a: hex + "33", b: "#14171D" };
+    }
+
+    // ---------- SCOREBOARD ----------
+    function renderScoreboard() {
+      const total = CLIPS.length;
+      const digitsStr = String(total).padStart(3, "0");
+      const el = document.getElementById("scoreboard-digits");
+      el.innerHTML = digitsStr.split("").map(d => `<span class="digit">${d}</span>`).join("");
+    }
+
+    // ---------- REPRODUCTOR DE CLIPS: DESACTIVADO ----------
+    // La lista vertical, el player principal y el modal emergente se han
+    // retirado del DOM (sección "clips" muestra el cartel "Próximamente").
+
+    // ---------- CONCURSANTES ----------
+    function renderContestants() {
+      const grid = document.getElementById("contestants-grid");
+      grid.innerHTML = CONTESTANTS.map(c => {
+        const clips = CLIPS.filter(cl => cl.contestant === c.name);
+        const initials = c.name.replace(/[^A-Za-z0-9]/g, "").slice(0, 2).toUpperCase();
+        return `
+        <div class="contestant-card" tabindex="0" role="button" aria-haspopup="dialog" data-name="${c.name}">
+          <div class="contestant-top">
+            <div class="avatar" style="background:${c.color}">${initials}</div>
+            <div>
+              <div class="contestant-name">${c.name}</div>
+              <div class="contestant-count"><b>${clips.length}</b> clip${clips.length === 1 ? "" : "s"} subido${clips.length === 1 ? "" : "s"}</div>
+            </div>
+            <svg class="contestant-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="margin-left:auto;"><path d="M9 6l6 6-6 6"/></svg>
+          </div>
+        </div>
+      `;
+      }).join("");
+
+      grid.querySelectorAll(".contestant-card").forEach(card => {
+        card.addEventListener("click", () => openContestantModal(card.dataset.name));
+        card.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openContestantModal(card.dataset.name);
+          }
+        });
+      });
+    }
+
+    // ---------- MODAL: CLIPS DE UN CONCURSANTE ----------
+    const contestantModal = document.getElementById("contestant-modal");
+    const contestantModalCloseBtn = document.getElementById("contestant-modal-close");
+    let lastFocusedContestantEl = null;
+
+    function openContestantModal(name) {
+      const contestant = CONTESTANTS.find(c => c.name === name);
+      if (!contestant) return;
+      const clips = CLIPS.filter(cl => cl.contestant === name);
+      const initials = name.replace(/[^A-Za-z0-9]/g, "").slice(0, 2).toUpperCase();
+
+      document.getElementById("contestant-modal-avatar").style.background = contestant.color;
+      document.getElementById("contestant-modal-avatar").textContent = initials;
+      document.getElementById("contestant-modal-title").textContent = name;
+      document.getElementById("contestant-modal-count").innerHTML =
+        `<b>${clips.length}</b> clip${clips.length === 1 ? "" : "s"} subido${clips.length === 1 ? "" : "s"}`;
+
+      const list = document.getElementById("contestant-modal-clips");
+      list.innerHTML = clips.length
+        ? clips.map(cl => `<li><button type="button" data-clip-id="${cl.id}" disabled>${cl.title}<span>${cl.duration}</span></button></li>`).join("")
+        : `<li class="contestant-modal-empty">Todavía no hay clips subidos.</li>`;
+
+      lastFocusedContestantEl = document.activeElement;
+      contestantModal.hidden = false;
+      document.body.style.overflow = "hidden";
+      contestantModalCloseBtn.focus();
+    }
+
+    function closeContestantModal() {
+      contestantModal.hidden = true;
+      document.body.style.overflow = "";
+      if (lastFocusedContestantEl) lastFocusedContestantEl.focus();
+    }
+
+    contestantModalCloseBtn.addEventListener("click", closeContestantModal);
+    contestantModal.addEventListener("click", (e) => {
+      if (e.target === contestantModal) closeContestantModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !contestantModal.hidden) closeContestantModal();
+    });
+
+    // ---------- MODAL: OTRAS COMPETICIONES ----------
+    const otherCompsModal = document.getElementById("other-comps-modal");
+    const otherCompsCloseBtn = document.getElementById("other-comps-close");
+    let lastFocusedOtherCompsEl = null;
+
+    function openOtherCompsModal(triggerEl) {
+      lastFocusedOtherCompsEl = triggerEl || document.activeElement;
+      otherCompsModal.hidden = false;
+      document.body.style.overflow = "hidden";
+      otherCompsCloseBtn.focus();
+    }
+
+    function closeOtherCompsModal() {
+      otherCompsModal.hidden = true;
+      document.body.style.overflow = "";
+      if (lastFocusedOtherCompsEl) lastFocusedOtherCompsEl.focus();
+    }
+
+    document.getElementById("other-comps-trigger-hero").addEventListener("click", (e) => openOtherCompsModal(e.currentTarget));
+    document.getElementById("other-comps-trigger-footer").addEventListener("click", (e) => openOtherCompsModal(e.currentTarget));
+    otherCompsCloseBtn.addEventListener("click", closeOtherCompsModal);
+    otherCompsModal.addEventListener("click", (e) => {
+      if (e.target === otherCompsModal) closeOtherCompsModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !otherCompsModal.hidden) closeOtherCompsModal();
+    });
+
+    renderScoreboard();
+    renderContestants();
+
+    // ---------- REVEAL AL HACER SCROLL ----------
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        // se muestra al entrar y se vuelve a ocultar al salir, en ambas direcciones,
+        // para que la web se sienta viva al subir y bajar
+        entry.target.classList.toggle("in-view", entry.isIntersecting);
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -8% 0px" });
+
+    function observeReveal(root = document) {
+      root.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+    }
+
+    function markCards(selector, container) {
+      container.querySelectorAll(selector).forEach((el, i) => {
+        el.classList.add("reveal");
+        el.style.setProperty("--i", i % 12);
+      });
+    }
+
+    markCards(".contestant-card", document.getElementById("contestants-grid"));
+    observeReveal();
+
+    if (prefersReducedMotion) {
+      document.querySelectorAll(".reveal").forEach(el => el.classList.add("in-view"));
+    }
+
+    // ---------- HEADER: SOLO VISIBLE EN LA INTRODUCCIÓN ----------
+    const topnav = document.getElementById("topnav");
+    const heroSection = document.getElementById("inicio");
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        // el header se muestra mientras la sección de inicio esté visible,
+        // y se oculta en cuanto se abandona (en cualquier dirección)
+        topnav.classList.toggle("nav-hidden", !entry.isIntersecting);
+      });
+    }, { threshold: 0, rootMargin: `-${topnav.offsetHeight}px 0px 0px 0px` });
+
+    navObserver.observe(heroSection);
+
+    // ---------- CURSOR PERSONALIZADO (punto amarillo) ----------
+    if (window.matchMedia("(pointer: fine)").matches) {
+      document.documentElement.classList.add("has-custom-cursor");
+      const dot = document.getElementById("cursor-dot");
+      let cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+      let dx = cx, dy = cy;
+
+      window.addEventListener("mousemove", (e) => {
+        cx = e.clientX; cy = e.clientY;
+        dot.classList.add("visible");
+      });
+      window.addEventListener("mouseleave", () => dot.classList.remove("visible"));
+      document.addEventListener("mousedown", () => dot.classList.add("is-active"));
+      document.addEventListener("mouseup", () => dot.classList.remove("is-active"));
+
+      document.querySelectorAll("a, button, .clip-list-item, .contestant-card").forEach(el => {
+        el.addEventListener("mouseenter", () => dot.classList.add("is-active"));
+        el.addEventListener("mouseleave", () => dot.classList.remove("is-active"));
+      });
+
+      function animateCursor() {
+        dx += (cx - dx) * 0.22;
+        dy += (cy - dy) * 0.22;
+        dot.style.transform = `translate(${dx}px, ${dy}px)`;
+        requestAnimationFrame(animateCursor);
+      }
+      animateCursor();
+    }
+  </script>
+</body>
+
+</html>

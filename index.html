@@ -1930,6 +1930,16 @@
       font-family: 'Barlow Condensed', sans-serif;
     }
 
+    .gala-round-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: .08em;
+      color: var(--gold);
+      margin: 2rem 0 .5rem;
+      padding-left: .7rem;
+      border-left: 3px solid var(--gold);
+    }
+
     .gala-card-listen {
       margin-top: .3rem;
       display: inline-flex;
@@ -2686,31 +2696,25 @@
       <p class="section-subtitle">El último gran evento que reúne a las mejores canciones de la historia de
         AutismoVision.</p>
 
-      <div class="gala-subhead">🏆 Clasificación por Campeonato</div>
+      <div class="gala-subhead">🏆 Clasificados Directamente al Bracket</div>
       <p class="section-subtitle"><strong style="color:var(--gold)"> CLASIFICACIÓN DIRECTA AL BRACKET </strong><br>
-        Clasificados por ganar su edición.</p>
+        Campeones de cada edición.<br>
+        Las casillas con<strong style="color:var(--gold)"> ??? </strong>son canciones por definir en próximas
+        ediciones.</p>
       <div class="gala-grid" id="gala-campeonato"></div>
 
-      <div class="gala-subhead">📊 Clasificación por Posición</div>
-      <p class="section-subtitle"><strong style="color:var(--gold)"> CLASIFICACIÓN A LOS PLAYOFFS </strong><br>
-        Las casillas con<strong style="color:var(--gold)"> ??? </strong>son canciones por definir en próximas
-        ediciones.<br>
-        Clasificados por quedar entre 2º y 5º puesto en su edición.</p>
-      <div class="gala-grid" id="gala-posicion"></div>
+      <div class="gala-subhead">⚔️ Playoffs</div>
 
-      <div class="gala-subhead">🗳️ Clasificación por Votación</div>
-      <p class="section-subtitle"><strong style="color:var(--gold)"> CLASIFICACIÓN A LOS PLAYOFFS </strong><br></p>
-      <div class="gala-grid" id="gala-votacion"></div>
+      <div class="gala-round-title">Ronda 2</div>
+      <p class="section-subtitle">Subcampeones, terceros puestos y el ganador de la votación.<br>
+        <strong style="color:var(--gold)"> Los ganadores de la Ronda 2 pasan al bracket. </strong></p>
+      <div class="gala-grid" id="gala-ronda2"></div>
 
-      <br><strong style="color:var(--gold)"> VOTACIÓN DE MEJOR SEXTO PUESTO </strong><br>Clasifica la mejor canción que
-      haya quedado en 6ª posición.<br>
-      <ul style="margin-top:.5rem; margin-left:1.5rem; color:var(--muted); font-size:.9rem; line-height:1.6;">
-        <li>*** - Sintu_</li>
-        <li>La tetera jiró con un pulso vibrante - Superpajas33</li>
-        <li>Minecraft en lo mas alto - Gokenrik</li>
-      </ul>
-      <br><strong style="color:var(--gold)"> VOTACIÓN DE CANCIÓN FAVORITA </strong><br>Clasifica la canción favorita
-      entre todas las que no han logrado clasificar.
+      <div class="gala-round-title">Ronda 1</div>
+      <p class="section-subtitle">Cuartos puestos, quintos puestos, sextos puestos, favorito del público y del 2º al 5º
+        puesto de la votación (un favorito del público por edición).<br>
+        <strong style="color:var(--gold)"> Los ganadores de la Ronda 1 pasan a la Ronda 2. </strong></p>
+      <div class="gala-grid" id="gala-ronda1"></div>
     </div>
   </div>
 
@@ -3162,23 +3166,42 @@
       null, null,
     ];
 
-    const GALA_POSICION = [
+    // Casillas pendientes: null = "???" (edición sin jugar) · { pending: true, label } = casilla con etiqueta propia
+    const GALA_RONDA2 = [
       { title: 'Cuantas veces me cumee', artist: 'Superpajas33 & DJ Sigma Boy', edition: '1ª Edición · 2º Puesto' },
-      { title: '¡BLARF! ¡ÑEEE! ¡TOSTADORA EMOCIONAL!', artist: 'Superpajas33', edition: '1ª Edición · 3º Puesto' },
-      { title: 'F*cking Mier-da', artist: 'DJ Sigma Boy & Superpajas33', edition: '1ª Edición · 4º Puesto' },
-      { title: '¿Quién dejó el microondas encendido en mi columna vertebral?', artist: 'Superpajas33', edition: '1ª Edición · 5º Puesto' },
       { title: 'OLL, ARF, CHICHICHU', artist: 'Superpajas33', edition: '2ª Edición · 2º Puesto' },
-      { title: 'La Función', artist: 'Sintu_', edition: '2ª Edición · 3º Puesto' },
-      { title: 'BG4E', artist: 'Sintu_', edition: '2ª Edición · 4º Puesto' },
-      { title: 'Me he fumado un porro lo se', artist: 'Sintu_', edition: '2ª Edición · 5º Puesto' },
       { title: 'El Mister', artist: 'DJ Sigma Boy', edition: '3ª Edición · 2º Puesto' },
+      null, null,
+      { title: '¡BLARF! ¡ÑEEE! ¡TOSTADORA EMOCIONAL!', artist: 'Superpajas33', edition: '1ª Edición · 3º Puesto' },
+      { title: 'La Función', artist: 'Sintu_', edition: '2ª Edición · 3º Puesto' },
       { title: 'Un Arabe Jamonero', artist: 'Sintu_ & Borja', edition: '3ª Edición · 3º Puesto' },
-      { title: 'Lionella Pepsi', artist: 'Borja', edition: '3ª Edición · 4º Puesto' },
-      { title: 'Bnet Fan', artist: 'DJ Sigma Boy', edition: '3ª Edición · 5º Puesto' },
-      null, null, null, null, null, null, null, null,
+      null, null,
+      { pending: true, label: 'Ganador de la votación' },
     ];
 
-    const GALA_VOTACION = [null, null];
+    const GALA_RONDA1 = [
+      { title: 'F*cking Mier-da', artist: 'DJ Sigma Boy & Superpajas33', edition: '1ª Edición · 4º Puesto' },
+      { title: 'BG4E', artist: 'Sintu_', edition: '2ª Edición · 4º Puesto' },
+      { title: 'Lionella Pepsi', artist: 'Borja', edition: '3ª Edición · 4º Puesto' },
+      null, null,
+      { title: '¿Quién dejó el microondas encendido en mi columna vertebral?', artist: 'Superpajas33', edition: '1ª Edición · 5º Puesto' },
+      { title: 'Me he fumado un porro lo se', artist: 'Sintu_', edition: '2ª Edición · 5º Puesto' },
+      { title: 'Bnet Fan', artist: 'DJ Sigma Boy', edition: '3ª Edición · 5º Puesto' },
+      null, null,
+      { title: '***', artist: 'Sintu_', edition: '1ª Edición · 6º Puesto' },
+      { title: 'La tetera jiró con un pulso vibrante', artist: 'Superpajas33', edition: '2ª Edición · 6º Puesto' },
+      { title: 'Minecraft en lo mas alto', artist: 'Gokenrik', edition: '3ª Edición · 6º Puesto' },
+      null, null,
+      { pending: true, label: 'Favorito del público · 1ª Edición' },
+      { pending: true, label: 'Favorito del público · 2ª Edición' },
+      { pending: true, label: 'Favorito del público · 3ª Edición' },
+      { pending: true, label: 'Favorito del público · 4ª Edición' },
+      { pending: true, label: 'Favorito del público · 5ª Edición' },
+      { pending: true, label: '2º de la votación' },
+      { pending: true, label: '3º de la votación' },
+      { pending: true, label: '4º de la votación' },
+      { pending: true, label: '5º de la votación' },
+    ];
 
     function clean(str) {
       return String(str).toLowerCase()
@@ -3890,11 +3913,11 @@
         const el = document.getElementById(targetId);
         if (!el) return;
         el.innerHTML = items.map(item => {
-          if (!item) {
+          if (!item || item.pending) {
             return `
               <div class="gala-card pending">
                 <div class="gala-q">???</div>
-                <div class="gala-q-label">Por Definir</div>
+                <div class="gala-q-label">${item && item.label ? item.label : 'Por Definir'}</div>
               </div>
             `;
           }
@@ -3912,8 +3935,8 @@
       };
 
       renderGrid(GALA_CAMPEONATO, 'gala-campeonato');
-      renderGrid(GALA_POSICION, 'gala-posicion');
-      renderGrid(GALA_VOTACION, 'gala-votacion');
+      renderGrid(GALA_RONDA2, 'gala-ronda2');
+      renderGrid(GALA_RONDA1, 'gala-ronda1');
     }
 
     window.onload = function () {

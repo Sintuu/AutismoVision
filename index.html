@@ -1930,6 +1930,15 @@
       font-family: 'Barlow Condensed', sans-serif;
     }
 
+    .gala-extra {
+      text-align: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: .08em;
+      color: var(--gold);
+      margin: 1.2rem 0 0;
+    }
+
     .gala-round-title {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 1.6rem;
@@ -2702,6 +2711,7 @@
         Las casillas con<strong style="color:var(--gold)"> ??? </strong>son canciones por definir en próximas
         ediciones.</p>
       <div class="gala-grid" id="gala-campeonato"></div>
+      <div class="gala-extra">(+ 11 clasificados de la ronda 2 de los playoffs)</div>
 
       <div class="gala-subhead">⚔️ Playoffs</div>
 
@@ -2709,9 +2719,10 @@
       <p class="section-subtitle">Subcampeones, terceros puestos y el ganador de la votación.<br>
         <strong style="color:var(--gold)"> Los ganadores de la Ronda 2 pasan al bracket. </strong></p>
       <div class="gala-grid" id="gala-ronda2"></div>
+      <div class="gala-extra">(+ 11 clasificados de la ronda 1 de los playoffs)</div>
 
       <div class="gala-round-title">Ronda 1</div>
-      <p class="section-subtitle">Cuartos puestos, quintos puestos, sextos puestos, favorito del público y del 2º al 5º
+      <p class="section-subtitle">Cuartos puestos, quintos puestos, sextos puestos, favorito del público y del 2º y 3º
         puesto de la votación (un favorito del público por edición).<br>
         <strong style="color:var(--gold)"> Los ganadores de la Ronda 1 pasan a la Ronda 2. </strong></p>
       <div class="gala-grid" id="gala-ronda1"></div>
@@ -3199,8 +3210,6 @@
       { pending: true, label: 'Favorito del público · 5ª Edición' },
       { pending: true, label: '2º de la votación' },
       { pending: true, label: '3º de la votación' },
-      { pending: true, label: '4º de la votación' },
-      { pending: true, label: '5º de la votación' },
     ];
 
     function clean(str) {

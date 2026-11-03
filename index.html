@@ -2738,8 +2738,10 @@
       musical.</p>
 
     <div class="edition-tabs" id="awards-tabs">
-      <button class="tab-btn" onclick="switchAwards(1, this)">4ª Edición — AV69</button>
-      <button class="tab-btn active" onclick="switchAwards(0, this)">Todas</button>
+      <button class="tab-btn" onclick="switchAwards(4, this)">4ª Edición — AV69</button>
+      <button class="tab-btn active" onclick="switchAwards(3, this)">3ª Edición - AV4801</button>
+      <button class="tab-btn" onclick="switchAwards(2, this)">2ª Edición — AV3</button>
+      <button class="tab-btn" onclick="switchAwards(1, this)">1ª Edición — AV</button>
     </div>
     <div id="awards-container"></div>
     <div id="awards-ne" style="display:none;">
@@ -3711,9 +3713,10 @@
       activeContestant = null;
     }
 
-    function buildSecondaryAwards() {
+    function buildSecondaryAwards(edNum = 3) {
       const container = document.getElementById('awards-container');
-      container.innerHTML = PREMIOS_SECUNDARIOS.map(ed => `
+      const list = PREMIOS_SECUNDARIOS[edNum - 1] ? [PREMIOS_SECUNDARIOS[edNum - 1]] : [];
+      container.innerHTML = list.map(ed => `
         <div class="awards-ed-block">
           <div class="awards-ed-title">🏆 ${ed.edition}</div>
           <div class="awards-grid">
@@ -3731,8 +3734,10 @@
     }
 
     function switchAwards(idx, btn) {
-      document.getElementById('awards-container').style.display = idx === 0 ? '' : 'none';
-      document.getElementById('awards-ne').style.display = idx === 0 ? 'none' : 'block';
+      const isNew = idx === 4;
+      if (!isNew) buildSecondaryAwards(idx);
+      document.getElementById('awards-container').style.display = isNew ? 'none' : '';
+      document.getElementById('awards-ne').style.display = isNew ? 'block' : 'none';
       btn.parentElement.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
     }

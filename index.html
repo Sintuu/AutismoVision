@@ -2329,15 +2329,28 @@
       padding: 2rem 1rem;
     }
 
+    .ne-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .6rem;
+      min-width: 0;
+    }
+
+    /* Versión compacta del inicio: logo a la izquierda, contador a la derecha */
     .ne-hero {
-      margin-bottom: 2.5rem;
-      padding-top: 1rem;
+      flex-direction: row;
+      justify-content: center;
+      gap: clamp(1rem, 4vw, 3rem);
+      padding: .5rem 1rem;
+      margin-bottom: 1.5rem;
     }
 
     .ne-logo {
-      width: min(80vw, 380px);
+      width: clamp(110px, 24vw, 230px);
       height: auto;
-      filter: drop-shadow(0 0 30px rgba(255, 0, 0, .35));
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 22px rgba(255, 0, 0, .35));
     }
 
     .ne-text {
@@ -2349,33 +2362,76 @@
       color: var(--text);
     }
 
+    .ne-hero .ne-text {
+      font-size: clamp(.75rem, 2.2vw, 1.15rem);
+      letter-spacing: .18em;
+    }
+
     .countdown {
       display: flex;
-      gap: clamp(.5rem, 2vw, 1.2rem);
+      gap: clamp(.5rem, 2vw, 1.4rem);
       justify-content: center;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
     }
 
     .cd-unit {
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-width: clamp(64px, 16vw, 96px);
-      padding: .8rem .5rem;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      box-shadow: 0 0 22px rgba(255, 45, 120, .15);
+      min-width: clamp(48px, 14vw, 90px);
+      position: relative;
+    }
+
+    .cd-unit:not(:last-child)::after {
+      content: ':';
+      position: absolute;
+      right: calc(-.5 * clamp(.5rem, 2vw, 1.4rem));
+      top: 0;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 8vw, 3.6rem);
+      line-height: 1.2;
+      color: var(--muted);
+      opacity: .5;
+      transform: translateX(50%);
     }
 
     .cd-num {
+      display: inline-flex;
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(2.2rem, 8vw, 3.6rem);
-      line-height: 1;
+      line-height: 1.2;
+      height: 1.2em;
       color: var(--accent1);
-      text-shadow: 0 0 18px rgba(255, 45, 120, .6);
-      font-variant-numeric: tabular-nums;
+      /* los números se deslizan solo dentro de esta zona (donde estaba la caja) */
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 22%, #000 78%, transparent 100%);
+      mask-image: linear-gradient(to bottom, transparent 0, #000 22%, #000 78%, transparent 100%);
     }
+
+    .cd-digit {
+      position: relative;
+      display: inline-block;
+      width: .56em;
+      height: 1.2em;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .cd-d {
+      display: block;
+      width: 100%;
+      height: 1.2em;
+    }
+
+    .cd-d.in { animation: cdIn .55s cubic-bezier(.22, 1, .36, 1); }
+    .cd-d.out { position: absolute; left: 0; top: 0; animation: cdOut .55s cubic-bezier(.22, 1, .36, 1) forwards; }
+
+    @keyframes cdIn { from { transform: translateY(100%); opacity: 0; } to { transform: none; opacity: 1; } }
+    @keyframes cdOut { from { transform: none; opacity: 1; } to { transform: translateY(-100%); opacity: 0; } }
+
+    .ne-hero .cd-unit { min-width: clamp(36px, 8vw, 64px); }
+    .ne-hero .cd-num,
+    .ne-hero .cd-unit:not(:last-child)::after { font-size: clamp(1.6rem, 5vw, 2.8rem); }
 
     .cd-lbl {
       font-family: 'Barlow Condensed', sans-serif;
@@ -2383,7 +2439,7 @@
       letter-spacing: .2em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-top: .3rem;
+      margin-top: .2rem;
     }
 
     .cd-done {
@@ -2391,6 +2447,22 @@
       font-size: 2rem;
       color: var(--accent3);
     }
+
+    /* ─── CANCIÓN PRESENTE EN LA ÚLTIMA GALA ─── */
+    .in-gala {
+      color: var(--gold) !important;
+      text-shadow: 0 0 10px rgba(255, 215, 0, .35);
+    }
+
+    .gala-mark {
+      display: inline-block;
+      margin-left: .4em;
+      font-size: .8em;
+      color: var(--gold);
+      text-shadow: 0 0 8px rgba(255, 215, 0, .6);
+      vertical-align: baseline;
+    }
+
   </style>
 </head>
 
@@ -2412,6 +2484,7 @@
     <div class="hero-bg"></div>
     <div class="ne-block ne-hero">
     <img class="ne-logo" src="imagen/AV69.png" alt="AutismoVision 4ª edición">
+    <div class="ne-info">
     <div class="ne-text">La nueva edición comienza en</div>
     <div class="countdown" data-target="2026-11-27T19:00:00+01:00">
   <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
@@ -2420,6 +2493,7 @@
   <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
 </div>
 <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
+    </div>
   </div>
     <div class="other-comps-badge" onclick="openOtherCompsModal()">Otras competiciones</div>
     <div class="hero-edition-badge">✦ Eurovisión vamos a por ti 😈 ✦</div>
@@ -3351,7 +3425,7 @@
       null, null,
       { title: 'El Pepino gigantesco de la madre de Diego Mier Gil', artist: 'Sintu_', edition: '1ª Edición · Favorito del público' },
       { title: 'S.A. (Sirios Afganos)', artist: 'Minwerfu', edition: '2ª Edición · Favorito del público' },
-      { pending: true, label: 'Favorito del público · 3ª Edición' },
+      { title: 'No Punchs ;)', artist: 'Sintu_', edition: '3ª Edición · Favorito del público' },
       { pending: true, label: 'Favorito del público · 4ª Edición' },
       { pending: true, label: 'Favorito del público · 5ª Edición' },
       { pending: true, label: '2º de la votación' },
@@ -3549,7 +3623,7 @@
         <div class="playlist-item" onclick="selectSong(${edIdx}, '${esc(s.title)}', '${esc(s.artist || '')}', this)">
           <div class="pi-num">${i + 1}</div>
           <div class="pi-info">
-            <div class="pi-title">${s.title}</div>
+            <div class="pi-title ${isInGala(s.title) ? 'in-gala' : ''}">${s.title}${galaMark(s.title)}</div>
             <div class="pi-artist">${s.artist ? s.artist + (s.producer ? ' · Prod. ' + s.producer : '') : 'Sin artista'}</div>
           </div>
           <div class="pi-play-icon"><svg viewBox="0 0 10 10"><polygon points="2,1 9,5 2,9"/></svg></div>
@@ -3723,7 +3797,7 @@
             ${ed.awards.map(a => `
               <div class="award-card" onclick="openVideoModal('${esc(a.song)}', '${esc(a.artist)}')">
                 <div class="award-category">${a.category}</div>
-                <div class="award-song-title">${a.song}</div>
+                <div class="award-song-title ${isInGala(a.song) ? 'in-gala' : ''}">${a.song}${galaMark(a.song)}</div>
                 <div class="award-artist">${a.artist}</div>
                 <div class="award-play-tag">▶ Escuchar Canción</div>
               </div>
@@ -3750,7 +3824,7 @@
         <div class="rt-row ${pos <= 3 ? 'top-3' : ''}">
           <div class="rt-pos ${cls}">${pos}</div>
           <div style="min-width:0">
-            <div class="rt-song">${s.title}</div>
+            <div class="rt-song ${isInGala(s.title) ? 'in-gala' : ''}">${s.title}${galaMark(s.title)}</div>
             <div style="font-size:.72rem; color:var(--muted); margin-top:.1rem">${s.artist} ${stageBadge}</div>
           </div>
           <div class="rt-score">${s.score} pts</div>
@@ -3780,7 +3854,7 @@
           <div class="rt-row ${pos <= 3 ? 'top-3' : ''}">
             <div class="rt-pos ${cls}">${pos}</div>
             <div style="min-width:0">
-              <div class="rt-song">${s.title}</div>
+              <div class="rt-song ${isInGala(s.title) ? 'in-gala' : ''}">${s.title}${galaMark(s.title)}</div>
               <div style="font-size:.72rem; color:var(--muted); margin-top:.1rem">${s.artist}
                 <span class="rt-stage-tag" style="background:#ffffff0d; color:var(--muted); border:1px solid var(--border)">${s.edLabel}</span>
               </div>
@@ -4072,6 +4146,17 @@
         </div>
       `;
     }
+
+    let _galaSet = null;
+    const _normT = t => String(t || '').trim().toLowerCase();
+    function isInGala(title) {
+      if (!_galaSet) {
+        _galaSet = new Set([...GALA_CAMPEONATO, ...GALA_RONDA2, ...GALA_RONDA1]
+          .filter(x => x && !x.pending).map(x => _normT(x.title)));
+      }
+      return _galaSet.has(_normT(title));
+    }
+    const galaMark = title => isInGala(title) ? '<span class="gala-mark" title="En La Última Gala">🏅</span>' : '';
 
     function renderGala() {
       const renderGrid = (items, targetId) => {
@@ -4392,7 +4477,26 @@
   </script>
   <script>
     (function () {
-      const pad = n => String(n).padStart(2, '0');
+      function setDigits(el, str) {
+        if (el.dataset.val === str) return;
+        const first = !el.dataset.val;
+        if (el.children.length !== str.length) {
+          el.innerHTML = [...str].map(c => `<span class="cd-digit"><span class="cd-d">${c}</span></span>`).join('');
+        } else {
+          [...str].forEach((c, i) => {
+            const box = el.children[i];
+            const cur = box.querySelector('.cd-d:not(.out)');
+            if (cur && cur.textContent === c) return;
+            const nw = document.createElement('span');
+            nw.className = 'cd-d' + (first ? '' : ' in');
+            nw.textContent = c;
+            if (cur) { cur.classList.add('out'); setTimeout(() => cur.remove(), 600); }
+            box.appendChild(nw);
+            setTimeout(() => nw.classList.remove('in'), 600);
+          });
+        }
+        el.dataset.val = str;
+      }
       function tick() {
         document.querySelectorAll('.countdown').forEach(cd => {
           const diff = new Date(cd.dataset.target) - new Date();
@@ -4404,8 +4508,9 @@
           }
           const d = Math.floor(diff / 864e5), h = Math.floor(diff / 36e5) % 24,
                 m = Math.floor(diff / 6e4) % 60, sec = Math.floor(diff / 1e3) % 60;
+          const pad = n => String(n).padStart(2, '0');
           const v = { d: pad(d), h: pad(h), m: pad(m), s: pad(sec) };
-          cd.querySelectorAll('[data-cd]').forEach(el => el.textContent = v[el.dataset.cd]);
+          cd.querySelectorAll('[data-cd]').forEach(el => setDigits(el, v[el.dataset.cd]));
         });
       }
       tick();

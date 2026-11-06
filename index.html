@@ -2423,15 +2423,49 @@
       height: 1.2em;
     }
 
-    .cd-d.in { animation: cdIn .55s cubic-bezier(.22, 1, .36, 1); }
-    .cd-d.out { position: absolute; left: 0; top: 0; animation: cdOut .55s cubic-bezier(.22, 1, .36, 1) forwards; }
+    .cd-d.in {
+      animation: cdIn .55s cubic-bezier(.22, 1, .36, 1);
+    }
 
-    @keyframes cdIn { from { transform: translateY(100%); opacity: 0; } to { transform: none; opacity: 1; } }
-    @keyframes cdOut { from { transform: none; opacity: 1; } to { transform: translateY(-100%); opacity: 0; } }
+    .cd-d.out {
+      position: absolute;
+      left: 0;
+      top: 0;
+      animation: cdOut .55s cubic-bezier(.22, 1, .36, 1) forwards;
+    }
 
-    .ne-hero .cd-unit { min-width: clamp(36px, 8vw, 64px); }
+    @keyframes cdIn {
+      from {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: none;
+        opacity: 1;
+      }
+    }
+
+    @keyframes cdOut {
+      from {
+        transform: none;
+        opacity: 1;
+      }
+
+      to {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+    }
+
+    .ne-hero .cd-unit {
+      min-width: clamp(36px, 8vw, 64px);
+    }
+
     .ne-hero .cd-num,
-    .ne-hero .cd-unit:not(:last-child)::after { font-size: clamp(1.6rem, 5vw, 2.8rem); }
+    .ne-hero .cd-unit:not(:last-child)::after {
+      font-size: clamp(1.6rem, 5vw, 2.8rem);
+    }
 
     .cd-lbl {
       font-family: 'Barlow Condensed', sans-serif;
@@ -2909,18 +2943,18 @@
   <div class="hero">
     <div class="hero-bg"></div>
     <div class="ne-block ne-hero">
-    <img class="ne-logo" src="imagen/AV69.png" alt="AutismoVision 4ª edición">
-    <div class="ne-info">
-    <div class="ne-text">La nueva edición comienza en</div>
-    <div class="countdown" data-target="2026-11-27T19:00:00+01:00">
-  <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
-  <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
-  <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
-  <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
-</div>
-<div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
+      <img class="ne-logo" src="imagen/AV69.png" alt="AutismoVision 4ª edición">
+      <div class="ne-info">
+        <div class="ne-text">La nueva edición comienza en</div>
+        <div class="countdown" data-target="2026-11-27T19:00:00+01:00">
+          <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
+        </div>
+        <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
+      </div>
     </div>
-  </div>
     <div class="other-comps-badge" onclick="openOtherCompsModal()">Otras competiciones</div>
     <div class="hero-edition-badge">✦ Eurovisión vamos a por ti 😈 ✦</div>
     <img class="hero-logo" src="imagen/Portada.png" alt="AutismoVision">
@@ -3083,12 +3117,12 @@
       <div class="ne-block">
         <div class="ne-text">La nueva edición empieza en</div>
         <div class="countdown" data-target="2026-11-27T19:00:00+01:00">
-        <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
-        <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
-        <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
-        <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
-      </div>
-      <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
+          <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
+        </div>
+        <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
       </div>
     </div>
   </section>
@@ -3158,12 +3192,12 @@
       <div class="ne-block">
         <div class="ne-text">La nueva edición empieza en</div>
         <div class="countdown" data-target="2026-11-27T19:00:00+01:00">
-        <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
-        <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
-        <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
-        <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
-      </div>
-      <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
+          <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
+        </div>
+        <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
       </div>
     </div>
 
@@ -3184,7 +3218,8 @@
   <section id="concursantes" class="reveal">
     <div class="section-label">👤 Artistas & Estadísticas</div>
     <h2 class="section-title">Concursantes</h2>
-    <p class="section-subtitle">Los artistas que compiten en AutismoVision. Usa las flechas para pasar de uno a otro y ver sus
+    <p class="section-subtitle">Los artistas que compiten en AutismoVision. Usa las flechas para pasar de uno a otro y
+      ver sus
       estadísticas detalladas y discografía completa.</p>
 
     <div class="cc-carousel" id="cc-carousel">
@@ -3253,12 +3288,12 @@
         <div class="ne-block">
           <div class="ne-text">La nueva edición empieza en</div>
           <div class="countdown" data-target="2026-11-27T19:00:00+01:00">
-          <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
-          <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
-          <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
-          <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
-        </div>
-        <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
+            <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
+            <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
+            <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
+            <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
+          </div>
+          <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
         </div>
       </div>
     </div>
@@ -3343,12 +3378,12 @@
       <div class="ne-block">
         <div class="ne-text">La nueva edición empieza en</div>
         <div class="countdown" data-target="2026-11-27T19:00:00+01:00">
-        <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
-        <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
-        <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
-        <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
-      </div>
-      <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
+          <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
+        </div>
+        <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
       </div>
     </div>
   </section>
@@ -3373,14 +3408,16 @@
 
       <div class="gala-round-title">Ronda 2</div>
       <p class="section-subtitle">Subcampeones, terceros puestos y el ganador de la votación.<br>
-        <strong style="color:var(--gold)"> Los ganadores de la Ronda 2 pasan al bracket. </strong></p>
+        <strong style="color:var(--gold)"> Los ganadores de la Ronda 2 pasan al bracket. </strong>
+      </p>
       <div class="gala-grid" id="gala-ronda2"></div>
       <div class="gala-extra">(+ 11 clasificados de la ronda 1 de los playoffs)</div>
 
       <div class="gala-round-title">Ronda 1</div>
       <p class="section-subtitle">Cuartos puestos, quintos puestos, sextos puestos, favorito del público y del 2º y 3º
         puesto de la votación (un favorito del público por edición).<br>
-        <strong style="color:var(--gold)"> Los ganadores de la Ronda 1 pasan a la Ronda 2. </strong></p>
+        <strong style="color:var(--gold)"> Los ganadores de la Ronda 1 pasan a la Ronda 2. </strong>
+      </p>
       <div class="gala-grid" id="gala-ronda1"></div>
     </div>
   </div>
@@ -3782,13 +3819,13 @@
     //  Si una imagen no carga, se muestra el texto en su lugar.
     // ════════════════════════════════════════════
     const CONTESTANT_IMGS = {
-      'Superpajas33': 'imagen/lettering/Superpajas33.png',
-      'Sintu_': 'imagen/lettering/Sintu_.png',
-      'Borja': 'imagen/lettering/Borja.png',
-      'Minwerfu': 'imagen/lettering/Minwerfu.png',
-      'DJ Sigma Boy': 'imagen/lettering/DJSigmaBoy.png',
-      'Gokenrik': 'imagen/lettering/Gokenrik.png',
-      'Gheorge777': 'imagen/lettering/Gheorge777.png',
+      'Superpajas33': 'imagen/Superpajas33.png',
+      'Sintu_': 'imagen/Sintu_.png',
+      'Borja': 'imagen/Borja.png',
+      'Minwerfu': 'imagen/Minwerfu.png',
+      'DJ Sigma Boy': 'imagen/DJSigmaBoy.png',
+      'Gokenrik': 'imagen/Gokenrik.png',
+      'Gheorge777': 'imagen/Gheorge777.png',
     };
     const CONTESTANT_ALIASES = { 'Luner': 'Superpajas33', 'Madi': 'DJ Sigma Boy', 'Madie': 'DJ Sigma Boy' };
 
@@ -5056,7 +5093,7 @@
             return;
           }
           const d = Math.floor(diff / 864e5), h = Math.floor(diff / 36e5) % 24,
-                m = Math.floor(diff / 6e4) % 60, sec = Math.floor(diff / 1e3) % 60;
+            m = Math.floor(diff / 6e4) % 60, sec = Math.floor(diff / 1e3) % 60;
           const pad = n => String(n).padStart(2, '0');
           const v = { d: pad(d), h: pad(h), m: pad(m), s: pad(sec) };
           cd.querySelectorAll('[data-cd]').forEach(el => setDigits(el, v[el.dataset.cd]));

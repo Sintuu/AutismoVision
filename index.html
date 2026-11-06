@@ -2463,6 +2463,432 @@
       vertical-align: baseline;
     }
 
+
+    /* ═══════════ ESTADÍSTICAS GENERALES (centrada, sin caja) ═══════════ */
+    .global-stats {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .global-stat {
+      text-align: center;
+      padding: 1rem 2rem 1.5rem;
+      position: relative;
+    }
+
+    .gs-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5.5rem, 18vw, 10rem);
+      line-height: .95;
+      background: linear-gradient(135deg, var(--accent1) 0%, var(--accent3) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 28px rgba(255, 45, 120, .35));
+    }
+
+    .gs-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: .6rem;
+    }
+
+    .global-stat::after {
+      content: '';
+      display: block;
+      width: 90px;
+      height: 2px;
+      margin: 1.2rem auto 0;
+      background: linear-gradient(to right, transparent, var(--accent1), transparent);
+    }
+
+    /* ═══════════ LOGOS EN LAS PESTAÑAS DE EDICIÓN ═══════════ */
+    .tab-btn.has-logo {
+      padding: .5rem 1.2rem;
+    }
+
+    .tab-logo {
+      height: 38px;
+      width: auto;
+      max-width: 150px;
+      object-fit: contain;
+      opacity: .5;
+      transition: opacity .2s, transform .2s, filter .2s;
+      display: block;
+    }
+
+    .tab-btn:hover .tab-logo {
+      opacity: .85;
+    }
+
+    .tab-btn.active .tab-logo {
+      opacity: 1;
+      transform: scale(1.06);
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, .25));
+    }
+
+    /* ═══════════ CAJA DEL REPRODUCTOR ═══════════ */
+    .npb-artist {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .4rem .6rem;
+      margin: .15rem 0 .35rem;
+    }
+
+    .npb-lt {
+      height: 34px;
+      width: auto;
+      max-width: 180px;
+      object-fit: contain;
+    }
+
+    .lt-fallback {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: .04em;
+    }
+
+    .lt-amp {
+      color: var(--muted);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+    }
+
+    .npb-prod {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .75rem;
+      color: var(--muted);
+      margin-left: .4rem;
+    }
+
+    .npb-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: .6rem;
+      margin-top: .5rem;
+    }
+
+    .npb-meta:empty {
+      display: none;
+    }
+
+    .npb-chip {
+      display: flex;
+      flex-direction: column;
+      gap: .2rem;
+      padding: .55rem .75rem;
+      border-left: 2px solid var(--accent1);
+      background: linear-gradient(to right, rgba(255, 45, 120, .08), transparent);
+    }
+
+    .npb-chip-l {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .66rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .npb-chip-v {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      flex-wrap: wrap;
+      gap: .25rem;
+      align-items: baseline;
+    }
+
+    .npb-chip-v small {
+      font-size: .72rem;
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    .npb-award {
+      background: rgba(255, 215, 0, .12);
+      border: 1px solid rgba(255, 215, 0, .35);
+      color: var(--gold);
+      border-radius: 3px;
+      padding: 1px 6px;
+      font-size: .72rem;
+      font-weight: 600;
+    }
+
+    /* ═══════════ CARRUSEL DE CONCURSANTES ═══════════ */
+    .cc-carousel {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 1rem;
+      align-items: start;
+      margin-top: 1rem;
+    }
+
+    .cc-arrow {
+      position: sticky;
+      top: 45vh;
+      align-self: start;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, .04);
+      color: var(--text);
+      font-size: 2rem;
+      line-height: 1;
+      padding-bottom: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .2s;
+      z-index: 3;
+      margin-top: 8rem;
+    }
+
+    .cc-arrow:hover {
+      background: var(--accent1);
+      border-color: var(--accent1);
+      box-shadow: 0 0 20px rgba(255, 45, 120, .5);
+      transform: scale(1.08);
+    }
+
+    .cc-dots {
+      display: flex;
+      justify-content: center;
+      gap: .6rem;
+      margin-top: 1.25rem;
+    }
+
+    .cc-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: none;
+      background: var(--border);
+      transition: all .25s;
+    }
+
+    .cc-dot:hover {
+      background: var(--dot);
+      opacity: .7;
+    }
+
+    .cc-dot.active {
+      background: var(--dot);
+      width: 28px;
+      border-radius: 6px;
+      box-shadow: 0 0 10px var(--dot);
+    }
+
+    /* Panel sin caja de fondo */
+    .contestant-songs-panel {
+      margin-top: 0;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      overflow: visible;
+    }
+
+    .csp-header {
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      gap: .35rem;
+      background: none;
+      border-bottom: none;
+      padding: .5rem 1rem 0;
+    }
+
+    .csp-name-img {
+      height: clamp(70px, 14vw, 120px);
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .csp-name .lt-fallback {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 400;
+    }
+
+    .csp-aka {
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: .15em;
+      font-size: .85rem;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .csp-aka:empty {
+      display: none;
+    }
+
+    .csp-counter {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .75rem;
+      letter-spacing: .25em;
+      color: var(--muted);
+    }
+
+    /* Estadísticas: sin cajas, con lettering desenfocado al fondo */
+    .contestant-songs-panel .stats-container {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      background: transparent;
+      border-bottom: none;
+      padding: 1.5rem 1rem 2rem;
+    }
+
+    .csp-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .csp-bg-img {
+      width: min(85%, 720px);
+      max-height: 115%;
+      object-fit: contain;
+      filter: blur(6px);
+      opacity: .2;
+      transform: scale(1.15);
+    }
+
+    .contestant-songs-panel .stats-title {
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .contestant-songs-panel .stats-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.5rem .5rem;
+    }
+
+    .contestant-songs-panel .stat-card {
+      background: none;
+      border: none;
+      border-radius: 0;
+      padding: .5rem;
+      text-align: center;
+    }
+
+    .contestant-songs-panel .stat-label {
+      font-size: .7rem;
+      letter-spacing: .2em;
+      margin-bottom: .45rem;
+    }
+
+    .contestant-songs-panel .stat-big {
+      font-size: clamp(2rem, 5vw, 3.1rem);
+      text-shadow: 0 0 26px color-mix(in srgb, currentColor 45%, transparent);
+    }
+
+    .contestant-songs-panel .stat-subvalue {
+      font-size: .8rem;
+    }
+
+    .contestant-songs-panel .stat-half {
+      grid-column: span 2;
+    }
+
+    .contestant-songs-panel .stat-wide {
+      grid-column: 1 / -1;
+      padding-top: 1.1rem;
+      position: relative;
+    }
+
+    .contestant-songs-panel .stat-wide::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 20%;
+      right: 20%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, .18), transparent);
+    }
+
+    .stat-best {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.7rem;
+      color: var(--accent3);
+      line-height: 1.15;
+    }
+
+    .stat-best-meta {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .9rem;
+      letter-spacing: .1em;
+      color: var(--muted);
+    }
+
+    .stat-curiosity {
+      font-size: 1rem;
+      line-height: 1.45;
+      max-width: 620px;
+      margin: 0 auto;
+      color: var(--text);
+    }
+
+    .contestant-songs-panel .csp-songs-grid {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    @media (max-width: 800px) {
+      .cc-carousel {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .cc-arrow {
+        position: absolute;
+        top: 3rem;
+        margin-top: 0;
+        width: 40px;
+        height: 40px;
+        font-size: 1.6rem;
+        background: rgba(8, 8, 16, .75);
+      }
+
+      .cc-prev {
+        left: 0;
+      }
+
+      .cc-next {
+        right: 0;
+      }
+
+      .contestant-songs-panel .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .contestant-songs-panel .stat-half {
+        grid-column: span 1;
+      }
+
+      .tab-logo {
+        height: 30px;
+      }
+    }
   </style>
 </head>
 
@@ -2501,10 +2927,10 @@
     <p class="hero-subtitle">El concurso de canciones más autistas del universo</p>
     <nav class="hero-nav">
       <a href="#musica" class="primary">🎵 Escuchar Temazos</a>
-      <a href="#barras" class="secondary">✍️ Barras</a>
-      <a href="#concursantes" class="secondary">👤 Concursantes & Stats</a>
-      <a href="#premios-secundarios" class="secondary">🎖️ Premios Secundarios</a>
       <a href="#clasificaciones" class="secondary">🏆 Clasificaciones</a>
+      <a href="#concursantes" class="secondary">👤 Concursantes & Stats</a>
+      <a href="#barras" class="secondary">✍️ Barras</a>
+      <a href="#premios-secundarios" class="secondary">🎖️ Premios Secundarios</a>
       <a href="#gala-final" class="gold-nav">🏅 La Última Gala</a>
     </nav>
     <div class="scroll-hint">Scroll</div>
@@ -2514,11 +2940,10 @@
   <section id="estadisticas-generales" class="reveal" style="padding-bottom: 2rem;">
     <div class="section-label">📊 Visión Global</div>
     <h2 class="section-title">Estadísticas Generales</h2>
-    <div class="stats-grid" style="display:flex; gap:1rem; margin-top:1rem; max-width:280px;">
-      <div class="stat-card"
-        style="flex:1; text-align:center; padding: 2rem; background: var(--card); border: 1px solid var(--border); border-radius: 6px;">
-        <div class="stat-label" style="font-size: 1rem; margin-bottom: 0.5rem;">Canciones Totales</div>
-        <div class="stat-value" id="global-total-songs" style="font-size:3rem; color:var(--accent1);">0</div>
+    <div class="global-stats">
+      <div class="global-stat">
+        <div class="gs-value" id="global-total-songs">0</div>
+        <div class="gs-label">Canciones Totales</div>
       </div>
     </div>
   </section>
@@ -2566,6 +2991,7 @@
             <span class="npb-label">▶ Reproduciendo</span>
             <div class="npb-title" id="npb-title-0">Ninguna canción seleccionada</div>
             <div class="npb-artist" id="npb-artist-0">—</div>
+            <div class="npb-meta" id="npb-meta-0"></div>
             <div class="npb-hint">Haz clic en una canción de la lista para escucharla aquí mismo</div>
           </div>
         </div>
@@ -2592,6 +3018,7 @@
             <span class="npb-label">▶ Reproduciendo</span>
             <div class="npb-title" id="npb-title-1">Ninguna canción seleccionada</div>
             <div class="npb-artist" id="npb-artist-1">—</div>
+            <div class="npb-meta" id="npb-meta-1"></div>
             <div class="npb-hint">Haz clic en una canción de la lista para escucharla aquí mismo</div>
           </div>
         </div>
@@ -2618,6 +3045,7 @@
             <span class="npb-label">▶ Reproduciendo</span>
             <div class="npb-title" id="npb-title-2">Ninguna canción seleccionada</div>
             <div class="npb-artist" id="npb-artist-2">—</div>
+            <div class="npb-meta" id="npb-meta-2"></div>
             <div class="npb-hint">Haz clic en una canción de la lista para escucharla aquí mismo</div>
           </div>
         </div>
@@ -2644,6 +3072,7 @@
             <span class="npb-label">▶ Reproduciendo</span>
             <div class="npb-title" id="npb-title-3">Ninguna canción seleccionada</div>
             <div class="npb-artist" id="npb-artist-3">—</div>
+            <div class="npb-meta" id="npb-meta-3"></div>
             <div class="npb-hint">Haz clic en una canción de la lista para escucharla aquí mismo</div>
           </div>
         </div>
@@ -2662,6 +3091,125 @@
       <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
       </div>
     </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ─── CLASIFICACIONES ─── -->
+  <section id="clasificaciones" class="reveal">
+    <div class="section-label">🏆 Resultados</div>
+    <h2 class="section-title">Clasificaciones</h2>
+    <p class="section-subtitle">Revive las clasificaciones de todas las ediciones.</p>
+
+    <div class="edition-tabs" id="ranking-tabs">
+      <button class="tab-btn" onclick="switchRanking(4, this)">4ª Edición — AV69</button>
+      <button class="tab-btn active" onclick="switchRanking(0, this)">3ª Edición - AV4801</button>
+      <button class="tab-btn" onclick="switchRanking(1, this)">2ª Edición — AV3</button>
+      <button class="tab-btn" onclick="switchRanking(2, this)">1ª Edición — AV</button>
+      <button class="tab-btn" onclick="switchRanking(3, this)">Global</button>
+    </div>
+
+    <!-- 3ª Edición: AV4801 (Pestaña principal 0) -->
+    <div class="ranking-content active" id="ranking-tab-0">
+      <!-- Sub-navegación exclusiva para la 3ª Edición -->
+      <div class="sub-tabs-container">
+        <button class="sub-tab-btn active" onclick="switchAvSubTab('ranking', this)">RANKING</button>
+        <button class="sub-tab-btn" onclick="switchAvSubTab('grupos', this)">FASE DE GRUPOS</button>
+        <button class="sub-tab-btn" onclick="switchAvSubTab('bracket', this)">BRACKET</button>
+      </div>
+
+      <!-- Sub-Vista: Ranking -->
+      <div id="av-sub-ranking" class="av-sub-view">
+        <div class="ranking-table">
+          <div class="rt-header"><span>#</span><span>Canción</span><span>Pts</span><span></span></div>
+          <div id="ranking-av"></div>
+        </div>
+      </div>
+
+      <!-- Sub-Vista: Fase de Grupos -->
+      <div id="av-sub-grupos" class="av-sub-view" style="display:none;">
+        <div class="groups-grid" id="groups-grid"></div>
+      </div>
+
+      <!-- Sub-Vista: Bracket -->
+      <div id="av-sub-bracket" class="av-sub-view" style="display:none;">
+        <div class="bracket-wrapper" id="bracket-wrapper"></div>
+      </div>
+    </div>
+
+    <!-- 2ª Edición: AV3 (Pestaña principal 1) -->
+    <div class="ranking-content" id="ranking-tab-1" style="display:none;">
+      <div class="ranking-table">
+        <div class="rt-header"><span>#</span><span>Canción</span><span>Pts</span><span></span></div>
+        <div id="ranking-ed2"></div>
+      </div>
+    </div>
+
+    <!-- 1ª Edición: AV (Pestaña principal 2) -->
+    <div class="ranking-content" id="ranking-tab-2" style="display:none;">
+      <div class="ranking-table">
+        <div class="rt-header"><span>#</span><span>Canción</span><span>Pts</span><span></span></div>
+        <div id="ranking-ed1"></div>
+      </div>
+    </div>
+
+    <!-- 4ª Edición: AV69 (Pestaña principal 4) -->
+    <div class="ranking-content" id="ranking-tab-4" style="display:none;">
+      <div class="ne-block">
+        <div class="ne-text">La nueva edición empieza en</div>
+        <div class="countdown" data-target="2026-11-27T19:00:00+01:00">
+        <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
+        <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
+        <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
+        <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
+      </div>
+      <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
+      </div>
+    </div>
+
+    <!-- Ranking Global -->
+    <div class="ranking-content" id="ranking-tab-3" style="display:none;">
+      <p class="section-subtitle" style="margin-bottom:1rem;">Todas las canciones combinadas,
+        comparadas por porcentaje de nota. La 1ª edición se puntúa sobre 10; la 2ª y 3ª sobre 43.</p>
+      <div class="ranking-table">
+        <div class="rt-header"><span>#</span><span>Canción</span><span>%</span><span></span></div>
+        <div id="ranking-global"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ─── CONCURSANTES & ESTADÍSTICAS ─── -->
+  <section id="concursantes" class="reveal">
+    <div class="section-label">👤 Artistas & Estadísticas</div>
+    <h2 class="section-title">Concursantes</h2>
+    <p class="section-subtitle">Los artistas que compiten en AutismoVision. Usa las flechas para pasar de uno a otro y ver sus
+      estadísticas detalladas y discografía completa.</p>
+
+    <div class="cc-carousel" id="cc-carousel">
+      <button class="cc-arrow cc-prev" onclick="moveContestant(-1)" aria-label="Concursante anterior">‹</button>
+
+      <div class="contestant-songs-panel visible" id="contestant-panel">
+        <div class="csp-header">
+          <div class="csp-name" id="csp-name"></div>
+          <div class="csp-aka" id="csp-aka"></div>
+          <div class="csp-counter" id="csp-counter"></div>
+        </div>
+
+        <!-- Estadísticas con el lettering desenfocado de fondo -->
+        <div class="stats-container">
+          <div class="csp-bg" id="csp-bg"></div>
+          <div class="stats-title">📊 Estadísticas del Concursante</div>
+          <div class="stats-grid" id="stats-grid"></div>
+        </div>
+
+        <div class="csp-songs-grid" id="csp-songs-grid"></div>
+      </div>
+
+      <button class="cc-arrow cc-next" onclick="moveContestant(1)" aria-label="Concursante siguiente">›</button>
+    </div>
+    <div class="cc-dots" id="cc-dots"></div>
   </section>
 
   <div class="section-divider"></div>
@@ -2777,33 +3325,6 @@
 
   <div class="section-divider"></div>
 
-  <!-- ─── CONCURSANTES & ESTADÍSTICAS ─── -->
-  <section id="concursantes" class="reveal">
-    <div class="section-label">👤 Artistas & Estadísticas</div>
-    <h2 class="section-title">Concursantes</h2>
-    <p class="section-subtitle">Los artistas que compiten en AutismoVision. Haz clic en cualquiera para desplegar sus
-      estadísticas detalladas y discografía completa.</p>
-
-    <div class="contestants-grid" id="contestants-grid"></div>
-
-    <div class="contestant-songs-panel" id="contestant-panel">
-      <div class="csp-header">
-        <div class="csp-name" id="csp-name"></div>
-        <button class="csp-close" onclick="closeContestantPanel()">✕</button>
-      </div>
-
-      <!-- Mini-Sección Estadísticas -->
-      <div class="stats-container">
-        <div class="stats-title">📊 Estadísticas del Concursante</div>
-        <div class="stats-grid" id="stats-grid"></div>
-      </div>
-
-      <div class="csp-songs-grid" id="csp-songs-grid"></div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
   <!-- ─── PREMIOS SECUNDARIOS ─── -->
   <section id="premios-secundarios" class="reveal">
     <div class="section-label">🎖️ Galardones Especiales</div>
@@ -2828,91 +3349,6 @@
         <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
       </div>
       <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
-      </div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <!-- ─── CLASIFICACIONES ─── -->
-  <section id="clasificaciones" class="reveal">
-    <div class="section-label">🏆 Resultados</div>
-    <h2 class="section-title">Clasificaciones</h2>
-    <p class="section-subtitle">Revive las clasificaciones de todas las ediciones.</p>
-
-    <div class="edition-tabs" id="ranking-tabs">
-      <button class="tab-btn" onclick="switchRanking(4, this)">4ª Edición — AV69</button>
-      <button class="tab-btn active" onclick="switchRanking(0, this)">3ª Edición - AV4801</button>
-      <button class="tab-btn" onclick="switchRanking(1, this)">2ª Edición — AV3</button>
-      <button class="tab-btn" onclick="switchRanking(2, this)">1ª Edición — AV</button>
-      <button class="tab-btn" onclick="switchRanking(3, this)">Global</button>
-    </div>
-
-    <!-- 3ª Edición: AV4801 (Pestaña principal 0) -->
-    <div class="ranking-content active" id="ranking-tab-0">
-      <!-- Sub-navegación exclusiva para la 3ª Edición -->
-      <div class="sub-tabs-container">
-        <button class="sub-tab-btn active" onclick="switchAvSubTab('ranking', this)">RANKING</button>
-        <button class="sub-tab-btn" onclick="switchAvSubTab('grupos', this)">FASE DE GRUPOS</button>
-        <button class="sub-tab-btn" onclick="switchAvSubTab('bracket', this)">BRACKET</button>
-      </div>
-
-      <!-- Sub-Vista: Ranking -->
-      <div id="av-sub-ranking" class="av-sub-view">
-        <div class="ranking-table">
-          <div class="rt-header"><span>#</span><span>Canción</span><span>Pts</span><span></span></div>
-          <div id="ranking-av"></div>
-        </div>
-      </div>
-
-      <!-- Sub-Vista: Fase de Grupos -->
-      <div id="av-sub-grupos" class="av-sub-view" style="display:none;">
-        <div class="groups-grid" id="groups-grid"></div>
-      </div>
-
-      <!-- Sub-Vista: Bracket -->
-      <div id="av-sub-bracket" class="av-sub-view" style="display:none;">
-        <div class="bracket-wrapper" id="bracket-wrapper"></div>
-      </div>
-    </div>
-
-    <!-- 2ª Edición: AV3 (Pestaña principal 1) -->
-    <div class="ranking-content" id="ranking-tab-1" style="display:none;">
-      <div class="ranking-table">
-        <div class="rt-header"><span>#</span><span>Canción</span><span>Pts</span><span></span></div>
-        <div id="ranking-ed2"></div>
-      </div>
-    </div>
-
-    <!-- 1ª Edición: AV (Pestaña principal 2) -->
-    <div class="ranking-content" id="ranking-tab-2" style="display:none;">
-      <div class="ranking-table">
-        <div class="rt-header"><span>#</span><span>Canción</span><span>Pts</span><span></span></div>
-        <div id="ranking-ed1"></div>
-      </div>
-    </div>
-
-    <!-- 4ª Edición: AV69 (Pestaña principal 4) -->
-    <div class="ranking-content" id="ranking-tab-4" style="display:none;">
-      <div class="ne-block">
-        <div class="ne-text">La nueva edición empieza en</div>
-        <div class="countdown" data-target="2026-11-27T19:00:00+01:00">
-        <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
-        <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
-        <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
-        <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
-      </div>
-      <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
-      </div>
-    </div>
-
-    <!-- Ranking Global -->
-    <div class="ranking-content" id="ranking-tab-3" style="display:none;">
-      <p class="section-subtitle" style="margin-bottom:1rem;">Todas las canciones combinadas,
-        comparadas por porcentaje de nota. La 1ª edición se puntúa sobre 10; la 2ª y 3ª sobre 43.</p>
-      <div class="ranking-table">
-        <div class="rt-header"><span>#</span><span>Canción</span><span>%</span><span></span></div>
-        <div id="ranking-global"></div>
       </div>
     </div>
   </section>
@@ -3339,6 +3775,109 @@
       { name: 'Gheorge777', aka: null, color: '#f472b6', colorBg: 'rgba(244,114,182,.12)', colorBorder: 'rgba(244,114,182,.3)', curiosity: 'Nunca ha entrado a Gala' },
     ];
 
+
+    // ════════════════════════════════════════════
+    //  IMÁGENES (lettering de concursantes y logos de ediciones)
+    //  Cambia aquí las rutas si tus archivos se llaman distinto.
+    //  Si una imagen no carga, se muestra el texto en su lugar.
+    // ════════════════════════════════════════════
+    const CONTESTANT_IMGS = {
+      'Superpajas33': 'imagen/lettering/Superpajas33.png',
+      'Sintu_': 'imagen/lettering/Sintu_.png',
+      'Borja': 'imagen/lettering/Borja.png',
+      'Minwerfu': 'imagen/lettering/Minwerfu.png',
+      'DJ Sigma Boy': 'imagen/lettering/DJSigmaBoy.png',
+      'Gokenrik': 'imagen/lettering/Gokenrik.png',
+      'Gheorge777': 'imagen/lettering/Gheorge777.png',
+    };
+    const CONTESTANT_ALIASES = { 'Luner': 'Superpajas33', 'Madi': 'DJ Sigma Boy', 'Madie': 'DJ Sigma Boy' };
+
+    // Clave = número de edición
+    const EDITION_LOGOS = {
+      4: 'imagen/ediciones/AV69.png',
+      3: 'imagen/ediciones/AV4801.png',
+      2: 'imagen/ediciones/AV3.png',
+      1: 'imagen/ediciones/AV1.png',
+    };
+
+    function lettFallback(img) {
+      if (img.dataset.fb === 'remove') { img.remove(); return; }
+      const s = document.createElement('span');
+      s.className = 'lt-fallback';
+      s.textContent = img.alt;
+      img.replaceWith(s);
+    }
+
+    function letteringImg(name, cls, fb) {
+      const key = CONTESTANT_ALIASES[name] || name;
+      const src = CONTESTANT_IMGS[key];
+      if (!src) return fb === 'remove' ? '' : `<span class="lt-fallback">${name}</span>`;
+      return `<img class="${cls}" src="${src}" alt="${String(name).replace(/"/g, '&quot;')}" data-fb="${fb || 'text'}" onerror="lettFallback(this)">`;
+    }
+
+    function artistLettering(artistStr, cls) {
+      if (!artistStr) return '<span class="lt-fallback">Sin artista</span>';
+      return String(artistStr).split('&').map(p => p.trim()).filter(Boolean)
+        .map(n => letteringImg(n, cls || 'npb-lt')).join('<span class="lt-amp">&amp;</span>');
+    }
+
+    function applyEditionLogos() {
+      document.querySelectorAll('.edition-tabs .tab-btn').forEach(btn => {
+        const label = btn.textContent.trim();
+        const m = label.match(/^(\d)ª Edición/);
+        if (!m || !EDITION_LOGOS[m[1]]) return;
+        const img = new Image();
+        img.className = 'tab-logo';
+        img.alt = label;
+        img.onload = () => {
+          btn.setAttribute('aria-label', label);
+          btn.title = label;
+          btn.textContent = '';
+          btn.appendChild(img);
+          btn.classList.add('has-logo');
+        };
+        img.src = EDITION_LOGOS[m[1]];
+      });
+    }
+
+    // ── Info de la canción para la caja del reproductor ──
+    function galaRoundOf(title) {
+      const t = _normT(title);
+      const has = arr => arr.some(x => x && !x.pending && _normT(x.title) === t);
+      if (has(GALA_CAMPEONATO)) return 'Clasificada directa al bracket';
+      if (has(GALA_RONDA2)) return 'Ronda 2';
+      if (has(GALA_RONDA1)) return 'Ronda 1';
+      return null;
+    }
+
+    function getSongInfo(edIdx, title) {
+      const src = edIdx === 0 ? SONGS_AV : edIdx === 1 ? SONGS_ED2 : edIdx === 2 ? SONGS_ED1 : SONGS_EXTRAS;
+      const edNum = [3, 2, 1, 0][edIdx];
+      const ranked = edIdx === 0 ? src : [...src].sort((a, b) => (b.score || 0) - (a.score || 0));
+      const idx = ranked.findIndex(s => _normT(s.title) === _normT(title));
+      if (idx < 0) return null;
+      const s = ranked[idx];
+      const maxScore = edNum === 1 ? 10 : edNum === 0 ? 0 : 43;
+      return {
+        producer: s.producer || '',
+        score: maxScore ? `${s.score} / ${maxScore}` : null,
+        position: maxScore ? { n: idx + 1, total: ranked.length } : null,
+        awards: ALL_AWARDS.filter(a => a.edition === edNum && _normT(a.title) === _normT(s.title) && !a.type.includes('Campeón')).map(a => a.type),
+        gala: galaRoundOf(s.title),
+      };
+    }
+
+    function renderSongMeta(info) {
+      if (!info) return '';
+      const chip = (label, val) => `<div class="npb-chip"><span class="npb-chip-l">${label}</span><span class="npb-chip-v">${val}</span></div>`;
+      return [
+        chip('Puntuación', info.score || '—'),
+        chip('Posición', info.position ? `#${info.position.n} <small>de ${info.position.total}</small>` : '—'),
+        chip('Premios secundarios', info.awards.length ? info.awards.map(a => `<span class="npb-award">${a}</span>`).join('') : '—'),
+        chip('Última Gala', info.gala ? `🏅 Sí <small>· ${info.gala}</small>` : 'No'),
+      ].join('');
+    }
+
     // Premios Secundarios Data
     const PREMIOS_SECUNDARIOS = [
       {
@@ -3641,7 +4180,11 @@
       if (placeholder) placeholder.classList.add('hidden');
 
       document.getElementById(`npb-title-${edIdx}`).textContent = title;
-      document.getElementById(`npb-artist-${edIdx}`).textContent = artist || '—';
+      const info = getSongInfo(edIdx, title);
+      const artistEl = document.getElementById(`npb-artist-${edIdx}`);
+      artistEl.innerHTML = artistLettering(artist, 'npb-lt') + (info && info.producer
+        ? `<span class="npb-prod">Prod. ${artistLettering(info.producer, 'npb-lt')}</span>` : '');
+      document.getElementById(`npb-meta-${edIdx}`).innerHTML = renderSongMeta(info);
 
       const list = document.getElementById(`playlist-${edIdx}`);
       if (list) list.querySelectorAll('.playlist-item.active').forEach(el => el.classList.remove('active'));
@@ -3655,99 +4198,97 @@
       btn.classList.add('active');
     }
 
-    let activeContestant = null;
+    let currentContestant = 0;
 
     function buildContestants() {
-      const grid = document.getElementById('contestants-grid');
-      grid.innerHTML = CONTESTANTS.map((c, i) => {
-        const songs = getSongsForContestant(c.name);
-        return `
-          <div class="contestant-card" id="cc-${i}" style="--accent-color:${c.color}; --accent-color-bg:${c.colorBg}; --accent-color-border:${c.colorBorder};" onclick="toggleContestant(${i})">
-            <div class="cc-avatar" style="background:${c.colorBg}; color:${c.color}; border-color:${c.colorBorder};">${c.name.charAt(0).toUpperCase()}</div>
-            <div class="cc-name">${c.name}</div>
-            ${c.aka ? `<div class="cc-songs" style="color:${c.color}; opacity:.7; font-size:.72rem; margin-bottom:.15rem;">${c.aka}</div>` : ''}
-            <div class="cc-songs">${songs.length} canciones creadas</div>
-          </div>
-        `;
-      }).join('');
+      document.getElementById('cc-dots').innerHTML = CONTESTANTS.map((c, i) =>
+        `<button class="cc-dot" id="cc-dot-${i}" style="--dot:${c.color}" onclick="showContestant(${i})" aria-label="${c.name}"></button>`
+      ).join('');
+      showContestant(0, 0);
+
+      // Swipe en móvil
+      const car = document.getElementById('cc-carousel');
+      let x0 = null;
+      car.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+      car.addEventListener('touchend', e => {
+        if (x0 === null) return;
+        const dx = e.changedTouches[0].clientX - x0;
+        if (Math.abs(dx) > 60) moveContestant(dx < 0 ? 1 : -1);
+        x0 = null;
+      });
     }
 
-    function toggleContestant(idx) {
+    function moveContestant(dir) {
+      const n = CONTESTANTS.length;
+      showContestant((currentContestant + dir + n) % n, dir);
+    }
+
+    function showContestant(idx, dir = 1) {
       const c = CONTESTANTS[idx];
       const panel = document.getElementById('contestant-panel');
-      const cards = document.querySelectorAll('.contestant-card');
+      currentContestant = idx;
 
-      if (activeContestant === idx) {
-        panel.classList.remove('visible');
-        cards[idx].classList.remove('active-contestant');
-        activeContestant = null;
-        return;
-      }
+      document.querySelectorAll('.cc-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+      panel.style.setProperty('--accent-color', c.color);
+      panel.style.setProperty('--accent-color-bg', c.colorBg);
 
-      activeContestant = idx;
-      cards.forEach((el, i) => el.classList.toggle('active-contestant', i === idx));
+      // Nombre → lettering (con texto como alternativa si la imagen no carga)
+      const nameEl = document.getElementById('csp-name');
+      nameEl.style.color = c.color;
+      nameEl.innerHTML = letteringImg(c.name, 'csp-name-img');
+      document.getElementById('csp-aka').textContent = c.aka || '';
+      document.getElementById('csp-counter').textContent = `${idx + 1} / ${CONTESTANTS.length}`;
+
+      // Lettering de fondo, desenfocado
+      document.getElementById('csp-bg').innerHTML = letteringImg(c.name, 'csp-bg-img', 'remove');
 
       const songs = getSongsForContestant(c.name);
       const stats = calculateContestantStats(c.name);
 
-      document.getElementById('csp-name').textContent = c.name;
-      document.getElementById('csp-name').style.color = c.color;
-
-      let avgEdHTML = '';
-      if (stats.avgRankEd1) avgEdHTML += `<div class="stat-subvalue">1ª Edición: <strong>${stats.avgRankEd1}</strong></div>`;
-      if (stats.avgRankEd2) avgEdHTML += `<div class="stat-subvalue">2ª Edición: <strong>${stats.avgRankEd2}</strong></div>`;
-      if (stats.avgRankEd3) avgEdHTML += `<div class="stat-subvalue">3ª Edición: <strong>${stats.avgRankEd3}</strong></div>`;
-      if (avgEdHTML === '') avgEdHTML = `<div class="stat-subvalue">Sin participaciones</div>`;
-
-      let avgScoreEdHTML = '';
-      if (stats.avgScoreEd1) avgScoreEdHTML += `<div class="stat-subvalue">1ª Edición: <strong>${stats.avgScoreEd1}</strong></div>`;
-      if (stats.avgScoreEd2) avgScoreEdHTML += `<div class="stat-subvalue">2ª Edición: <strong>${stats.avgScoreEd2}</strong></div>`;
-      if (stats.avgScoreEd3) avgScoreEdHTML += `<div class="stat-subvalue">3ª Edición: <strong>${stats.avgScoreEd3}</strong></div>`;
-      if (avgScoreEdHTML === '') avgScoreEdHTML = `<div class="stat-subvalue">Sin puntuaciones</div>`;
+      const sub = (label, v) => v ? `<div class="stat-subvalue">${label}: <strong>${v}</strong></div>` : '';
+      let avgEdHTML = sub('1ª Edición', stats.avgRankEd1) + sub('2ª Edición', stats.avgRankEd2) + sub('3ª Edición', stats.avgRankEd3);
+      if (!avgEdHTML) avgEdHTML = `<div class="stat-subvalue">Sin participaciones</div>`;
+      let avgScoreEdHTML = sub('1ª Edición', stats.avgScoreEd1) + sub('2ª Edición', stats.avgScoreEd2) + sub('3ª Edición', stats.avgScoreEd3);
+      if (!avgScoreEdHTML) avgScoreEdHTML = `<div class="stat-subvalue">Sin puntuaciones</div>`;
 
       let bestSongStr = 'Ninguna';
       if (stats.bestSongData) {
-        bestSongStr = `${stats.bestSongData.title} (#${stats.bestSongData.origIndex + 1} - ${stats.bestSongData.score} pts)`;
+        bestSongStr = `${stats.bestSongData.title} <span class="stat-best-meta">#${stats.bestSongData.origIndex + 1} · ${stats.bestSongData.score} pts</span>`;
       }
 
-      const statsGrid = document.getElementById('stats-grid');
-      statsGrid.innerHTML = `
+      document.getElementById('stats-grid').innerHTML = `
         <div class="stat-card">
           <div class="stat-label">Canciones creadas</div>
-          <div class="stat-value" style="color:${c.color}">${stats.totalSongs}</div>
+          <div class="stat-value stat-big" style="color:${c.color}">${stats.totalSongs}</div>
         </div>
         <div class="stat-card">
           <div class="stat-label">Nota Promedio Total</div>
-          <div class="stat-value" style="color:var(--accent2);">${stats.avgScoreTotalNorm}</div>
+          <div class="stat-value stat-big" style="color:var(--accent2)">${stats.avgScoreTotalNorm}</div>
           <div class="stat-subvalue">Rendimiento: <strong>${stats.avgPct}</strong></div>
         </div>
         <div class="stat-card">
           <div class="stat-label">Puesto Prom. Total</div>
-          <div class="stat-value">${stats.avgRank}</div>
+          <div class="stat-value stat-big">${stats.avgRank}</div>
         </div>
         <div class="stat-card">
           <div class="stat-label">Premios Ganados</div>
-          <div class="stat-value" style="color:var(--gold)">${stats.totalAwards}</div>
+          <div class="stat-value stat-big" style="color:var(--gold)">${stats.totalAwards}</div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card stat-half">
           <div class="stat-label">Nota Promedio x Edición</div>
           ${avgScoreEdHTML}
         </div>
-        <div class="stat-card">
+        <div class="stat-card stat-half">
           <div class="stat-label">Puesto Promedio x Edición</div>
           ${avgEdHTML}
         </div>
-        <div class="stat-card" style="grid-column: span 2;">
+        <div class="stat-card stat-wide">
           <div class="stat-label">Mejor Canción</div>
-          <div class="stat-value" style="font-size:1.1rem; color:var(--accent3); border-left: 2px solid var(--gold); padding-left:.5rem; margin-top:.2rem;">
-            ${bestSongStr}
-          </div>
+          <div class="stat-best">${bestSongStr}</div>
         </div>
-        <div class="stat-card" style="grid-column: span 2;">
+        <div class="stat-card stat-wide">
           <div class="stat-label">Curiosidad</div>
-          <div class="stat-value" style="font-size:1rem; color:var(--text); font-weight:400; font-family:'Barlow', sans-serif; margin-top:.2rem; line-height: 1.4;">
-            ${c.curiosity}
-          </div>
+          <div class="stat-curiosity">${c.curiosity}</div>
         </div>
       `;
 
@@ -3777,14 +4318,13 @@
             `;
         }).join('');
 
-      panel.classList.add('visible');
-      setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
-    }
 
-    function closeContestantPanel() {
-      document.getElementById('contestant-panel').classList.remove('visible');
-      document.querySelectorAll('.contestant-card').forEach(el => el.classList.remove('active-contestant'));
-      activeContestant = null;
+      if (dir && panel.animate) {
+        panel.animate(
+          [{ opacity: 0, transform: `translateX(${dir * 36}px)` }, { opacity: 1, transform: 'none' }],
+          { duration: 300, easing: 'ease-out' }
+        );
+      }
     }
 
     function buildSecondaryAwards(edNum = 3) {
@@ -4202,7 +4742,15 @@
       // Populate Total Global Songs
       const globalTotalSongs = SONGS_ED1.length + SONGS_ED2.length + SONGS_AV.length + SONGS_EXTRAS.length;
       const totalSongsEl = document.getElementById('global-total-songs');
-      if (totalSongsEl) totalSongsEl.textContent = globalTotalSongs;
+      if (totalSongsEl) {
+        const t0 = performance.now(), dur = 1400;
+        const step = now => {
+          const p = Math.min(1, (now - t0) / dur);
+          totalSongsEl.textContent = Math.round(globalTotalSongs * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      }
 
       // Initializations
       for (let i = 0; i < 4; i++) buildPlaylistUI(i);
@@ -4212,6 +4760,7 @@
       renderGroups();
       renderBracket();
       renderGala();
+      applyEditionLogos();
 
       // Intersection Observer for Animations (aparición Y desaparición en ambos sentidos)
       // threshold bajo (no un %) para que funcione también con secciones muy altas

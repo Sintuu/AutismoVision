@@ -2423,49 +2423,15 @@
       height: 1.2em;
     }
 
-    .cd-d.in {
-      animation: cdIn .55s cubic-bezier(.22, 1, .36, 1);
-    }
+    .cd-d.in { animation: cdIn .55s cubic-bezier(.22, 1, .36, 1); }
+    .cd-d.out { position: absolute; left: 0; top: 0; animation: cdOut .55s cubic-bezier(.22, 1, .36, 1) forwards; }
 
-    .cd-d.out {
-      position: absolute;
-      left: 0;
-      top: 0;
-      animation: cdOut .55s cubic-bezier(.22, 1, .36, 1) forwards;
-    }
+    @keyframes cdIn { from { transform: translateY(100%); opacity: 0; } to { transform: none; opacity: 1; } }
+    @keyframes cdOut { from { transform: none; opacity: 1; } to { transform: translateY(-100%); opacity: 0; } }
 
-    @keyframes cdIn {
-      from {
-        transform: translateY(100%);
-        opacity: 0;
-      }
-
-      to {
-        transform: none;
-        opacity: 1;
-      }
-    }
-
-    @keyframes cdOut {
-      from {
-        transform: none;
-        opacity: 1;
-      }
-
-      to {
-        transform: translateY(-100%);
-        opacity: 0;
-      }
-    }
-
-    .ne-hero .cd-unit {
-      min-width: clamp(36px, 8vw, 64px);
-    }
-
+    .ne-hero .cd-unit { min-width: clamp(36px, 8vw, 64px); }
     .ne-hero .cd-num,
-    .ne-hero .cd-unit:not(:last-child)::after {
-      font-size: clamp(1.6rem, 5vw, 2.8rem);
-    }
+    .ne-hero .cd-unit:not(:last-child)::after { font-size: clamp(1.6rem, 5vw, 2.8rem); }
 
     .cd-lbl {
       font-family: 'Barlow Condensed', sans-serif;
@@ -2497,431 +2463,184 @@
       vertical-align: baseline;
     }
 
-
-    /* ═══════════ ESTADÍSTICAS GENERALES (centrada, sin caja) ═══════════ */
-    .global-stats {
-      display: flex;
-      justify-content: center;
-      margin-top: 1.5rem;
-    }
-
-    .global-stat {
-      text-align: center;
-      padding: 1rem 2rem 1.5rem;
-      position: relative;
-    }
-
-    .gs-value {
+  
+    /* ═══════ ESTADÍSTICA GENERAL (centrada, sin caja) ═══════ */
+    .gstat-section { text-align: center; padding-bottom: 2rem; }
+    .gstat { margin-top: 1.5rem; display: flex; flex-direction: column; align-items: center; gap: .35rem; }
+    .gstat-value {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(5.5rem, 18vw, 10rem);
-      line-height: .95;
-      background: linear-gradient(135deg, var(--accent1) 0%, var(--accent3) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      filter: drop-shadow(0 0 28px rgba(255, 45, 120, .35));
+      font-size: clamp(4.5rem, 14vw, 8rem);
+      line-height: .9;
+      color: var(--accent1);
+      text-shadow: 0 0 30px rgba(255, 45, 120, .55), 0 0 80px rgba(255, 45, 120, .25);
     }
-
-    .gs-label {
+    .gstat-label {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.05rem;
-      letter-spacing: .4em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: .6rem;
-    }
-
-    .global-stat::after {
-      content: '';
-      display: block;
-      width: 90px;
-      height: 2px;
-      margin: 1.2rem auto 0;
-      background: linear-gradient(to right, transparent, var(--accent1), transparent);
-    }
-
-    /* ═══════════ LOGOS EN LAS PESTAÑAS DE EDICIÓN ═══════════ */
-    .tab-btn.has-logo {
-      padding: .5rem 1.2rem;
-    }
-
-    .tab-logo {
-      height: 38px;
-      width: auto;
-      max-width: 150px;
-      object-fit: contain;
-      opacity: .5;
-      transition: opacity .2s, transform .2s, filter .2s;
-      display: block;
-    }
-
-    .tab-btn:hover .tab-logo {
-      opacity: .85;
-    }
-
-    .tab-btn.active .tab-logo {
-      opacity: 1;
-      transform: scale(1.06);
-      filter: drop-shadow(0 0 8px rgba(255, 255, 255, .25));
-    }
-
-    /* ═══════════ CAJA DEL REPRODUCTOR ═══════════ */
-    .npb-artist {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: .4rem .6rem;
-      margin: .15rem 0 .35rem;
-    }
-
-    .npb-lt {
-      height: 34px;
-      width: auto;
-      max-width: 180px;
-      object-fit: contain;
-    }
-
-    .lt-fallback {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: .04em;
-    }
-
-    .lt-amp {
-      color: var(--muted);
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.1rem;
-    }
-
-    .npb-prod {
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
-      font-size: .75rem;
-      color: var(--muted);
-      margin-left: .4rem;
-    }
-
-    .npb-meta {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: .6rem;
-      margin-top: .5rem;
-    }
-
-    .npb-meta:empty {
-      display: none;
-    }
-
-    .npb-chip {
-      display: flex;
-      flex-direction: column;
-      gap: .2rem;
-      padding: .55rem .75rem;
-      border-left: 2px solid var(--accent1);
-      background: linear-gradient(to right, rgba(255, 45, 120, .08), transparent);
-    }
-
-    .npb-chip-l {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .66rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .npb-chip-v {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text);
-      display: flex;
-      flex-wrap: wrap;
-      gap: .25rem;
-      align-items: baseline;
-    }
-
-    .npb-chip-v small {
-      font-size: .72rem;
-      font-weight: 400;
-      color: var(--muted);
-    }
-
-    .npb-award {
-      background: rgba(255, 215, 0, .12);
-      border: 1px solid rgba(255, 215, 0, .35);
-      color: var(--gold);
-      border-radius: 3px;
-      padding: 1px 6px;
-      font-size: .72rem;
       font-weight: 600;
-    }
-
-    /* ═══════════ CARRUSEL DE CONCURSANTES ═══════════ */
-    .cc-carousel {
-      position: relative;
-      display: grid;
-      grid-template-columns: auto minmax(0, 1fr) auto;
-      gap: 1rem;
-      align-items: start;
-      margin-top: 1rem;
-    }
-
-    .cc-arrow {
-      position: sticky;
-      top: 45vh;
-      align-self: start;
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, .04);
-      color: var(--text);
-      font-size: 2rem;
-      line-height: 1;
-      padding-bottom: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all .2s;
-      z-index: 3;
-      margin-top: 8rem;
-    }
-
-    .cc-arrow:hover {
-      background: var(--accent1);
-      border-color: var(--accent1);
-      box-shadow: 0 0 20px rgba(255, 45, 120, .5);
-      transform: scale(1.08);
-    }
-
-    .cc-dots {
-      display: flex;
-      justify-content: center;
-      gap: .6rem;
-      margin-top: 1.25rem;
-    }
-
-    .cc-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      border: none;
-      background: var(--border);
-      transition: all .25s;
-    }
-
-    .cc-dot:hover {
-      background: var(--dot);
-      opacity: .7;
-    }
-
-    .cc-dot.active {
-      background: var(--dot);
-      width: 28px;
-      border-radius: 6px;
-      box-shadow: 0 0 10px var(--dot);
-    }
-
-    /* Panel sin caja de fondo */
-    .contestant-songs-panel {
-      margin-top: 0;
-      background: transparent;
-      border: none;
-      border-radius: 0;
-      overflow: visible;
-    }
-
-    .csp-header {
-      flex-direction: column;
-      justify-content: center;
-      text-align: center;
-      gap: .35rem;
-      background: none;
-      border-bottom: none;
-      padding: .5rem 1rem 0;
-    }
-
-    .csp-name-img {
-      height: clamp(70px, 14vw, 120px);
-      width: auto;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
-
-    .csp-name .lt-fallback {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.6rem;
-      font-weight: 400;
-    }
-
-    .csp-aka {
-      font-family: 'Barlow Condensed', sans-serif;
-      letter-spacing: .15em;
-      font-size: .85rem;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-
-    .csp-aka:empty {
-      display: none;
-    }
-
-    .csp-counter {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .75rem;
-      letter-spacing: .25em;
-      color: var(--muted);
-    }
-
-    /* Estadísticas: sin cajas, con lettering desenfocado al fondo */
-    .contestant-songs-panel .stats-container {
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
-      background: transparent;
-      border-bottom: none;
-      padding: 1.5rem 1rem 2rem;
-    }
-
-    .csp-bg {
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-    }
-
-    .csp-bg-img {
-      width: min(85%, 720px);
-      max-height: 115%;
-      object-fit: contain;
-      filter: blur(6px);
-      opacity: .2;
-      transform: scale(1.15);
-    }
-
-    .contestant-songs-panel .stats-title {
-      justify-content: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .contestant-songs-panel .stats-grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 1.5rem .5rem;
-    }
-
-    .contestant-songs-panel .stat-card {
-      background: none;
-      border: none;
-      border-radius: 0;
-      padding: .5rem;
-      text-align: center;
-    }
-
-    .contestant-songs-panel .stat-label {
-      font-size: .7rem;
-      letter-spacing: .2em;
-      margin-bottom: .45rem;
-    }
-
-    .contestant-songs-panel .stat-big {
-      font-size: clamp(2rem, 5vw, 3.1rem);
-      text-shadow: 0 0 26px color-mix(in srgb, currentColor 45%, transparent);
-    }
-
-    .contestant-songs-panel .stat-subvalue {
-      font-size: .8rem;
-    }
-
-    .contestant-songs-panel .stat-half {
-      grid-column: span 2;
-    }
-
-    .contestant-songs-panel .stat-wide {
-      grid-column: 1 / -1;
-      padding-top: 1.1rem;
-      position: relative;
-    }
-
-    .contestant-songs-panel .stat-wide::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 20%;
-      right: 20%;
-      height: 1px;
-      background: linear-gradient(to right, transparent, rgba(255, 255, 255, .18), transparent);
-    }
-
-    .stat-best {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.7rem;
-      color: var(--accent3);
-      line-height: 1.15;
-    }
-
-    .stat-best-meta {
-      display: block;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .9rem;
-      letter-spacing: .1em;
-      color: var(--muted);
-    }
-
-    .stat-curiosity {
       font-size: 1rem;
-      line-height: 1.45;
-      max-width: 620px;
-      margin: 0 auto;
-      color: var(--text);
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--muted);
     }
 
-    .contestant-songs-panel .csp-songs-grid {
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      overflow: hidden;
+    /* ═══════ PESTAÑAS CON LOGO ═══════ */
+    .tab-btn.logo-tab { padding: .55rem 1.1rem; }
+    .tab-btn.logo-tab img {
+      height: 58px; width: auto; display: block;
+      opacity: .42; filter: grayscale(.55);
+      transition: opacity .25s, filter .25s, transform .25s;
+    }
+    .tab-btn.logo-tab:hover img { opacity: .85; filter: none; transform: translateY(-2px); }
+    .tab-btn.logo-tab.active img { opacity: 1; filter: drop-shadow(0 0 10px rgba(255, 255, 255, .22)); }
+    @media (max-width: 600px) {
+      .tab-btn.logo-tab { padding: .45rem .6rem; }
+      .tab-btn.logo-tab img { height: 36px; }
     }
 
-    @media (max-width: 800px) {
-      .cc-carousel {
-        grid-template-columns: minmax(0, 1fr);
-      }
+    /* ═══════ CAJA "REPRODUCIENDO" ═══════ */
+    .now-playing-bar { gap: .55rem; }
+    .npb-creator {
+      display: flex; align-items: center; flex-wrap: wrap; gap: .45rem .7rem;
+      font-size: .85rem; color: var(--muted);
+    }
+    .npb-creator img { height: 54px; width: auto; max-width: 46%; object-fit: contain; filter: drop-shadow(0 0 8px rgba(255, 255, 255, .22)); }
+    .npb-creator .txt { font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem; letter-spacing: .04em; line-height: 1; }
+    .npb-creator .amp { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--muted); }
+    .npb-creator .prod { font-family: 'Barlow Condensed', sans-serif; letter-spacing: .08em; text-transform: uppercase; font-size: .75rem; color: var(--muted); }
+    .npb-meta { display: none; flex-wrap: wrap; gap: .45rem; margin-top: .15rem; }
+    .npb-meta.on { display: flex; }
+    .npb-chip {
+      font-family: 'Barlow Condensed', sans-serif; font-size: .82rem; font-weight: 600;
+      letter-spacing: .07em; text-transform: uppercase;
+      padding: .28rem .65rem; border-radius: 3px;
+      border: 1px solid var(--border); background: rgba(255, 255, 255, .04); color: var(--text);
+      animation: chipIn .35s ease both;
+    }
+    .npb-chip small { color: var(--muted); font-weight: 500; margin-left: .25rem; }
+    .npb-chip.score { color: var(--accent2); border-color: rgba(0, 229, 255, .35); background: rgba(0, 229, 255, .07); }
+    .npb-chip.pos { color: #fff; border-color: rgba(255, 255, 255, .22); }
+    .npb-chip.stage { color: var(--accent1); border-color: rgba(255, 45, 120, .4); background: rgba(255, 45, 120, .08); }
+    .npb-chip.award { color: var(--gold); border-color: rgba(255, 215, 0, .4); background: rgba(255, 215, 0, .1); }
+    .npb-chip.gala { color: #1a1300; border-color: var(--gold); background: linear-gradient(120deg, #fff2b8, var(--gold)); box-shadow: 0 0 14px rgba(255, 215, 0, .35); }
+    .npb-chip.nogala { color: var(--muted); }
+    @keyframes chipIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
-      .cc-arrow {
-        position: absolute;
-        top: 3rem;
-        margin-top: 0;
-        width: 40px;
-        height: 40px;
-        font-size: 1.6rem;
-        background: rgba(8, 8, 16, .75);
-      }
+    /* ═══════ CARRUSEL DE CONCURSANTES ═══════ */
+    .car-bar { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .car-bar .section-title { margin-bottom: 0; }
+    .car-dots { display: flex; gap: .6rem; padding-bottom: .6rem; }
+    .car-dot {
+      width: 12px; height: 12px; border-radius: 50%; padding: 0; cursor: pointer;
+      border: 1px solid var(--c); background: transparent; opacity: .55;
+      transition: transform .25s, background .25s, opacity .25s, box-shadow .25s;
+    }
+    .car-dot:hover { opacity: 1; transform: scale(1.25); }
+    .car-dot.active { background: var(--c); opacity: 1; transform: scale(1.3); box-shadow: 0 0 12px var(--c); }
 
-      .cc-prev {
-        left: 0;
-      }
+    .car-card {
+      --c: #ff2d78; --cbg: rgba(255, 45, 120, .15); --cbd: rgba(255, 45, 120, .3);
+      position: relative; overflow: hidden; border-radius: 10px;
+      border: 1px solid var(--cbd);
+      background: radial-gradient(ellipse 70% 90% at 50% 0%, var(--cbg), transparent 70%), var(--card);
+      transition: border-color .45s, background .45s;
+    }
+    .car-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; z-index: 0; }
+    .car-bg img { width: 78%; height: 92%; object-fit: contain; filter: blur(8px); opacity: .1; transform: scale(1.1); }
+    .car-bg span { font-family: 'Bebas Neue', sans-serif; font-size: clamp(6rem, 18vw, 15rem); color: var(--c); filter: blur(8px); opacity: .1; white-space: nowrap; }
 
-      .cc-next {
-        right: 0;
-      }
+    .car-arrow {
+      position: absolute; top: 50%; z-index: 3; transform: translateY(-50%);
+      width: 46px; height: 46px; border-radius: 50%;
+      border: 1px solid var(--cbd); background: rgba(10, 10, 20, .65); backdrop-filter: blur(6px);
+      color: var(--text); font-size: 1.9rem; line-height: 1; padding-bottom: 4px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, border-color .2s, box-shadow .2s, transform .2s;
+    }
+    .car-arrow.prev { left: 1rem; }
+    .car-arrow.next { right: 1rem; }
+    .car-arrow:hover { background: var(--c); border-color: var(--c); box-shadow: 0 0 22px var(--c); color: #fff; transform: translateY(-50%) scale(1.08); }
 
-      .contestant-songs-panel .stats-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+    .car-slide {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: 2.5rem; padding: 2.75rem 5.5rem; align-items: center; min-height: 480px;
+    }
+    .car-slide.from-right { animation: carInR .5s cubic-bezier(.2, .8, .2, 1) both; }
+    .car-slide.from-left { animation: carInL .5s cubic-bezier(.2, .8, .2, 1) both; }
+    @keyframes carInR { from { opacity: 0; transform: translateX(48px); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
+    @keyframes carInL { from { opacity: 0; transform: translateX(-48px); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
 
-      .contestant-songs-panel .stat-half {
-        grid-column: span 1;
-      }
+    .car-letter { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; }
+    .car-letter img { width: 100%; max-height: 260px; object-fit: contain; filter: drop-shadow(0 0 16px var(--c)) drop-shadow(0 0 40px var(--cbg)); }
+    .car-letter .car-name-txt { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 6vw, 4.6rem); line-height: .95; color: var(--c); text-shadow: 0 0 24px var(--c); word-break: break-word; }
+    .car-aka { font-family: 'Barlow Condensed', sans-serif; letter-spacing: .18em; text-transform: uppercase; font-size: .85rem; color: var(--c); opacity: .85; }
 
-      .tab-logo {
-        height: 30px;
-      }
+    .car-col-title {
+      display: flex; align-items: center; gap: .75rem; margin-bottom: 1.1rem;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .8rem;
+      letter-spacing: .28em; text-transform: uppercase; color: var(--c);
+    }
+    .car-col-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--cbd), transparent); }
+
+    .cs-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem 1rem; margin-bottom: 1.6rem; }
+    .cs-big-val {
+      font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.6rem, 5vw, 3.6rem); line-height: .95;
+      color: var(--c); text-shadow: 0 0 22px var(--cbd);
+    }
+    .cs-big-val small { font-size: 1.1rem; color: var(--muted); text-shadow: none; margin-left: .15rem; }
+    .cs-big-val.gold { color: var(--gold); text-shadow: 0 0 22px rgba(255, 215, 0, .35); }
+    .cs-big-val.white { color: var(--text); text-shadow: 0 0 22px rgba(255, 255, 255, .2); }
+    .cs-big-lbl { font-family: 'Barlow Condensed', sans-serif; font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-top: .2rem; }
+
+    .cs-eds { display: flex; flex-direction: column; gap: .7rem; margin-bottom: 1.5rem; }
+    .cs-ed { display: grid; grid-template-columns: 3.2rem 1fr auto; align-items: center; gap: .8rem; font-family: 'Barlow Condensed', sans-serif; }
+    .cs-ed-name { font-weight: 700; letter-spacing: .08em; color: var(--text); font-size: .95rem; }
+    .cs-ed-bar { height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .07); overflow: hidden; }
+    .cs-ed-bar i { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--c), #fff); width: 0; animation: barGrow .9s .15s cubic-bezier(.2, .8, .2, 1) forwards; box-shadow: 0 0 10px var(--c); }
+    @keyframes barGrow { to { width: var(--w); } }
+    .cs-ed-val { font-size: .88rem; color: var(--muted); text-align: right; white-space: nowrap; }
+    .cs-ed-val b { color: var(--text); font-weight: 600; }
+    .cs-ed.none { opacity: .45; }
+    .cs-ed.none .cs-ed-val { grid-column: 2 / 4; text-align: left; }
+
+    .cs-best, .cs-quote { margin-bottom: 1.1rem; }
+    .cs-mini-lbl { font-family: 'Barlow Condensed', sans-serif; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin-bottom: .2rem; }
+    .cs-best-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.3rem; line-height: 1.15; color: var(--text); }
+    .cs-best-sub { font-size: .8rem; color: var(--gold); margin-top: .15rem; }
+    .cs-quote p { font-size: .92rem; line-height: 1.5; color: #c9c9e0; font-style: italic; }
+
+    .cp-list { max-height: 440px; overflow-y: auto; padding-right: .4rem; scrollbar-width: thin; scrollbar-color: var(--cbd) transparent; }
+    .cp-item { display: flex; align-items: center; gap: .75rem; padding: .75rem .2rem; border-bottom: 1px solid rgba(255, 255, 255, .06); cursor: pointer; transition: background .2s, padding .2s; }
+    .cp-item:hover { background: linear-gradient(90deg, var(--cbg), transparent); padding-left: .6rem; }
+    .cp-num { font-family: 'Bebas Neue', sans-serif; color: var(--muted); min-width: 1.4rem; font-size: 1rem; }
+    .cp-info { flex: 1; min-width: 0; }
+    .cp-title { font-size: .92rem; font-weight: 500; line-height: 1.3; color: var(--text); }
+    .cp-sub { font-family: 'Barlow Condensed', sans-serif; font-size: .78rem; letter-spacing: .05em; color: var(--muted); margin-top: .15rem; }
+    .cp-badges { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+    .cp-badges span { background: rgba(255, 215, 0, .13); color: var(--gold); border: 1px solid rgba(255, 215, 0, .35); padding: 1px 6px; border-radius: 3px; font-size: .68rem; font-family: 'Barlow Condensed', sans-serif; }
+    .cp-play { width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border: 1px solid var(--cbd); background: var(--cbg); transition: all .2s; }
+    .cp-play svg { width: 10px; height: 10px; fill: var(--c); margin-left: 1px; }
+    .cp-item:hover .cp-play { background: var(--c); border-color: var(--c); }
+    .cp-item:hover .cp-play svg { fill: #fff; }
+    .cp-empty { color: var(--muted); font-size: .9rem; padding: 1rem 0; }
+
+    @media (max-width: 1000px) {
+      .car-slide { grid-template-columns: 1fr 1fr; padding: 2.5rem 4.5rem; gap: 2rem; }
+      .car-letter { grid-column: 1 / -1; }
+      .car-letter img { max-height: 190px; }
+    }
+    @media (max-width: 700px) {
+      .car-slide { grid-template-columns: 1fr; padding: 4.5rem 1.25rem 2rem; gap: 1.8rem; min-height: 0; }
+      .car-arrow { top: 1.1rem; transform: none; width: 42px; height: 42px; }
+      .car-arrow:hover { transform: scale(1.08); }
+      .car-arrow.prev { left: 1rem; }
+      .car-arrow.next { right: 1rem; }
+      .car-letter img { max-height: 130px; }
+      .cp-list { max-height: 360px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .car-slide.from-right, .car-slide.from-left { animation: none; }
+      .cs-ed-bar i { animation-duration: .01s; animation-delay: 0s; }
     }
   </style>
 </head>
@@ -2943,23 +2662,24 @@
   <div class="hero">
     <div class="hero-bg"></div>
     <div class="ne-block ne-hero">
-      <img class="ne-logo" src="imagen/AV69.png" alt="AutismoVision 4ª edición">
-      <div class="ne-info">
-        <div class="ne-text">La nueva edición comienza en</div>
-        <div class="countdown" data-target="2026-11-27T19:00:00+01:00">
-          <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
-          <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
-          <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
-          <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
-        </div>
-        <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
-      </div>
+    <img class="ne-logo" src="imagen/AV69.png" alt="AutismoVision 4ª edición">
+    <div class="ne-info">
+    <div class="ne-text">La nueva edición comienza en</div>
+    <div class="countdown" data-target="2026-11-27T19:00:00+01:00">
+  <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
+  <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
+  <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
+  <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
+</div>
+<div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
     </div>
+  </div>
     <div class="other-comps-badge" onclick="openOtherCompsModal()">Otras competiciones</div>
     <div class="hero-edition-badge">✦ Eurovisión vamos a por ti 😈 ✦</div>
     <img class="hero-logo" src="imagen/Portada.png" alt="AutismoVision">
     <p class="hero-subtitle">El concurso de canciones más autistas del universo</p>
     <nav class="hero-nav">
+      <a href="#estadisticas-generales" class="secondary">📊 Estadísticas</a>
       <a href="#musica" class="primary">🎵 Escuchar Temazos</a>
       <a href="#clasificaciones" class="secondary">🏆 Clasificaciones</a>
       <a href="#concursantes" class="secondary">👤 Concursantes & Stats</a>
@@ -2971,14 +2691,12 @@
   </div>
 
   <!-- ─── ESTADISTICAS GENERALES ─── -->
-  <section id="estadisticas-generales" class="reveal" style="padding-bottom: 2rem;">
+  <section id="estadisticas-generales" class="reveal gstat-section">
     <div class="section-label">📊 Visión Global</div>
     <h2 class="section-title">Estadísticas Generales</h2>
-    <div class="global-stats">
-      <div class="global-stat">
-        <div class="gs-value" id="global-total-songs">0</div>
-        <div class="gs-label">Canciones Totales</div>
-      </div>
+    <div class="gstat">
+      <div class="gstat-value" id="global-total-songs">0</div>
+      <div class="gstat-label">Canciones Totales</div>
     </div>
   </section>
 
@@ -3024,9 +2742,9 @@
           <div class="now-playing-bar">
             <span class="npb-label">▶ Reproduciendo</span>
             <div class="npb-title" id="npb-title-0">Ninguna canción seleccionada</div>
-            <div class="npb-artist" id="npb-artist-0">—</div>
+            <div class="npb-creator" id="npb-artist-0">—</div>
             <div class="npb-meta" id="npb-meta-0"></div>
-            <div class="npb-hint">Haz clic en una canción de la lista para escucharla aquí mismo</div>
+            <div class="npb-hint" id="npb-hint-0">Haz clic en una canción de la lista para escucharla aquí mismo</div>
           </div>
         </div>
       </div>
@@ -3051,9 +2769,9 @@
           <div class="now-playing-bar">
             <span class="npb-label">▶ Reproduciendo</span>
             <div class="npb-title" id="npb-title-1">Ninguna canción seleccionada</div>
-            <div class="npb-artist" id="npb-artist-1">—</div>
+            <div class="npb-creator" id="npb-artist-1">—</div>
             <div class="npb-meta" id="npb-meta-1"></div>
-            <div class="npb-hint">Haz clic en una canción de la lista para escucharla aquí mismo</div>
+            <div class="npb-hint" id="npb-hint-1">Haz clic en una canción de la lista para escucharla aquí mismo</div>
           </div>
         </div>
       </div>
@@ -3078,9 +2796,9 @@
           <div class="now-playing-bar">
             <span class="npb-label">▶ Reproduciendo</span>
             <div class="npb-title" id="npb-title-2">Ninguna canción seleccionada</div>
-            <div class="npb-artist" id="npb-artist-2">—</div>
+            <div class="npb-creator" id="npb-artist-2">—</div>
             <div class="npb-meta" id="npb-meta-2"></div>
-            <div class="npb-hint">Haz clic en una canción de la lista para escucharla aquí mismo</div>
+            <div class="npb-hint" id="npb-hint-2">Haz clic en una canción de la lista para escucharla aquí mismo</div>
           </div>
         </div>
       </div>
@@ -3105,9 +2823,9 @@
           <div class="now-playing-bar">
             <span class="npb-label">▶ Reproduciendo</span>
             <div class="npb-title" id="npb-title-3">Ninguna canción seleccionada</div>
-            <div class="npb-artist" id="npb-artist-3">—</div>
+            <div class="npb-creator" id="npb-artist-3">—</div>
             <div class="npb-meta" id="npb-meta-3"></div>
-            <div class="npb-hint">Haz clic en una canción de la lista para escucharla aquí mismo</div>
+            <div class="npb-hint" id="npb-hint-3">Haz clic en una canción de la lista para escucharla aquí mismo</div>
           </div>
         </div>
       </div>
@@ -3117,12 +2835,12 @@
       <div class="ne-block">
         <div class="ne-text">La nueva edición empieza en</div>
         <div class="countdown" data-target="2026-11-27T19:00:00+01:00">
-          <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
-          <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
-          <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
-          <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
-        </div>
-        <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
+        <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
+        <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
+        <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
+        <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
+      </div>
+      <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
       </div>
     </div>
   </section>
@@ -3136,10 +2854,10 @@
     <p class="section-subtitle">Revive las clasificaciones de todas las ediciones.</p>
 
     <div class="edition-tabs" id="ranking-tabs">
-      <button class="tab-btn" onclick="switchRanking(4, this)">4ª Edición — AV69</button>
-      <button class="tab-btn active" onclick="switchRanking(0, this)">3ª Edición - AV4801</button>
-      <button class="tab-btn" onclick="switchRanking(1, this)">2ª Edición — AV3</button>
-      <button class="tab-btn" onclick="switchRanking(2, this)">1ª Edición — AV</button>
+      <button class="tab-btn logo-tab" onclick="switchRanking(4, this)" aria-label="4ª Edición · AV69" title="4ª Edición · AV69"><img src="imagen/logo-av69.png" alt="4ª Edición · AV69"></button>
+      <button class="tab-btn logo-tab active" onclick="switchRanking(0, this)" aria-label="3ª Edición · AV4801" title="3ª Edición · AV4801"><img src="imagen/logo-av4801.png" alt="3ª Edición · AV4801"></button>
+      <button class="tab-btn logo-tab" onclick="switchRanking(1, this)" aria-label="2ª Edición · AV3" title="2ª Edición · AV3"><img src="imagen/logo-av3.png" alt="2ª Edición · AV3"></button>
+      <button class="tab-btn logo-tab" onclick="switchRanking(2, this)" aria-label="1ª Edición · AV" title="1ª Edición · AV"><img src="imagen/logo-av1.png" alt="1ª Edición · AV"></button>
       <button class="tab-btn" onclick="switchRanking(3, this)">Global</button>
     </div>
 
@@ -3192,12 +2910,12 @@
       <div class="ne-block">
         <div class="ne-text">La nueva edición empieza en</div>
         <div class="countdown" data-target="2026-11-27T19:00:00+01:00">
-          <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
-          <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
-          <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
-          <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
-        </div>
-        <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
+        <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
+        <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
+        <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
+        <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
+      </div>
+      <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
       </div>
     </div>
 
@@ -3216,35 +2934,20 @@
 
   <!-- ─── CONCURSANTES & ESTADÍSTICAS ─── -->
   <section id="concursantes" class="reveal">
-    <div class="section-label">👤 Artistas & Estadísticas</div>
-    <h2 class="section-title">Concursantes</h2>
-    <p class="section-subtitle">Los artistas que compiten en AutismoVision. Usa las flechas para pasar de uno a otro y
-      ver sus
-      estadísticas detalladas y discografía completa.</p>
-
-    <div class="cc-carousel" id="cc-carousel">
-      <button class="cc-arrow cc-prev" onclick="moveContestant(-1)" aria-label="Concursante anterior">‹</button>
-
-      <div class="contestant-songs-panel visible" id="contestant-panel">
-        <div class="csp-header">
-          <div class="csp-name" id="csp-name"></div>
-          <div class="csp-aka" id="csp-aka"></div>
-          <div class="csp-counter" id="csp-counter"></div>
-        </div>
-
-        <!-- Estadísticas con el lettering desenfocado de fondo -->
-        <div class="stats-container">
-          <div class="csp-bg" id="csp-bg"></div>
-          <div class="stats-title">📊 Estadísticas del Concursante</div>
-          <div class="stats-grid" id="stats-grid"></div>
-        </div>
-
-        <div class="csp-songs-grid" id="csp-songs-grid"></div>
+    <div class="car-bar">
+      <div>
+        <div class="section-label">👤 Artistas & Estadísticas</div>
+        <h2 class="section-title">Concursantes y Stats</h2>
       </div>
-
-      <button class="cc-arrow cc-next" onclick="moveContestant(1)" aria-label="Concursante siguiente">›</button>
+      <div class="car-dots" id="car-dots"></div>
     </div>
-    <div class="cc-dots" id="cc-dots"></div>
+
+    <div class="car-card" id="car-card" aria-live="polite">
+      <button class="car-arrow prev" onclick="stepContestant(-1)" aria-label="Concursante anterior">&#8249;</button>
+      <button class="car-arrow next" onclick="stepContestant(1)" aria-label="Concursante siguiente">&#8250;</button>
+      <div class="car-bg" id="car-bg" aria-hidden="true"></div>
+      <div class="car-slide" id="car-slide"></div>
+    </div>
   </section>
 
   <div class="section-divider"></div>
@@ -3278,22 +2981,22 @@
       <button class="barras-back-btn" onclick="showBarrasView('menu')">← Volver</button>
       <div class="edition-tabs" id="museo-tabs">
         <button class="tab-btn active" onclick="filterBarrasMuseo('all', this)">Todas</button>
-        <button class="tab-btn" onclick="filterBarrasMuseo(3, this)">4ª Edición — AV69</button>
-        <button class="tab-btn" onclick="filterBarrasMuseo(0, this)">3ª Edición - AV4801</button>
-        <button class="tab-btn" onclick="filterBarrasMuseo(1, this)">2ª Edición — AV3</button>
-        <button class="tab-btn" onclick="filterBarrasMuseo(2, this)">1ª Edición — AV1</button>
+        <button class="tab-btn logo-tab" onclick="filterBarrasMuseo(3, this)" aria-label="4ª Edición · AV69" title="4ª Edición · AV69"><img src="imagen/logo-av69.png" alt="4ª Edición · AV69"></button>
+        <button class="tab-btn logo-tab" onclick="filterBarrasMuseo(0, this)" aria-label="3ª Edición · AV4801" title="3ª Edición · AV4801"><img src="imagen/logo-av4801.png" alt="3ª Edición · AV4801"></button>
+        <button class="tab-btn logo-tab" onclick="filterBarrasMuseo(1, this)" aria-label="2ª Edición · AV3" title="2ª Edición · AV3"><img src="imagen/logo-av3.png" alt="2ª Edición · AV3"></button>
+        <button class="tab-btn logo-tab" onclick="filterBarrasMuseo(2, this)" aria-label="1ª Edición · AV" title="1ª Edición · AV"><img src="imagen/logo-av1.png" alt="1ª Edición · AV"></button>
       </div>
       <div class="barras-museum-grid" id="barras-museum-grid"></div>
       <div id="barras-ne" style="display:none;">
         <div class="ne-block">
           <div class="ne-text">La nueva edición empieza en</div>
           <div class="countdown" data-target="2026-11-27T19:00:00+01:00">
-            <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
-            <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
-            <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
-            <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
-          </div>
-          <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
+          <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
+        </div>
+        <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
         </div>
       </div>
     </div>
@@ -3368,22 +3071,22 @@
       musical.</p>
 
     <div class="edition-tabs" id="awards-tabs">
-      <button class="tab-btn" onclick="switchAwards(4, this)">4ª Edición — AV69</button>
-      <button class="tab-btn active" onclick="switchAwards(3, this)">3ª Edición - AV4801</button>
-      <button class="tab-btn" onclick="switchAwards(2, this)">2ª Edición — AV3</button>
-      <button class="tab-btn" onclick="switchAwards(1, this)">1ª Edición — AV</button>
+      <button class="tab-btn logo-tab" onclick="switchAwards(4, this)" aria-label="4ª Edición · AV69" title="4ª Edición · AV69"><img src="imagen/logo-av69.png" alt="4ª Edición · AV69"></button>
+      <button class="tab-btn logo-tab active" onclick="switchAwards(3, this)" aria-label="3ª Edición · AV4801" title="3ª Edición · AV4801"><img src="imagen/logo-av4801.png" alt="3ª Edición · AV4801"></button>
+      <button class="tab-btn logo-tab" onclick="switchAwards(2, this)" aria-label="2ª Edición · AV3" title="2ª Edición · AV3"><img src="imagen/logo-av3.png" alt="2ª Edición · AV3"></button>
+      <button class="tab-btn logo-tab" onclick="switchAwards(1, this)" aria-label="1ª Edición · AV" title="1ª Edición · AV"><img src="imagen/logo-av1.png" alt="1ª Edición · AV"></button>
     </div>
     <div id="awards-container"></div>
     <div id="awards-ne" style="display:none;">
       <div class="ne-block">
         <div class="ne-text">La nueva edición empieza en</div>
         <div class="countdown" data-target="2026-11-27T19:00:00+01:00">
-          <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
-          <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
-          <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
-          <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
-        </div>
-        <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
+        <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
+        <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
+        <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
+        <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
+      </div>
+      <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
       </div>
     </div>
   </section>
@@ -3408,16 +3111,14 @@
 
       <div class="gala-round-title">Ronda 2</div>
       <p class="section-subtitle">Subcampeones, terceros puestos y el ganador de la votación.<br>
-        <strong style="color:var(--gold)"> Los ganadores de la Ronda 2 pasan al bracket. </strong>
-      </p>
+        <strong style="color:var(--gold)"> Los ganadores de la Ronda 2 pasan al bracket. </strong></p>
       <div class="gala-grid" id="gala-ronda2"></div>
       <div class="gala-extra">(+ 11 clasificados de la ronda 1 de los playoffs)</div>
 
       <div class="gala-round-title">Ronda 1</div>
       <p class="section-subtitle">Cuartos puestos, quintos puestos, sextos puestos, favorito del público y del 2º y 3º
         puesto de la votación (un favorito del público por edición).<br>
-        <strong style="color:var(--gold)"> Los ganadores de la Ronda 1 pasan a la Ronda 2. </strong>
-      </p>
+        <strong style="color:var(--gold)"> Los ganadores de la Ronda 1 pasan a la Ronda 2. </strong></p>
       <div class="gala-grid" id="gala-ronda1"></div>
     </div>
   </div>
@@ -3812,109 +3513,6 @@
       { name: 'Gheorge777', aka: null, color: '#f472b6', colorBg: 'rgba(244,114,182,.12)', colorBorder: 'rgba(244,114,182,.3)', curiosity: 'Nunca ha entrado a Gala' },
     ];
 
-
-    // ════════════════════════════════════════════
-    //  IMÁGENES (lettering de concursantes y logos de ediciones)
-    //  Cambia aquí las rutas si tus archivos se llaman distinto.
-    //  Si una imagen no carga, se muestra el texto en su lugar.
-    // ════════════════════════════════════════════
-    const CONTESTANT_IMGS = {
-      'Superpajas33': 'imagen/Superpajas33.png',
-      'Sintu_': 'imagen/Sintu.png',
-      'Borja': 'imagen/Borja.png',
-      'Minwerfu': 'imagen/Minwerfu.png',
-      'DJ Sigma Boy': 'imagen/Dj Sigma Boy.png',
-      'Gokenrik': 'imagen/Gokenrik.png',
-      'Gheorge777': 'imagen/Gheorge777.png',
-    };
-    const CONTESTANT_ALIASES = { 'Luner': 'Superpajas33', 'Madi': 'DJ Sigma Boy', 'Madie': 'DJ Sigma Boy' };
-
-    // Clave = número de edición
-    const EDITION_LOGOS = {
-      4: 'imagen/ediciones/AV69.png',
-      3: 'imagen/ediciones/AV4801.png',
-      2: 'imagen/ediciones/AV3.png',
-      1: 'imagen/ediciones/AV1.png',
-    };
-
-    function lettFallback(img) {
-      if (img.dataset.fb === 'remove') { img.remove(); return; }
-      const s = document.createElement('span');
-      s.className = 'lt-fallback';
-      s.textContent = img.alt;
-      img.replaceWith(s);
-    }
-
-    function letteringImg(name, cls, fb) {
-      const key = CONTESTANT_ALIASES[name] || name;
-      const src = CONTESTANT_IMGS[key];
-      if (!src) return fb === 'remove' ? '' : `<span class="lt-fallback">${name}</span>`;
-      return `<img class="${cls}" src="${src}" alt="${String(name).replace(/"/g, '&quot;')}" data-fb="${fb || 'text'}" onerror="lettFallback(this)">`;
-    }
-
-    function artistLettering(artistStr, cls) {
-      if (!artistStr) return '<span class="lt-fallback">Sin artista</span>';
-      return String(artistStr).split('&').map(p => p.trim()).filter(Boolean)
-        .map(n => letteringImg(n, cls || 'npb-lt')).join('<span class="lt-amp">&amp;</span>');
-    }
-
-    function applyEditionLogos() {
-      document.querySelectorAll('.edition-tabs .tab-btn').forEach(btn => {
-        const label = btn.textContent.trim();
-        const m = label.match(/^(\d)ª Edición/);
-        if (!m || !EDITION_LOGOS[m[1]]) return;
-        const img = new Image();
-        img.className = 'tab-logo';
-        img.alt = label;
-        img.onload = () => {
-          btn.setAttribute('aria-label', label);
-          btn.title = label;
-          btn.textContent = '';
-          btn.appendChild(img);
-          btn.classList.add('has-logo');
-        };
-        img.src = EDITION_LOGOS[m[1]];
-      });
-    }
-
-    // ── Info de la canción para la caja del reproductor ──
-    function galaRoundOf(title) {
-      const t = _normT(title);
-      const has = arr => arr.some(x => x && !x.pending && _normT(x.title) === t);
-      if (has(GALA_CAMPEONATO)) return 'Clasificada directa al bracket';
-      if (has(GALA_RONDA2)) return 'Ronda 2';
-      if (has(GALA_RONDA1)) return 'Ronda 1';
-      return null;
-    }
-
-    function getSongInfo(edIdx, title) {
-      const src = edIdx === 0 ? SONGS_AV : edIdx === 1 ? SONGS_ED2 : edIdx === 2 ? SONGS_ED1 : SONGS_EXTRAS;
-      const edNum = [3, 2, 1, 0][edIdx];
-      const ranked = edIdx === 0 ? src : [...src].sort((a, b) => (b.score || 0) - (a.score || 0));
-      const idx = ranked.findIndex(s => _normT(s.title) === _normT(title));
-      if (idx < 0) return null;
-      const s = ranked[idx];
-      const maxScore = edNum === 1 ? 10 : edNum === 0 ? 0 : 43;
-      return {
-        producer: s.producer || '',
-        score: maxScore ? `${s.score} / ${maxScore}` : null,
-        position: maxScore ? { n: idx + 1, total: ranked.length } : null,
-        awards: ALL_AWARDS.filter(a => a.edition === edNum && _normT(a.title) === _normT(s.title) && !a.type.includes('Campeón')).map(a => a.type),
-        gala: galaRoundOf(s.title),
-      };
-    }
-
-    function renderSongMeta(info) {
-      if (!info) return '';
-      const chip = (label, val) => `<div class="npb-chip"><span class="npb-chip-l">${label}</span><span class="npb-chip-v">${val}</span></div>`;
-      return [
-        chip('Puntuación', info.score || '—'),
-        chip('Posición', info.position ? `#${info.position.n} <small>de ${info.position.total}</small>` : '—'),
-        chip('Premios secundarios', info.awards.length ? info.awards.map(a => `<span class="npb-award">${a}</span>`).join('') : '—'),
-        chip('Última Gala', info.gala ? `🏅 Sí <small>· ${info.gala}</small>` : 'No'),
-      ].join('');
-    }
-
     // Premios Secundarios Data
     const PREMIOS_SECUNDARIOS = [
       {
@@ -4207,6 +3805,33 @@
       `).join('');
     }
 
+    // Datos de una canción de la lista de reproducción (puntuación, puesto, premios, gala…)
+    function songInfo(edIdx, title) {
+      const cfg = { 0: [SONGS_AV, 3, 43], 1: [SONGS_ED2, 2, 43], 2: [SONGS_ED1, 1, 10], 3: [SONGS_EXTRAS, 0, 0] }[edIdx];
+      if (!cfg) return null;
+      const [arr, edNum, max] = cfg;
+      const i = arr.findIndex(x => _normT(x.title) === _normT(title));
+      if (i === -1) return null;
+      const song = arr[i];
+      const awards = edNum ? ALL_AWARDS.filter(a => a.edition === edNum && _normT(a.title) === _normT(title)).map(a => a.type) : [];
+      const gala = [...GALA_CAMPEONATO, ...GALA_RONDA2, ...GALA_RONDA1].find(g => g && !g.pending && _normT(g.title) === _normT(title));
+      return { song, edNum, max, pos: edNum ? i + 1 : null, total: arr.length, awards, gala };
+    }
+
+    function npbMetaHTML(edIdx, info) {
+      if (!info) return '';
+      if (!info.edNum) return '<span class="npb-chip">✦ Canción extra</span>';
+      const chips = [];
+      chips.push(`<span class="npb-chip score">⭐ ${info.song.score}<small>/ ${info.max}</small></span>`);
+      chips.push(`<span class="npb-chip pos">Puesto #${info.pos}<small>de ${info.total}</small></span>`);
+      if (info.song.badge && !info.awards.some(a => _normT(a) === _normT(info.song.badge))) chips.push(`<span class="npb-chip stage">${info.song.badge}</span>`);
+      info.awards.forEach(a => chips.push(`<span class="npb-chip award">${a}</span>`));
+      chips.push(info.gala
+        ? `<span class="npb-chip gala">🏅 En La Última Gala<small style="color:#5c4700">${info.gala.edition}</small></span>`
+        : '<span class="npb-chip nogala">Fuera de La Última Gala</span>');
+      return chips.join('');
+    }
+
     function selectSong(edIdx, title, artist, itemEl) {
       const iframe = document.getElementById(`player-${edIdx}`);
       const placeholder = document.getElementById(`video-placeholder-${edIdx}`);
@@ -4216,152 +3841,191 @@
       iframe.src = src;
       if (placeholder) placeholder.classList.add('hidden');
 
+      const info = songInfo(edIdx, title);
       document.getElementById(`npb-title-${edIdx}`).textContent = title;
-      const info = getSongInfo(edIdx, title);
-      const artistEl = document.getElementById(`npb-artist-${edIdx}`);
-      artistEl.innerHTML = artistLettering(artist, 'npb-lt') + (info && info.producer
-        ? `<span class="npb-prod">Prod. ${artistLettering(info.producer, 'npb-lt')}</span>` : '');
-      document.getElementById(`npb-meta-${edIdx}`).innerHTML = renderSongMeta(info);
+      document.getElementById(`npb-artist-${edIdx}`).innerHTML = creatorHTML(artist, info && info.song.producer);
+      const meta = document.getElementById(`npb-meta-${edIdx}`);
+      meta.innerHTML = npbMetaHTML(edIdx, info);
+      meta.classList.add('on');
+      const hint = document.getElementById(`npb-hint-${edIdx}`);
+      if (hint) hint.style.display = 'none';
 
       const list = document.getElementById(`playlist-${edIdx}`);
       if (list) list.querySelectorAll('.playlist-item.active').forEach(el => el.classList.remove('active'));
       if (itemEl) itemEl.classList.add('active');
     }
 
+    function pauseEditionPlayers() {
+      for (let i = 0; i < 4; i++) {
+        const f = document.getElementById(`player-${i}`);
+        if (f && f.src) {
+          try { f.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }), '*'); } catch (e) { }
+        }
+      }
+    }
+
     function switchEdition(idx, btn) {
+      pauseEditionPlayers();
       const contents = document.querySelectorAll('.edition-tabs-content');
       contents.forEach((el, i) => el.classList.toggle('active', i === idx));
       btn.parentElement.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
     }
 
-    let currentContestant = 0;
+    // ─── CONCURSANTES · CARRUSEL ───
+    let activeContestant = 0;
+
+    const LETTERING = {
+      'Superpajas33': 'imagen/lettering-superpajas.png',
+      'Sintu_': 'imagen/lettering-sintu.png',
+      'Borja': 'imagen/lettering-borja.png',
+      'Minwerfu': 'imagen/lettering-minwerfu.png',
+      'DJ Sigma Boy': 'imagen/lettering-djsigmaboy.png',
+      'Gokenrik': 'imagen/lettering-gokenrik.png',
+      // 'Gheorge777': 'imagen/lettering-gheorge777.png'  ← añade el archivo y descomenta esta línea
+    };
+    const NAME_ALIASES = { 'luner': 'Superpajas33', 'madi': 'DJ Sigma Boy', 'madie': 'DJ Sigma Boy' };
+
+    function resolveContestantName(raw) {
+      const n = String(raw || '').trim().toLowerCase();
+      if (NAME_ALIASES[n]) return NAME_ALIASES[n];
+      const f = CONTESTANTS.find(c => c.name.toLowerCase() === n);
+      return f ? f.name : null;
+    }
+
+    // Creador(es) en versión lettering (texto de color si no hay imagen)
+    function creatorHTML(artist, producer) {
+      const prod = producer ? `<span class="prod">Prod. ${producer}</span>` : '';
+      if (!artist) return `<span class="prod">Sin artista</span>${prod}`;
+      const parts = String(artist).split(/\s*(?:&|,|\+)\s*/).filter(Boolean);
+      const html = parts.map(p => {
+        const canon = resolveContestantName(p);
+        const c = canon && CONTESTANTS.find(x => x.name === canon);
+        if (canon && LETTERING[canon]) return `<img src="${LETTERING[canon]}" alt="${canon}" title="${p}">`;
+        return `<span class="txt" style="color:${c ? c.color : 'var(--text)'}">${p}</span>`;
+      }).join('<span class="amp">&amp;</span>');
+      return html + prod;
+    }
+
+    const ED_LABEL = { 1: '1ª Ed.', 2: '2ª Ed.', 3: '3ª Ed.' };
 
     function buildContestants() {
-      document.getElementById('cc-dots').innerHTML = CONTESTANTS.map((c, i) =>
-        `<button class="cc-dot" id="cc-dot-${i}" style="--dot:${c.color}" onclick="showContestant(${i})" aria-label="${c.name}"></button>`
-      ).join('');
-      showContestant(0, 0);
+      document.getElementById('car-dots').innerHTML = CONTESTANTS.map((c, i) =>
+        `<button class="car-dot" style="--c:${c.color}" onclick="goContestant(${i})" aria-label="${c.name}" title="${c.name}"></button>`).join('');
+      renderContestant(0, 0);
 
-      // Swipe en móvil
-      const car = document.getElementById('cc-carousel');
-      let x0 = null;
-      car.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
-      car.addEventListener('touchend', e => {
+      const card = document.getElementById('car-card');
+      let x0 = null, y0 = null;
+      card.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+      card.addEventListener('touchend', e => {
         if (x0 === null) return;
-        const dx = e.changedTouches[0].clientX - x0;
-        if (Math.abs(dx) > 60) moveContestant(dx < 0 ? 1 : -1);
+        const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
         x0 = null;
+        if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.5) stepContestant(dx < 0 ? 1 : -1);
+      }, { passive: true });
+      document.addEventListener('keydown', e => {
+        if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+        if (/input|textarea|select/i.test((e.target.tagName || ''))) return;
+        if (document.querySelector('.modal.open, #videoModal.open, #otherCompsModal.open')) return;
+        const r = card.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > innerHeight) return;
+        stepContestant(e.key === 'ArrowRight' ? 1 : -1);
       });
     }
 
-    function moveContestant(dir) {
+    function stepContestant(d) {
       const n = CONTESTANTS.length;
-      showContestant((currentContestant + dir + n) % n, dir);
+      renderContestant((activeContestant + d + n) % n, d);
+    }
+    function goContestant(i) {
+      if (i === activeContestant) return;
+      renderContestant(i, i > activeContestant ? 1 : -1);
     }
 
-    function showContestant(idx, dir = 1) {
+    function renderContestant(idx, dir) {
+      activeContestant = idx;
       const c = CONTESTANTS[idx];
-      const panel = document.getElementById('contestant-panel');
-      currentContestant = idx;
+      const card = document.getElementById('car-card');
+      card.style.setProperty('--c', c.color);
+      card.style.setProperty('--cbg', c.colorBg);
+      card.style.setProperty('--cbd', c.colorBorder);
+      document.querySelectorAll('.car-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
 
-      document.querySelectorAll('.cc-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
-      panel.style.setProperty('--accent-color', c.color);
-      panel.style.setProperty('--accent-color-bg', c.colorBg);
-
-      // Nombre → lettering (con texto como alternativa si la imagen no carga)
-      const nameEl = document.getElementById('csp-name');
-      nameEl.style.color = c.color;
-      nameEl.innerHTML = letteringImg(c.name, 'csp-name-img');
-      document.getElementById('csp-aka').textContent = c.aka || '';
-      document.getElementById('csp-counter').textContent = `${idx + 1} / ${CONTESTANTS.length}`;
-
-      // Lettering de fondo, desenfocado
-      document.getElementById('csp-bg').innerHTML = letteringImg(c.name, 'csp-bg-img', 'remove');
+      const img = LETTERING[c.name];
+      document.getElementById('car-bg').innerHTML = img
+        ? `<img src="${img}" alt="">`
+        : `<span>${c.name}</span>`;
 
       const songs = getSongsForContestant(c.name);
-      const stats = calculateContestantStats(c.name);
+      const st = calculateContestantStats(c.name);
 
-      const sub = (label, v) => v ? `<div class="stat-subvalue">${label}: <strong>${v}</strong></div>` : '';
-      let avgEdHTML = sub('1ª Edición', stats.avgRankEd1) + sub('2ª Edición', stats.avgRankEd2) + sub('3ª Edición', stats.avgRankEd3);
-      if (!avgEdHTML) avgEdHTML = `<div class="stat-subvalue">Sin participaciones</div>`;
-      let avgScoreEdHTML = sub('1ª Edición', stats.avgScoreEd1) + sub('2ª Edición', stats.avgScoreEd2) + sub('3ª Edición', stats.avgScoreEd3);
-      if (!avgScoreEdHTML) avgScoreEdHTML = `<div class="stat-subvalue">Sin puntuaciones</div>`;
+      // Filas por edición
+      const eds = [3, 2, 1].map(n => {
+        const list = songs.filter(x => x.edNum === n);
+        if (!list.length) return `<div class="cs-ed none"><span class="cs-ed-name">${ED_LABEL[n]}</span><span></span><span class="cs-ed-val">No participó</span></div>`;
+        const max = n === 1 ? 10 : 43;
+        const avg = list.reduce((a, x) => a + x.score, 0) / list.length;
+        const rank = list.reduce((a, x) => a + x.origIndex + 1, 0) / list.length;
+        const pct = Math.max(4, Math.min(100, avg / max * 100));
+        return `<div class="cs-ed"><span class="cs-ed-name">${ED_LABEL[n]}</span>
+          <span class="cs-ed-bar"><i style="--w:${pct.toFixed(1)}%"></i></span>
+          <span class="cs-ed-val"><b>${avg.toFixed(2)}</b>/${max} · #${rank.toFixed(1)}</span></div>`;
+      }).join('');
 
-      let bestSongStr = 'Ninguna';
-      if (stats.bestSongData) {
-        bestSongStr = `${stats.bestSongData.title} <span class="stat-best-meta">#${stats.bestSongData.origIndex + 1} · ${stats.bestSongData.score} pts</span>`;
-      }
+      const hasAvg = st.avgScoreTotalNorm && st.avgScoreTotalNorm !== 'N/A';
+      const avgBig = hasAvg ? st.avgScoreTotalNorm.replace(' / 10', '') : '—';
+      const bs = st.bestSongData;
+      const bestHTML = bs ? `
+        <div class="cs-best">
+          <div class="cs-mini-lbl">Mejor canción</div>
+          <div class="cs-best-title">${bs.title}</div>
+          <div class="cs-best-sub">#${bs.origIndex + 1} · ${bs.score} pts · ${bs.edition}</div>
+        </div>` : '';
 
-      document.getElementById('stats-grid').innerHTML = `
-        <div class="stat-card">
-          <div class="stat-label">Canciones creadas</div>
-          <div class="stat-value stat-big" style="color:${c.color}">${stats.totalSongs}</div>
+      // Playlist: ediciones recientes primero, extras al final
+      const ordered = [...songs].sort((a, b) => (b.edNum === 4 ? 0 : b.edNum) - (a.edNum === 4 ? 0 : a.edNum));
+      const listHTML = ordered.length ? ordered.map((s, i) => {
+        const badges = (s.awards || []).length
+          ? `<div class="cp-badges">${s.awards.map(w => `<span>${w}</span>`).join('')}</div>` : '';
+        const pos = s.maxScore > 0 ? ` · #${s.origIndex + 1}` : '';
+        const pts = s.score ? ` · ${s.score} pts` : '';
+        return `
+          <div class="cp-item" onclick="openVideoModal('${esc(s.title)}', '${esc(s.artist || '')}')">
+            <div class="cp-num">${i + 1}</div>
+            <div class="cp-info">
+              <div class="cp-title">${s.title}${galaMark(s.title)}</div>
+              <div class="cp-sub">${s.edition}${pts}${pos}</div>
+              ${badges}
+            </div>
+            <div class="cp-play"><svg viewBox="0 0 10 10"><polygon points="2,1 9,5 2,9"/></svg></div>
+          </div>`;
+      }).join('') : '<div class="cp-empty">No se encontraron canciones.</div>';
+
+      const slide = document.getElementById('car-slide');
+      slide.innerHTML = `
+        <div class="car-letter">
+          ${img ? `<img src="${img}" alt="${c.name}">` : `<div class="car-name-txt">${c.name}</div>`}
+          ${c.aka ? `<div class="car-aka">${c.aka}</div>` : ''}
         </div>
-        <div class="stat-card">
-          <div class="stat-label">Nota Promedio Total</div>
-          <div class="stat-value stat-big" style="color:var(--accent2)">${stats.avgScoreTotalNorm}</div>
-          <div class="stat-subvalue">Rendimiento: <strong>${stats.avgPct}</strong></div>
+        <div class="car-stats">
+          <div class="car-col-title">Estadísticas</div>
+          <div class="cs-hero">
+            <div><div class="cs-big-val">${st.totalSongs}</div><div class="cs-big-lbl">Canciones creadas</div></div>
+            <div><div class="cs-big-val gold">${st.totalAwards}</div><div class="cs-big-lbl">Premios ganados</div></div>
+            <div><div class="cs-big-val white">${avgBig}${hasAvg ? '<small>/10</small>' : ''}</div><div class="cs-big-lbl">Nota media${hasAvg ? ' · ' + st.avgPct : ''}</div></div>
+            <div><div class="cs-big-val white">${st.avgRank === 'N/A' ? '—' : st.avgRank}</div><div class="cs-big-lbl">Puesto medio</div></div>
+          </div>
+          <div class="cs-eds">${eds}</div>
+          ${bestHTML}
+          <div class="cs-quote"><div class="cs-mini-lbl">Curiosidad</div><p>${c.curiosity}</p></div>
         </div>
-        <div class="stat-card">
-          <div class="stat-label">Puesto Prom. Total</div>
-          <div class="stat-value stat-big">${stats.avgRank}</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Premios Ganados</div>
-          <div class="stat-value stat-big" style="color:var(--gold)">${stats.totalAwards}</div>
-        </div>
-        <div class="stat-card stat-half">
-          <div class="stat-label">Nota Promedio x Edición</div>
-          ${avgScoreEdHTML}
-        </div>
-        <div class="stat-card stat-half">
-          <div class="stat-label">Puesto Promedio x Edición</div>
-          ${avgEdHTML}
-        </div>
-        <div class="stat-card stat-wide">
-          <div class="stat-label">Mejor Canción</div>
-          <div class="stat-best">${bestSongStr}</div>
-        </div>
-        <div class="stat-card stat-wide">
-          <div class="stat-label">Curiosidad</div>
-          <div class="stat-curiosity">${c.curiosity}</div>
-        </div>
-      `;
+        <div class="car-playlist">
+          <div class="car-col-title">Playlist · ${songs.length}</div>
+          <div class="cp-list">${listHTML}</div>
+        </div>`;
 
-      const grid = document.getElementById('csp-songs-grid');
-      grid.innerHTML = songs.length === 0
-        ? `<div style="padding:2rem; color:var(--muted); font-size:.9rem;">No se encontraron canciones.</div>`
-        : songs.map((s, i) => {
-          const badges = (s.awards || []).map(aw => `
-            <span style="background:rgba(255,215,0,0.15); color:var(--gold); border:1px solid rgba(255,215,0,0.4); padding:2px 6px; border-radius:3px; font-size:0.68rem; font-family:'Barlow Condensed', sans-serif; display:inline-block;">${aw}</span>
-          `).join('');
-
-          const badgeBlock = (s.awards && s.awards.length > 0)
-            ? `<br><div style="display:inline-flex; flex-wrap:wrap; gap:4px; margin-top:4px;">${badges}</div>`
-            : '';
-
-          const placement = s.maxScore > 0 ? ` &nbsp;·&nbsp; Puesto #${s.origIndex + 1}` : '';
-
-          return `
-              <div class="csp-song-item" onclick="openVideoModal('${esc(s.title)}', '${esc(s.artist)}')">
-                <div class="csp-song-num">${i + 1}</div>
-                <div class="csp-song-info">
-                  <div class="csp-song-title">${s.title}${badgeBlock}</div>
-                  <div class="csp-song-edition">${s.edition} ${s.score ? '&nbsp;·&nbsp; ' + s.score + ' pts' : ''}${placement}</div>
-                </div>
-                <div class="csp-play-btn"><svg viewBox="0 0 10 10"><polygon points="2,1 9,5 2,9"/></svg></div>
-              </div>
-            `;
-        }).join('');
-
-
-      if (dir && panel.animate) {
-        panel.animate(
-          [{ opacity: 0, transform: `translateX(${dir * 36}px)` }, { opacity: 1, transform: 'none' }],
-          { duration: 300, easing: 'ease-out' }
-        );
-      }
+      slide.classList.remove('from-left', 'from-right');
+      if (dir) { void slide.offsetWidth; slide.classList.add(dir > 0 ? 'from-right' : 'from-left'); }
     }
 
     function buildSecondaryAwards(edNum = 3) {
@@ -4779,15 +4443,7 @@
       // Populate Total Global Songs
       const globalTotalSongs = SONGS_ED1.length + SONGS_ED2.length + SONGS_AV.length + SONGS_EXTRAS.length;
       const totalSongsEl = document.getElementById('global-total-songs');
-      if (totalSongsEl) {
-        const t0 = performance.now(), dur = 1400;
-        const step = now => {
-          const p = Math.min(1, (now - t0) / dur);
-          totalSongsEl.textContent = Math.round(globalTotalSongs * (1 - Math.pow(1 - p, 3)));
-          if (p < 1) requestAnimationFrame(step);
-        };
-        requestAnimationFrame(step);
-      }
+      if (totalSongsEl) totalSongsEl.textContent = globalTotalSongs;
 
       // Initializations
       for (let i = 0; i < 4; i++) buildPlaylistUI(i);
@@ -4797,7 +4453,6 @@
       renderGroups();
       renderBracket();
       renderGala();
-      applyEditionLogos();
 
       // Intersection Observer for Animations (aparición Y desaparición en ambos sentidos)
       // threshold bajo (no un %) para que funcione también con secciones muy altas
@@ -5045,7 +4700,7 @@
       document.addEventListener('mousedown', () => dot.classList.add('cc-click'));
       document.addEventListener('mouseup', () => dot.classList.remove('cc-click'));
 
-      const hoverSelector = 'a, button, input, select, textarea, .tab-btn, .contestant-card, .playlist-item, .gala-card, .csp-song-item, .quiz-choice-btn, .quiz-option-btn, [onclick]';
+      const hoverSelector = 'a, button, input, select, textarea, .tab-btn, .car-arrow, .car-dot, .cp-item, .playlist-item, .gala-card, .csp-song-item, .quiz-choice-btn, .quiz-option-btn, [onclick]';
 
       document.addEventListener('mouseover', (e) => {
         if (e.target.closest && e.target.closest(hoverSelector)) {
@@ -5093,7 +4748,7 @@
             return;
           }
           const d = Math.floor(diff / 864e5), h = Math.floor(diff / 36e5) % 24,
-            m = Math.floor(diff / 6e4) % 60, sec = Math.floor(diff / 1e3) % 60;
+                m = Math.floor(diff / 6e4) % 60, sec = Math.floor(diff / 1e3) % 60;
           const pad = n => String(n).padStart(2, '0');
           const v = { d: pad(d), h: pad(h), m: pad(m), s: pad(sec) };
           cd.querySelectorAll('[data-cd]').forEach(el => setDigits(el, v[el.dataset.cd]));

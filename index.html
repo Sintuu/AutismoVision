@@ -2337,6 +2337,26 @@
       min-width: 0;
     }
 
+    /* ─── NUEVA EDICIÓN / CONTADOR ─── */
+    .ne-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.2rem;
+      position: relative;
+      z-index: 1;
+      padding: 2rem 1rem;
+    }
+
+    .ne-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .6rem;
+      min-width: 0;
+    }
+
     /* Versión compacta del inicio: logo a la izquierda, contador a la derecha */
     .ne-hero {
       flex-direction: row;
@@ -2423,15 +2443,49 @@
       height: 1.2em;
     }
 
-    .cd-d.in { animation: cdIn .55s cubic-bezier(.22, 1, .36, 1); }
-    .cd-d.out { position: absolute; left: 0; top: 0; animation: cdOut .55s cubic-bezier(.22, 1, .36, 1) forwards; }
+    .cd-d.in {
+      animation: cdIn .55s cubic-bezier(.22, 1, .36, 1);
+    }
 
-    @keyframes cdIn { from { transform: translateY(100%); opacity: 0; } to { transform: none; opacity: 1; } }
-    @keyframes cdOut { from { transform: none; opacity: 1; } to { transform: translateY(-100%); opacity: 0; } }
+    .cd-d.out {
+      position: absolute;
+      left: 0;
+      top: 0;
+      animation: cdOut .55s cubic-bezier(.22, 1, .36, 1) forwards;
+    }
 
-    .ne-hero .cd-unit { min-width: clamp(36px, 8vw, 64px); }
+    @keyframes cdIn {
+      from {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: none;
+        opacity: 1;
+      }
+    }
+
+    @keyframes cdOut {
+      from {
+        transform: none;
+        opacity: 1;
+      }
+
+      to {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+    }
+
+    .ne-hero .cd-unit {
+      min-width: clamp(36px, 8vw, 64px);
+    }
+
     .ne-hero .cd-num,
-    .ne-hero .cd-unit:not(:last-child)::after { font-size: clamp(1.6rem, 5vw, 2.8rem); }
+    .ne-hero .cd-unit:not(:last-child)::after {
+      font-size: clamp(1.6rem, 5vw, 2.8rem);
+    }
 
     .cd-lbl {
       font-family: 'Barlow Condensed', sans-serif;
@@ -2463,10 +2517,21 @@
       vertical-align: baseline;
     }
 
-  
+
     /* ═══════ ESTADÍSTICA GENERAL (centrada, sin caja) ═══════ */
-    .gstat-section { text-align: center; padding-bottom: 2rem; }
-    .gstat { margin-top: 1.5rem; display: flex; flex-direction: column; align-items: center; gap: .35rem; }
+    .gstat-section {
+      text-align: center;
+      padding-bottom: 2rem;
+    }
+
+    .gstat {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .35rem;
+    }
+
     .gstat-value {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(4.5rem, 14vw, 8rem);
@@ -2474,6 +2539,7 @@
       color: var(--accent1);
       text-shadow: 0 0 30px rgba(255, 45, 120, .55), 0 0 80px rgba(255, 45, 120, .25);
     }
+
     .gstat-label {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 600;
@@ -2484,163 +2550,891 @@
     }
 
     /* ═══════ PESTAÑAS CON LOGO ═══════ */
-    .tab-btn.logo-tab { padding: .55rem 1.1rem; }
+    .tab-btn.logo-tab {
+      padding: .55rem 1.1rem;
+    }
+
     .tab-btn.logo-tab img {
-      height: 58px; width: auto; display: block;
-      opacity: .42; filter: grayscale(.55);
+      height: 58px;
+      width: auto;
+      display: block;
+      opacity: .42;
+      filter: grayscale(.55);
       transition: opacity .25s, filter .25s, transform .25s;
     }
-    .tab-btn.logo-tab:hover img { opacity: .85; filter: none; transform: translateY(-2px); }
-    .tab-btn.logo-tab.active img { opacity: 1; filter: drop-shadow(0 0 10px rgba(255, 255, 255, .22)); }
+
+    .tab-btn.logo-tab:hover img {
+      opacity: .85;
+      filter: none;
+      transform: translateY(-2px);
+    }
+
+    .tab-btn.logo-tab.active img {
+      opacity: 1;
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, .22));
+    }
+
     @media (max-width: 600px) {
-      .tab-btn.logo-tab { padding: .45rem .6rem; }
-      .tab-btn.logo-tab img { height: 36px; }
+      .tab-btn.logo-tab {
+        padding: .45rem .6rem;
+      }
+
+      .tab-btn.logo-tab img {
+        height: 36px;
+      }
     }
 
     /* ═══════ CAJA "REPRODUCIENDO" ═══════ */
-    .now-playing-bar { gap: .55rem; }
-    .npb-creator {
-      display: flex; align-items: center; flex-wrap: wrap; gap: .45rem .7rem;
-      font-size: .85rem; color: var(--muted);
+    .now-playing-bar {
+      gap: .55rem;
     }
-    .npb-creator img { height: 54px; width: auto; max-width: 46%; object-fit: contain; filter: drop-shadow(0 0 8px rgba(255, 255, 255, .22)); }
-    .npb-creator .txt { font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem; letter-spacing: .04em; line-height: 1; }
-    .npb-creator .amp { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--muted); }
-    .npb-creator .prod { font-family: 'Barlow Condensed', sans-serif; letter-spacing: .08em; text-transform: uppercase; font-size: .75rem; color: var(--muted); }
-    .npb-meta { display: none; flex-wrap: wrap; gap: .45rem; margin-top: .15rem; }
-    .npb-meta.on { display: flex; }
+
+    .npb-creator {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .45rem .7rem;
+      font-size: .85rem;
+      color: var(--muted);
+    }
+
+    .npb-creator img {
+      height: 54px;
+      width: auto;
+      max-width: 46%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, .22));
+    }
+
+    .npb-creator .txt {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.7rem;
+      letter-spacing: .04em;
+      line-height: 1;
+    }
+
+    .npb-creator .amp {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      color: var(--muted);
+    }
+
+    .npb-creator .prod {
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .75rem;
+      color: var(--muted);
+    }
+
+    .npb-meta {
+      display: none;
+      flex-wrap: wrap;
+      gap: .45rem;
+      margin-top: .15rem;
+    }
+
+    .npb-meta.on {
+      display: flex;
+    }
+
     .npb-chip {
-      font-family: 'Barlow Condensed', sans-serif; font-size: .82rem; font-weight: 600;
-      letter-spacing: .07em; text-transform: uppercase;
-      padding: .28rem .65rem; border-radius: 3px;
-      border: 1px solid var(--border); background: rgba(255, 255, 255, .04); color: var(--text);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      padding: .28rem .65rem;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, .04);
+      color: var(--text);
       animation: chipIn .35s ease both;
     }
-    .npb-chip small { color: var(--muted); font-weight: 500; margin-left: .25rem; }
-    .npb-chip.score { color: var(--accent2); border-color: rgba(0, 229, 255, .35); background: rgba(0, 229, 255, .07); }
-    .npb-chip.pos { color: #fff; border-color: rgba(255, 255, 255, .22); }
-    .npb-chip.stage { color: var(--accent1); border-color: rgba(255, 45, 120, .4); background: rgba(255, 45, 120, .08); }
-    .npb-chip.award { color: var(--gold); border-color: rgba(255, 215, 0, .4); background: rgba(255, 215, 0, .1); }
-    .npb-chip.gala { color: #1a1300; border-color: var(--gold); background: linear-gradient(120deg, #fff2b8, var(--gold)); box-shadow: 0 0 14px rgba(255, 215, 0, .35); }
-    .npb-chip.nogala { color: var(--muted); }
-    @keyframes chipIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+    .npb-chip small {
+      color: var(--muted);
+      font-weight: 500;
+      margin-left: .25rem;
+    }
+
+    .npb-chip.score {
+      color: var(--accent2);
+      border-color: rgba(0, 229, 255, .35);
+      background: rgba(0, 229, 255, .07);
+    }
+
+    .npb-chip.pos {
+      color: #fff;
+      border-color: rgba(255, 255, 255, .22);
+    }
+
+    .npb-chip.stage {
+      color: var(--accent1);
+      border-color: rgba(255, 45, 120, .4);
+      background: rgba(255, 45, 120, .08);
+    }
+
+    .npb-chip.award {
+      color: var(--gold);
+      border-color: rgba(255, 215, 0, .4);
+      background: rgba(255, 215, 0, .1);
+    }
+
+    .npb-chip.gala {
+      color: #1a1300;
+      border-color: var(--gold);
+      background: linear-gradient(120deg, #fff2b8, var(--gold));
+      box-shadow: 0 0 14px rgba(255, 215, 0, .35);
+    }
+
+    .npb-chip.nogala {
+      color: var(--muted);
+    }
+
+    @keyframes chipIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
 
     /* ═══════ CARRUSEL DE CONCURSANTES ═══════ */
-    .car-bar { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
-    .car-bar .section-title { margin-bottom: 0; }
-    .car-dots { display: flex; gap: .6rem; padding-bottom: .6rem; }
+    .car-bar {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .car-bar .section-title {
+      margin-bottom: 0;
+    }
+
+    .car-dots {
+      display: flex;
+      gap: .6rem;
+      padding-bottom: .6rem;
+    }
+
     .car-dot {
-      width: 12px; height: 12px; border-radius: 50%; padding: 0; cursor: pointer;
-      border: 1px solid var(--c); background: transparent; opacity: .55;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      padding: 0;
+      cursor: pointer;
+      border: 1px solid var(--c);
+      background: transparent;
+      opacity: .55;
       transition: transform .25s, background .25s, opacity .25s, box-shadow .25s;
     }
-    .car-dot:hover { opacity: 1; transform: scale(1.25); }
-    .car-dot.active { background: var(--c); opacity: 1; transform: scale(1.3); box-shadow: 0 0 12px var(--c); }
+
+    .car-dot:hover {
+      opacity: 1;
+      transform: scale(1.25);
+    }
+
+    .car-dot.active {
+      background: var(--c);
+      opacity: 1;
+      transform: scale(1.3);
+      box-shadow: 0 0 12px var(--c);
+    }
 
     .car-card {
-      --c: #ff2d78; --cbg: rgba(255, 45, 120, .15); --cbd: rgba(255, 45, 120, .3);
-      position: relative; overflow: hidden; border-radius: 10px;
+      --c: #ff2d78;
+      --cbg: rgba(255, 45, 120, .15);
+      --cbd: rgba(255, 45, 120, .3);
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
       border: 1px solid var(--cbd);
       background: radial-gradient(ellipse 70% 90% at 50% 0%, var(--cbg), transparent 70%), var(--card);
       transition: border-color .45s, background .45s;
     }
-    .car-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; z-index: 0; }
-    .car-bg img { width: 78%; height: 92%; object-fit: contain; filter: blur(8px); opacity: .1; transform: scale(1.1); }
-    .car-bg span { font-family: 'Bebas Neue', sans-serif; font-size: clamp(6rem, 18vw, 15rem); color: var(--c); filter: blur(8px); opacity: .1; white-space: nowrap; }
+
+    .car-bg {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .car-bg img {
+      width: 78%;
+      height: 92%;
+      object-fit: contain;
+      filter: blur(8px);
+      opacity: .1;
+      transform: scale(1.1);
+    }
+
+    .car-bg span {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(6rem, 18vw, 15rem);
+      color: var(--c);
+      filter: blur(8px);
+      opacity: .1;
+      white-space: nowrap;
+    }
 
     .car-arrow {
-      position: absolute; top: 50%; z-index: 3; transform: translateY(-50%);
-      width: 46px; height: 46px; border-radius: 50%;
-      border: 1px solid var(--cbd); background: rgba(10, 10, 20, .65); backdrop-filter: blur(6px);
-      color: var(--text); font-size: 1.9rem; line-height: 1; padding-bottom: 4px; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
+      position: absolute;
+      top: 50%;
+      z-index: 3;
+      transform: translateY(-50%);
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid var(--cbd);
+      background: rgba(10, 10, 20, .65);
+      backdrop-filter: blur(6px);
+      color: var(--text);
+      font-size: 1.9rem;
+      line-height: 1;
+      padding-bottom: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition: background .2s, border-color .2s, box-shadow .2s, transform .2s;
     }
-    .car-arrow.prev { left: 1rem; }
-    .car-arrow.next { right: 1rem; }
-    .car-arrow:hover { background: var(--c); border-color: var(--c); box-shadow: 0 0 22px var(--c); color: #fff; transform: translateY(-50%) scale(1.08); }
+
+    .car-arrow.prev {
+      left: 1rem;
+    }
+
+    .car-arrow.next {
+      right: 1rem;
+    }
+
+    .car-arrow:hover {
+      background: var(--c);
+      border-color: var(--c);
+      box-shadow: 0 0 22px var(--c);
+      color: #fff;
+      transform: translateY(-50%) scale(1.08);
+    }
 
     .car-slide {
-      position: relative; z-index: 1;
-      display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.25fr) minmax(0, 1fr);
-      gap: 2.5rem; padding: 2.75rem 5.5rem; align-items: center; min-height: 480px;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, .85fr) minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      padding: 2.75rem 5.5rem;
+      align-items: center;
+      min-height: 480px;
     }
-    .car-slide.from-right { animation: carInR .5s cubic-bezier(.2, .8, .2, 1) both; }
-    .car-slide.from-left { animation: carInL .5s cubic-bezier(.2, .8, .2, 1) both; }
-    @keyframes carInR { from { opacity: 0; transform: translateX(48px); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
-    @keyframes carInL { from { opacity: 0; transform: translateX(-48px); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
 
-    .car-letter { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; }
-    .car-letter img { width: 100%; max-height: 260px; object-fit: contain; filter: drop-shadow(0 0 16px var(--c)) drop-shadow(0 0 40px var(--cbg)); }
-    .car-letter .car-name-txt { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 6vw, 4.6rem); line-height: .95; color: var(--c); text-shadow: 0 0 24px var(--c); word-break: break-word; }
-    .car-aka { font-family: 'Barlow Condensed', sans-serif; letter-spacing: .18em; text-transform: uppercase; font-size: .85rem; color: var(--c); opacity: .85; }
+    .car-slide.from-right {
+      animation: carInR .5s cubic-bezier(.2, .8, .2, 1) both;
+    }
+
+    .car-slide.from-left {
+      animation: carInL .5s cubic-bezier(.2, .8, .2, 1) both;
+    }
+
+    @keyframes carInR {
+      from {
+        opacity: 0;
+        transform: translateX(48px);
+        filter: blur(4px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+        filter: none;
+      }
+    }
+
+    @keyframes carInL {
+      from {
+        opacity: 0;
+        transform: translateX(-48px);
+        filter: blur(4px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+        filter: none;
+      }
+    }
+
+    .car-letter {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+    }
+
+    .car-letter img {
+      width: 100%;
+      max-height: 260px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 16px var(--c)) drop-shadow(0 0 40px var(--cbg));
+    }
+
+    .car-letter .car-name-txt {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 6vw, 4.6rem);
+      line-height: .95;
+      color: var(--c);
+      text-shadow: 0 0 24px var(--c);
+      word-break: break-word;
+    }
+
+    .car-aka {
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-size: .85rem;
+      color: var(--c);
+      opacity: .85;
+    }
 
     .car-col-title {
-      display: flex; align-items: center; gap: .75rem; margin-bottom: 1.1rem;
-      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .8rem;
-      letter-spacing: .28em; text-transform: uppercase; color: var(--c);
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 1.1rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .8rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--c);
     }
-    .car-col-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--cbd), transparent); }
 
-    .cs-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem 1rem; margin-bottom: 1.6rem; }
+    .car-col-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--cbd), transparent);
+    }
+
+    .cs-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.4rem 1rem;
+      margin-bottom: 1.6rem;
+    }
+
     .cs-big-val {
-      font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.6rem, 5vw, 3.6rem); line-height: .95;
-      color: var(--c); text-shadow: 0 0 22px var(--cbd);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.6rem, 5vw, 3.6rem);
+      line-height: .95;
+      color: var(--c);
+      text-shadow: 0 0 22px var(--cbd);
     }
-    .cs-big-val small { font-size: 1.1rem; color: var(--muted); text-shadow: none; margin-left: .15rem; }
-    .cs-big-val.gold { color: var(--gold); text-shadow: 0 0 22px rgba(255, 215, 0, .35); }
-    .cs-big-val.white { color: var(--text); text-shadow: 0 0 22px rgba(255, 255, 255, .2); }
-    .cs-big-lbl { font-family: 'Barlow Condensed', sans-serif; font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-top: .2rem; }
 
-    .cs-eds { display: flex; flex-direction: column; gap: .7rem; margin-bottom: 1.5rem; }
-    .cs-ed { display: grid; grid-template-columns: 3.2rem 1fr auto; align-items: center; gap: .8rem; font-family: 'Barlow Condensed', sans-serif; }
-    .cs-ed-name { font-weight: 700; letter-spacing: .08em; color: var(--text); font-size: .95rem; }
-    .cs-ed-bar { height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .07); overflow: hidden; }
-    .cs-ed-bar i { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--c), #fff); width: 0; animation: barGrow .9s .15s cubic-bezier(.2, .8, .2, 1) forwards; box-shadow: 0 0 10px var(--c); }
-    @keyframes barGrow { to { width: var(--w); } }
-    .cs-ed-val { font-size: .88rem; color: var(--muted); text-align: right; white-space: nowrap; }
-    .cs-ed-val b { color: var(--text); font-weight: 600; }
-    .cs-ed.none { opacity: .45; }
-    .cs-ed.none .cs-ed-val { grid-column: 2 / 4; text-align: left; }
+    .cs-big-val small {
+      font-size: 1.1rem;
+      color: var(--muted);
+      text-shadow: none;
+      margin-left: .15rem;
+    }
 
-    .cs-best, .cs-quote { margin-bottom: 1.1rem; }
-    .cs-mini-lbl { font-family: 'Barlow Condensed', sans-serif; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin-bottom: .2rem; }
-    .cs-best-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.3rem; line-height: 1.15; color: var(--text); }
-    .cs-best-sub { font-size: .8rem; color: var(--gold); margin-top: .15rem; }
-    .cs-quote p { font-size: .92rem; line-height: 1.5; color: #c9c9e0; font-style: italic; }
+    .cs-big-val.gold {
+      color: var(--gold);
+      text-shadow: 0 0 22px rgba(255, 215, 0, .35);
+    }
 
-    .cp-list { max-height: 440px; overflow-y: auto; padding-right: .4rem; scrollbar-width: thin; scrollbar-color: var(--cbd) transparent; }
-    .cp-item { display: flex; align-items: center; gap: .75rem; padding: .75rem .2rem; border-bottom: 1px solid rgba(255, 255, 255, .06); cursor: pointer; transition: background .2s, padding .2s; }
-    .cp-item:hover { background: linear-gradient(90deg, var(--cbg), transparent); padding-left: .6rem; }
-    .cp-num { font-family: 'Bebas Neue', sans-serif; color: var(--muted); min-width: 1.4rem; font-size: 1rem; }
-    .cp-info { flex: 1; min-width: 0; }
-    .cp-title { font-size: .92rem; font-weight: 500; line-height: 1.3; color: var(--text); }
-    .cp-sub { font-family: 'Barlow Condensed', sans-serif; font-size: .78rem; letter-spacing: .05em; color: var(--muted); margin-top: .15rem; }
-    .cp-badges { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
-    .cp-badges span { background: rgba(255, 215, 0, .13); color: var(--gold); border: 1px solid rgba(255, 215, 0, .35); padding: 1px 6px; border-radius: 3px; font-size: .68rem; font-family: 'Barlow Condensed', sans-serif; }
-    .cp-play { width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border: 1px solid var(--cbd); background: var(--cbg); transition: all .2s; }
-    .cp-play svg { width: 10px; height: 10px; fill: var(--c); margin-left: 1px; }
-    .cp-item:hover .cp-play { background: var(--c); border-color: var(--c); }
-    .cp-item:hover .cp-play svg { fill: #fff; }
-    .cp-empty { color: var(--muted); font-size: .9rem; padding: 1rem 0; }
+    .cs-big-val.white {
+      color: var(--text);
+      text-shadow: 0 0 22px rgba(255, 255, 255, .2);
+    }
+
+    .cs-big-lbl {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .75rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: .2rem;
+    }
+
+    .cs-eds {
+      display: flex;
+      flex-direction: column;
+      gap: .7rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cs-ed {
+      display: grid;
+      grid-template-columns: 3.2rem 1fr auto;
+      align-items: center;
+      gap: .8rem;
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+
+    .cs-ed-name {
+      font-weight: 700;
+      letter-spacing: .08em;
+      color: var(--text);
+      font-size: .95rem;
+    }
+
+    .cs-ed-bar {
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, .07);
+      overflow: hidden;
+    }
+
+    .cs-ed-bar i {
+      display: block;
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--c), #fff);
+      width: 0;
+      animation: barGrow .9s .15s cubic-bezier(.2, .8, .2, 1) forwards;
+      box-shadow: 0 0 10px var(--c);
+    }
+
+    @keyframes barGrow {
+      to {
+        width: var(--w);
+      }
+    }
+
+    .cs-ed-val {
+      font-size: .88rem;
+      color: var(--muted);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .cs-ed-val b {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .cs-ed.none {
+      opacity: .45;
+    }
+
+    .cs-ed.none {
+      grid-template-columns: 3.2rem 1fr;
+    }
+
+    .cs-ed.none .cs-ed-val {
+      text-align: left;
+    }
+
+    .cs-best,
+    .cs-quote {
+      margin-bottom: 1.1rem;
+    }
+
+    .cs-mini-lbl {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: .2rem;
+    }
+
+    .cs-best-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      line-height: 1.15;
+      color: var(--text);
+    }
+
+    .cs-best-sub {
+      font-size: .8rem;
+      color: var(--gold);
+      margin-top: .15rem;
+    }
+
+    .cs-quote p {
+      font-size: .92rem;
+      line-height: 1.5;
+      color: #c9c9e0;
+      font-style: italic;
+    }
+
+    .cp-list {
+      max-height: 440px;
+      overflow-y: auto;
+      padding-right: .4rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--cbd) transparent;
+    }
+
+    .cp-item {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: .75rem .2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+      cursor: pointer;
+      transition: background .2s, padding .2s;
+    }
+
+    .cp-item:hover {
+      background: linear-gradient(90deg, var(--cbg), transparent);
+      padding-left: .6rem;
+    }
+
+    .cp-num {
+      font-family: 'Bebas Neue', sans-serif;
+      color: var(--muted);
+      min-width: 1.4rem;
+      font-size: 1rem;
+    }
+
+    .cp-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .cp-title {
+      font-size: .92rem;
+      font-weight: 500;
+      line-height: 1.3;
+      color: var(--text);
+    }
+
+    .cp-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .78rem;
+      letter-spacing: .05em;
+      color: var(--muted);
+      margin-top: .15rem;
+    }
+
+    .cp-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 4px;
+    }
+
+    .cp-badges span {
+      background: rgba(255, 215, 0, .13);
+      color: var(--gold);
+      border: 1px solid rgba(255, 215, 0, .35);
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: .68rem;
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+
+    .cp-play {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--cbd);
+      background: var(--cbg);
+      transition: all .2s;
+    }
+
+    .cp-play svg {
+      width: 10px;
+      height: 10px;
+      fill: var(--c);
+      margin-left: 1px;
+    }
+
+    .cp-item:hover .cp-play {
+      background: var(--c);
+      border-color: var(--c);
+    }
+
+    .cp-item:hover .cp-play svg {
+      fill: #fff;
+    }
+
+    .cp-empty {
+      color: var(--muted);
+      font-size: .9rem;
+      padding: 1rem 0;
+    }
 
     @media (max-width: 1000px) {
-      .car-slide { grid-template-columns: 1fr 1fr; padding: 2.5rem 4.5rem; gap: 2rem; }
-      .car-letter { grid-column: 1 / -1; }
-      .car-letter img { max-height: 190px; }
+      .car-slide {
+        grid-template-columns: 1fr 1fr;
+        padding: 2.5rem 4.5rem;
+        gap: 2rem;
+      }
+
+      .car-letter {
+        grid-column: 1 / -1;
+      }
+
+      .car-letter img {
+        max-height: 190px;
+      }
     }
+
     @media (max-width: 700px) {
-      .car-slide { grid-template-columns: 1fr; padding: 4.5rem 1.25rem 2rem; gap: 1.8rem; min-height: 0; }
-      .car-arrow { top: 1.1rem; transform: none; width: 42px; height: 42px; }
-      .car-arrow:hover { transform: scale(1.08); }
-      .car-arrow.prev { left: 1rem; }
-      .car-arrow.next { right: 1rem; }
-      .car-letter img { max-height: 130px; }
-      .cp-list { max-height: 360px; }
+      .car-slide {
+        grid-template-columns: 1fr;
+        padding: 4.5rem 1.25rem 2rem;
+        gap: 1.8rem;
+        min-height: 0;
+      }
+
+      .car-arrow {
+        top: 1.1rem;
+        transform: none;
+        width: 42px;
+        height: 42px;
+      }
+
+      .car-arrow:hover {
+        transform: scale(1.08);
+      }
+
+      .car-arrow.prev {
+        left: 1rem;
+      }
+
+      .car-arrow.next {
+        right: 1rem;
+      }
+
+      .car-letter img {
+        max-height: 130px;
+      }
+
+      .cp-list {
+        max-height: 360px;
+      }
     }
+
     @media (prefers-reduced-motion: reduce) {
-      .car-slide.from-right, .car-slide.from-left { animation: none; }
-      .cs-ed-bar i { animation-duration: .01s; animation-delay: 0s; }
+
+      .car-slide.from-right,
+      .car-slide.from-left {
+        animation: none;
+      }
+
+      .cs-ed-bar i {
+        animation-duration: .01s;
+        animation-delay: 0s;
+      }
+    }
+
+    /* ═══════ PORTADA MEJORADA ═══════ */
+    .hero {
+      padding: 5.5rem 1.25rem 3rem;
+      gap: 0;
+    }
+
+    .ne-hero {
+      position: relative;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.1rem;
+      width: min(94vw, 700px);
+      padding: clamp(1.4rem, 4vw, 2.4rem) clamp(1rem, 4vw, 2.5rem) clamp(1.4rem, 3.5vw, 2.1rem);
+      margin-bottom: 2.2rem;
+      z-index: 1;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 45, 120, .28);
+      background: linear-gradient(160deg, rgba(255, 45, 120, .08), rgba(17, 17, 32, .55) 45%, rgba(124, 58, 237, .08));
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 60px rgba(255, 0, 60, .12), inset 0 1px 0 rgba(255, 255, 255, .06);
+      animation: fadeInDown .9s both, cardPulse 4s ease-in-out 1s infinite;
+      overflow: hidden;
+    }
+
+    @keyframes cardPulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 40px rgba(255, 0, 60, .10), inset 0 1px 0 rgba(255, 255, 255, .06);
+        border-color: rgba(255, 45, 120, .25);
+      }
+
+      50% {
+        box-shadow: 0 0 80px rgba(255, 0, 60, .26), inset 0 1px 0 rgba(255, 255, 255, .06);
+        border-color: rgba(255, 45, 120, .5);
+      }
+    }
+
+    .ne-glow {
+      position: absolute;
+      left: 50%;
+      top: -30%;
+      width: 80%;
+      height: 70%;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse, rgba(255, 0, 60, .28), transparent 70%);
+      filter: blur(30px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .ne-hero .ne-logo {
+      position: relative;
+      z-index: 1;
+      width: clamp(190px, 50vw, 330px);
+      filter: drop-shadow(0 0 26px rgba(255, 0, 40, .5));
+      animation: logoFloat 5s ease-in-out infinite;
+    }
+
+    @keyframes logoFloat {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    .ne-hero .ne-info {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    .ne-hero .ne-text {
+      font-size: clamp(.8rem, 2.6vw, 1.05rem);
+      letter-spacing: .32em;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+    }
+
+    .ne-hero .ne-text::before,
+    .ne-hero .ne-text::after {
+      content: '';
+      width: clamp(18px, 6vw, 48px);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent1));
+    }
+
+    .ne-hero .ne-text::after {
+      transform: scaleX(-1);
+    }
+
+    .ne-hero .countdown {
+      gap: clamp(.4rem, 2vw, 1rem);
+    }
+
+    .ne-hero .cd-unit {
+      min-width: clamp(58px, 15vw, 104px);
+      padding: .55rem .4rem .45rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 45, 120, .25);
+      background: rgba(8, 8, 18, .55);
+      box-shadow: inset 0 0 22px rgba(255, 45, 120, .08);
+    }
+
+    .ne-hero .cd-unit:not(:last-child)::after {
+      display: none;
+    }
+
+    .ne-hero .cd-num {
+      font-size: clamp(2.2rem, 8.5vw, 3.9rem);
+      color: #fff;
+      text-shadow: 0 0 18px rgba(255, 45, 120, .8), 0 0 40px rgba(255, 45, 120, .35);
+    }
+
+    .ne-hero .cd-lbl {
+      margin-top: .1rem;
+    }
+
+    .ne-hero .cd-done {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--accent1);
+    }
+
+    .hero-edition-badge {
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-logo {
+      width: min(70vw, 270px);
+    }
+
+    .hero-subtitle {
+      margin-top: .6rem;
+      font-size: clamp(.85rem, 2.4vw, 1.05rem);
+    }
+
+    .hero-nav {
+      margin-top: 2rem;
+      max-width: 980px;
+      gap: .8rem;
+    }
+
+    .scroll-hint {
+      position: relative;
+      bottom: auto;
+      left: auto;
+      transform: none;
+      margin-top: 2rem;
+    }
+
+    /* Jorge / concursantes sin imagen: mismo aire "neón" que el lettering */
+    .car-letter {
+      container-type: inline-size;
+      width: 100%;
+    }
+
+    .car-letter .car-name-txt {
+      white-space: nowrap;
+      word-break: normal;
+      font-size: min(3.6rem, 17cqw);
+      color: #fff;
+      text-shadow: 0 0 10px var(--c), 0 0 28px var(--c), 0 0 60px var(--c);
+      letter-spacing: .03em;
+    }
+
+    .npb-creator .txt {
+      font-size: 2.2rem;
+      color: #fff !important;
+      text-shadow: 0 0 8px var(--glow, currentColor), 0 0 22px var(--glow, currentColor);
+    }
+
+    @media (max-width: 700px) {
+      .hero {
+        padding-top: 4.5rem;
+      }
+
+      .car-letter .car-name-txt {
+        font-size: min(3rem, 17cqw);
+      }
+
+      .hero-edition-badge {
+        font-size: .72rem;
+        letter-spacing: .12em;
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -2662,24 +3456,24 @@
   <div class="hero">
     <div class="hero-bg"></div>
     <div class="ne-block ne-hero">
-    <img class="ne-logo" src="imagen/AV69.png" alt="AutismoVision 4ª edición">
-    <div class="ne-info">
-    <div class="ne-text">La nueva edición comienza en</div>
-    <div class="countdown" data-target="2026-11-27T19:00:00+01:00">
-  <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
-  <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
-  <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
-  <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
-</div>
-<div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
+      <div class="ne-glow" aria-hidden="true"></div>
+      <img class="ne-logo" src="imagen/logo-av69.png" alt="AutismoVision 4ª edición">
+      <div class="ne-info">
+        <div class="ne-text">La nueva edición comienza en</div>
+        <div class="countdown" data-target="2026-11-27T19:00:00+01:00">
+          <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
+        </div>
+        <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
+      </div>
     </div>
-  </div>
     <div class="other-comps-badge" onclick="openOtherCompsModal()">Otras competiciones</div>
     <div class="hero-edition-badge">✦ Eurovisión vamos a por ti 😈 ✦</div>
     <img class="hero-logo" src="imagen/Portada.png" alt="AutismoVision">
     <p class="hero-subtitle">El concurso de canciones más autistas del universo</p>
     <nav class="hero-nav">
-      <a href="#estadisticas-generales" class="secondary">📊 Estadísticas</a>
       <a href="#musica" class="primary">🎵 Escuchar Temazos</a>
       <a href="#clasificaciones" class="secondary">🏆 Clasificaciones</a>
       <a href="#concursantes" class="secondary">👤 Concursantes & Stats</a>
@@ -2687,7 +3481,7 @@
       <a href="#premios-secundarios" class="secondary">🎖️ Premios Secundarios</a>
       <a href="#gala-final" class="gold-nav">🏅 La Última Gala</a>
     </nav>
-    <div class="scroll-hint">Scroll</div>
+    <div class="scroll-hint" aria-hidden="true">Scroll</div>
   </div>
 
   <!-- ─── ESTADISTICAS GENERALES ─── -->
@@ -2716,10 +3510,14 @@
     <p class="section-subtitle">Todas las canciones de todas las ediciones de AutismoVision, listas para escuchar.</p>
 
     <div class="edition-tabs">
-      <button class="tab-btn" onclick="switchEdition(4, this)">4ª Edición — AV69</button>
-      <button class="tab-btn active" onclick="switchEdition(0, this)">3ª Edición - AV4801</button>
-      <button class="tab-btn" onclick="switchEdition(1, this)">2ª Edición — AV3</button>
-      <button class="tab-btn" onclick="switchEdition(2, this)">1ª Edición — AV</button>
+      <button class="tab-btn logo-tab" onclick="switchEdition(4, this)" aria-label="4ª Edición · AV69"
+        title="4ª Edición · AV69"><img src="imagen/AV69.png" alt="4ª Edición · AV69"></button>
+      <button class="tab-btn logo-tab active" onclick="switchEdition(0, this)" aria-label="3ª Edición · AV4801"
+        title="3ª Edición · AV4801"><img src="imagen/logoAV4801.png" alt="3ª Edición · AV4801"></button>
+      <button class="tab-btn logo-tab" onclick="switchEdition(1, this)" aria-label="2ª Edición · AV3"
+        title="2ª Edición · AV3"><img src="imagen/AV3logo.png" alt="2ª Edición · AV3"></button>
+      <button class="tab-btn logo-tab" onclick="switchEdition(2, this)" aria-label="1ª Edición · AV"
+        title="1ª Edición · AV"><img src="imagen/AVlogo.png" alt="1ª Edición · AV"></button>
       <button class="tab-btn" onclick="switchEdition(3, this)">Extras</button>
     </div>
 
@@ -2835,12 +3633,12 @@
       <div class="ne-block">
         <div class="ne-text">La nueva edición empieza en</div>
         <div class="countdown" data-target="2026-11-27T19:00:00+01:00">
-        <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
-        <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
-        <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
-        <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
-      </div>
-      <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
+          <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
+        </div>
+        <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
       </div>
     </div>
   </section>
@@ -2854,10 +3652,14 @@
     <p class="section-subtitle">Revive las clasificaciones de todas las ediciones.</p>
 
     <div class="edition-tabs" id="ranking-tabs">
-      <button class="tab-btn logo-tab" onclick="switchRanking(4, this)" aria-label="4ª Edición · AV69" title="4ª Edición · AV69"><img src="imagen/logo-av69.png" alt="4ª Edición · AV69"></button>
-      <button class="tab-btn logo-tab active" onclick="switchRanking(0, this)" aria-label="3ª Edición · AV4801" title="3ª Edición · AV4801"><img src="imagen/logo-av4801.png" alt="3ª Edición · AV4801"></button>
-      <button class="tab-btn logo-tab" onclick="switchRanking(1, this)" aria-label="2ª Edición · AV3" title="2ª Edición · AV3"><img src="imagen/logo-av3.png" alt="2ª Edición · AV3"></button>
-      <button class="tab-btn logo-tab" onclick="switchRanking(2, this)" aria-label="1ª Edición · AV" title="1ª Edición · AV"><img src="imagen/logo-av1.png" alt="1ª Edición · AV"></button>
+      <button class="tab-btn logo-tab" onclick="switchRanking(4, this)" aria-label="4ª Edición · AV69"
+        title="4ª Edición · AV69"><img src="imagen/logo-av69.png" alt="4ª Edición · AV69"></button>
+      <button class="tab-btn logo-tab active" onclick="switchRanking(0, this)" aria-label="3ª Edición · AV4801"
+        title="3ª Edición · AV4801"><img src="imagen/logo-av4801.png" alt="3ª Edición · AV4801"></button>
+      <button class="tab-btn logo-tab" onclick="switchRanking(1, this)" aria-label="2ª Edición · AV3"
+        title="2ª Edición · AV3"><img src="imagen/logo-av3.png" alt="2ª Edición · AV3"></button>
+      <button class="tab-btn logo-tab" onclick="switchRanking(2, this)" aria-label="1ª Edición · AV"
+        title="1ª Edición · AV"><img src="imagen/logo-av1.png" alt="1ª Edición · AV"></button>
       <button class="tab-btn" onclick="switchRanking(3, this)">Global</button>
     </div>
 
@@ -2910,12 +3712,12 @@
       <div class="ne-block">
         <div class="ne-text">La nueva edición empieza en</div>
         <div class="countdown" data-target="2026-11-27T19:00:00+01:00">
-        <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
-        <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
-        <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
-        <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
-      </div>
-      <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
+          <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
+        </div>
+        <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
       </div>
     </div>
 
@@ -2981,22 +3783,26 @@
       <button class="barras-back-btn" onclick="showBarrasView('menu')">← Volver</button>
       <div class="edition-tabs" id="museo-tabs">
         <button class="tab-btn active" onclick="filterBarrasMuseo('all', this)">Todas</button>
-        <button class="tab-btn logo-tab" onclick="filterBarrasMuseo(3, this)" aria-label="4ª Edición · AV69" title="4ª Edición · AV69"><img src="imagen/logo-av69.png" alt="4ª Edición · AV69"></button>
-        <button class="tab-btn logo-tab" onclick="filterBarrasMuseo(0, this)" aria-label="3ª Edición · AV4801" title="3ª Edición · AV4801"><img src="imagen/logo-av4801.png" alt="3ª Edición · AV4801"></button>
-        <button class="tab-btn logo-tab" onclick="filterBarrasMuseo(1, this)" aria-label="2ª Edición · AV3" title="2ª Edición · AV3"><img src="imagen/logo-av3.png" alt="2ª Edición · AV3"></button>
-        <button class="tab-btn logo-tab" onclick="filterBarrasMuseo(2, this)" aria-label="1ª Edición · AV" title="1ª Edición · AV"><img src="imagen/logo-av1.png" alt="1ª Edición · AV"></button>
+        <button class="tab-btn logo-tab" onclick="filterBarrasMuseo(3, this)" aria-label="4ª Edición · AV69"
+          title="4ª Edición · AV69"><img src="imagen/logo-av69.png" alt="4ª Edición · AV69"></button>
+        <button class="tab-btn logo-tab" onclick="filterBarrasMuseo(0, this)" aria-label="3ª Edición · AV4801"
+          title="3ª Edición · AV4801"><img src="imagen/logo-av4801.png" alt="3ª Edición · AV4801"></button>
+        <button class="tab-btn logo-tab" onclick="filterBarrasMuseo(1, this)" aria-label="2ª Edición · AV3"
+          title="2ª Edición · AV3"><img src="imagen/logo-av3.png" alt="2ª Edición · AV3"></button>
+        <button class="tab-btn logo-tab" onclick="filterBarrasMuseo(2, this)" aria-label="1ª Edición · AV"
+          title="1ª Edición · AV"><img src="imagen/logo-av1.png" alt="1ª Edición · AV"></button>
       </div>
       <div class="barras-museum-grid" id="barras-museum-grid"></div>
       <div id="barras-ne" style="display:none;">
         <div class="ne-block">
           <div class="ne-text">La nueva edición empieza en</div>
           <div class="countdown" data-target="2026-11-27T19:00:00+01:00">
-          <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
-          <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
-          <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
-          <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
-        </div>
-        <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
+            <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
+            <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
+            <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
+            <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
+          </div>
+          <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
         </div>
       </div>
     </div>
@@ -3071,22 +3877,26 @@
       musical.</p>
 
     <div class="edition-tabs" id="awards-tabs">
-      <button class="tab-btn logo-tab" onclick="switchAwards(4, this)" aria-label="4ª Edición · AV69" title="4ª Edición · AV69"><img src="imagen/logo-av69.png" alt="4ª Edición · AV69"></button>
-      <button class="tab-btn logo-tab active" onclick="switchAwards(3, this)" aria-label="3ª Edición · AV4801" title="3ª Edición · AV4801"><img src="imagen/logo-av4801.png" alt="3ª Edición · AV4801"></button>
-      <button class="tab-btn logo-tab" onclick="switchAwards(2, this)" aria-label="2ª Edición · AV3" title="2ª Edición · AV3"><img src="imagen/logo-av3.png" alt="2ª Edición · AV3"></button>
-      <button class="tab-btn logo-tab" onclick="switchAwards(1, this)" aria-label="1ª Edición · AV" title="1ª Edición · AV"><img src="imagen/logo-av1.png" alt="1ª Edición · AV"></button>
+      <button class="tab-btn logo-tab" onclick="switchAwards(4, this)" aria-label="4ª Edición · AV69"
+        title="4ª Edición · AV69"><img src="imagen/logo-av69.png" alt="4ª Edición · AV69"></button>
+      <button class="tab-btn logo-tab active" onclick="switchAwards(3, this)" aria-label="3ª Edición · AV4801"
+        title="3ª Edición · AV4801"><img src="imagen/logo-av4801.png" alt="3ª Edición · AV4801"></button>
+      <button class="tab-btn logo-tab" onclick="switchAwards(2, this)" aria-label="2ª Edición · AV3"
+        title="2ª Edición · AV3"><img src="imagen/logo-av3.png" alt="2ª Edición · AV3"></button>
+      <button class="tab-btn logo-tab" onclick="switchAwards(1, this)" aria-label="1ª Edición · AV"
+        title="1ª Edición · AV"><img src="imagen/logo-av1.png" alt="1ª Edición · AV"></button>
     </div>
     <div id="awards-container"></div>
     <div id="awards-ne" style="display:none;">
       <div class="ne-block">
         <div class="ne-text">La nueva edición empieza en</div>
         <div class="countdown" data-target="2026-11-27T19:00:00+01:00">
-        <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
-        <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
-        <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
-        <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
-      </div>
-      <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
+          <div class="cd-unit"><span class="cd-num" data-cd="d">00</span><span class="cd-lbl">Días</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="h">00</span><span class="cd-lbl">Horas</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="m">00</span><span class="cd-lbl">Min</span></div>
+          <div class="cd-unit"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Seg</span></div>
+        </div>
+        <div class="cd-done" style="display:none;">¡La nueva edición ya ha comenzado! 🔥</div>
       </div>
     </div>
   </section>
@@ -3111,14 +3921,16 @@
 
       <div class="gala-round-title">Ronda 2</div>
       <p class="section-subtitle">Subcampeones, terceros puestos y el ganador de la votación.<br>
-        <strong style="color:var(--gold)"> Los ganadores de la Ronda 2 pasan al bracket. </strong></p>
+        <strong style="color:var(--gold)"> Los ganadores de la Ronda 2 pasan al bracket. </strong>
+      </p>
       <div class="gala-grid" id="gala-ronda2"></div>
       <div class="gala-extra">(+ 11 clasificados de la ronda 1 de los playoffs)</div>
 
       <div class="gala-round-title">Ronda 1</div>
       <p class="section-subtitle">Cuartos puestos, quintos puestos, sextos puestos, favorito del público y del 2º y 3º
         puesto de la votación (un favorito del público por edición).<br>
-        <strong style="color:var(--gold)"> Los ganadores de la Ronda 1 pasan a la Ronda 2. </strong></p>
+        <strong style="color:var(--gold)"> Los ganadores de la Ronda 1 pasan a la Ronda 2. </strong>
+      </p>
       <div class="gala-grid" id="gala-ronda1"></div>
     </div>
   </div>
@@ -3855,6 +4667,17 @@
       if (itemEl) itemEl.classList.add('active');
     }
 
+
+    // Pausar el reproductor (y el emergente) al salir de la pestaña del navegador
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) return;
+      pauseEditionPlayers();
+      const mf = document.getElementById('modalIframe');
+      if (mf && mf.src) {
+        try { mf.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }), '*'); } catch (e) { }
+      }
+    });
+
     function pauseEditionPlayers() {
       for (let i = 0; i < 4; i++) {
         const f = document.getElementById(`player-${i}`);
@@ -3876,13 +4699,13 @@
     let activeContestant = 0;
 
     const LETTERING = {
-      'Superpajas33': 'imagen/lettering-superpajas.png',
-      'Sintu_': 'imagen/lettering-sintu.png',
-      'Borja': 'imagen/lettering-borja.png',
-      'Minwerfu': 'imagen/lettering-minwerfu.png',
-      'DJ Sigma Boy': 'imagen/lettering-djsigmaboy.png',
-      'Gokenrik': 'imagen/lettering-gokenrik.png',
-      // 'Gheorge777': 'imagen/lettering-gheorge777.png'  ← añade el archivo y descomenta esta línea
+      'Superpajas33': 'imagen/Superpajas33.png',
+      'Sintu_': 'imagen/Sintu.png',
+      'Borja': 'imagen/Borja.png',
+      'Minwerfu': 'imagen/Minwerfu.png',
+      'DJ Sigma Boy': 'imagen/Dj Sigma Boy.png',
+      'Gokenrik': 'imagen/Gokenrik.png',
+      'Gheorge777': 'imagen/Gheorge777.png'
     };
     const NAME_ALIASES = { 'luner': 'Superpajas33', 'madi': 'DJ Sigma Boy', 'madie': 'DJ Sigma Boy' };
 
@@ -3902,7 +4725,7 @@
         const canon = resolveContestantName(p);
         const c = canon && CONTESTANTS.find(x => x.name === canon);
         if (canon && LETTERING[canon]) return `<img src="${LETTERING[canon]}" alt="${canon}" title="${p}">`;
-        return `<span class="txt" style="color:${c ? c.color : 'var(--text)'}">${p}</span>`;
+        return `<span class="txt" style="--glow:${c ? c.color : '#ffffff'}">${p}</span>`;
       }).join('<span class="amp">&amp;</span>');
       return html + prod;
     }
@@ -3962,7 +4785,7 @@
       // Filas por edición
       const eds = [3, 2, 1].map(n => {
         const list = songs.filter(x => x.edNum === n);
-        if (!list.length) return `<div class="cs-ed none"><span class="cs-ed-name">${ED_LABEL[n]}</span><span></span><span class="cs-ed-val">No participó</span></div>`;
+        if (!list.length) return `<div class="cs-ed none"><span class="cs-ed-name">${ED_LABEL[n]}</span><span class="cs-ed-val">No participó</span></div>`;
         const max = n === 1 ? 10 : 43;
         const avg = list.reduce((a, x) => a + x.score, 0) / list.length;
         const rank = list.reduce((a, x) => a + x.origIndex + 1, 0) / list.length;
@@ -4748,7 +5571,7 @@
             return;
           }
           const d = Math.floor(diff / 864e5), h = Math.floor(diff / 36e5) % 24,
-                m = Math.floor(diff / 6e4) % 60, sec = Math.floor(diff / 1e3) % 60;
+            m = Math.floor(diff / 6e4) % 60, sec = Math.floor(diff / 1e3) % 60;
           const pad = n => String(n).padStart(2, '0');
           const v = { d: pad(d), h: pad(h), m: pad(m), s: pad(sec) };
           cd.querySelectorAll('[data-cd]').forEach(el => setDigits(el, v[el.dataset.cd]));
